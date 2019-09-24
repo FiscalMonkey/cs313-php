@@ -3,14 +3,14 @@ body {
    margin: 0 auto 0 auto; 
 }
 
+div:hover {
+   font-weight: bold;
+}
+
 #div1 {
    font-family: 'Courier New', Courier, monospace;
    background-color: aliceblue;
    font-size: x-large;
-}
-
-#div1:hover {
-   font-weight: bold;
 }
 
 #div2 {
@@ -19,16 +19,8 @@ body {
    font-size: x-small;
 }
 
-#div2:hover {
-   font-weight: bold;
-}
-
 #div3 {
    font-family: 'Times New Roman', Times, serif;
    background-color: azure;
    font-size: larger;
-}
-
-#div3:hover {
-   font-weight: bold;
 }
