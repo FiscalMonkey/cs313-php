@@ -3,6 +3,10 @@ function getClicked() {
 }
 
 function changeColor() {
-   var newColor = document.getElementById("div1c").value;
-   document.getElementById("div1").style.backgroundColor = newColor;
+   var newColor = $("#div1c").val();
+   $("#div1").css("background-color", newColor);
+}
+
+function fadeOut() {
+   $("#div3").fadeOut("slow");
 }
