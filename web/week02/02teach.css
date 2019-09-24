@@ -1,0 +1,34 @@
+body {
+   max-width: 900px;
+   margin: 0 auto 0 auto; 
+}
+
+#div1 {
+   font-family: 'Courier New', Courier, monospace;
+   background-color: aliceblue;
+   font-size: x-large;
+}
+
+#div1:hover {
+   font-weight: bold;
+}
+
+#div2 {
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   background-color: bisque;
+   font-size: x-small;
+}
+
+#div2:hover {
+   font-weight: bold;
+}
+
+#div3 {
+   font-family: 'Times New Roman', Times, serif;
+   background-color: azure;
+   font-size: larger;
+}
+
+#div3:hover {
+   font-weight: bold;
+}
