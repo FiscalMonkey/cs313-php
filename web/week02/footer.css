@@ -2,6 +2,11 @@ body {
    margin-top: 25px;
 }
 
+.img-fluid {
+   padding-bottom: 30px;
+   border-radius: 2vw;
+}
+
 footer {
    height: 100px;
    background-color: darkgrey;
