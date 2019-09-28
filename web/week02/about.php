@@ -33,7 +33,7 @@
             </div>
          </nav>
          <div class="jumbotron">
-            <p>My name is Dave Moreno. I'm a Junior at BYU-Idaho and I'm working on a BS in Computer Science. I grew up in Alpine, Utah from the time I was one but I was born in Mexico.</p>
+            <p>My name is Dave Moreno. I'm a Junior at BYU-Idaho and I'm working on a BS in Computer Science. I grew up in Alpine, Utah from the time I was one but I was born in Mexico where my father grew up.</p>
             <p>My current interests include but are not limited to:</p>
             <ul>
                <li>Video Games</li>
@@ -41,7 +41,7 @@
                <li>Learning about other languages (Russian in particular)</li>
                <li>Excersising when I have time</li>
             </ul>
-            <p>Yeah, I'm pretty lame but I have fun with my wife and two dogs.</p>
+            <p>Yeah, I'm pretty lame but I have fun with my wife Nan and two dogs, Jack and Eira.</p>
             <img src="happyfam.jpeg" class="img-fluid" alt="Happy Family">
          </div>
       </div>
