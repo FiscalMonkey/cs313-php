@@ -4,7 +4,7 @@ footer {
    display: flex;
    align-items: center;
    justify-content: center;
-   color: bisque;
+   color: black;
    font-size: 18px;
 }
 
@@ -21,7 +21,7 @@ footer {
    align-items: center;
    width: 50%;
    padding-left: 10px;
-   border-left: 1px groove bisque;
+   border-left: 1px groove lightgray;
 }
 
 #justMe {
