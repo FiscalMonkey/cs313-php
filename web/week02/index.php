@@ -37,7 +37,7 @@
       </div>
 
       <!-- Using PHP to include the same footer -->
-      <?php include("includes/footer.html"); ?>
+      <?php include("footer.html"); ?>
       
       <!-- Optional JavaScript -->
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
