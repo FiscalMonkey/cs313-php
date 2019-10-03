@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="stylesheet" href="footer.css"/>
+
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <title>CS 313 - 03Teach</title>
+  </head>
+  <body>
+      <div class="container">
+         <div class="page-header">
+            <h1 class="display-1">Student Information</h1>
+         </div>
+      </div>
+      <div class="container">
+         <div class="jumbotron">
+            <form class="needs-validation" name="student" method="POST">
+               <div class="form-group">
+                  <label class="h3" for="name">Name</label>
+                  <input id="name" class="form-control" type="text" name="name" placeholder="Full Name" tabindex="1" required />
+               </div>
+               <div class="form-group">
+                  <label class="h3" for="email_addr">Email Address</label>
+                  <input id="email_addr" class="form-control" type="email" name="email" placeholder="email@example.net" tabindex="2" required />
+               </div>
+               <label class="h3" for="majors">Major</label>
+               <div id="majors">
+                  <div class="form-check">
+                     <input id="cs_major" class="form-check-input" type="radio" name="major" value="Computer Science" tabindex="3" required />
+                     <label for="cs_major" class="form-check-label">Computer Science</label>
+                  </div>
+                  <div class="form-check">
+                     <input id="web_major" class="form-check-input" type="radio" name="major" value="Web Design and Development" required />
+                     <label for="web_major" class="form-check-label">Web Design and Development</label>
+                  </div>
+                  <div class="form-check">
+                     <input id="cit_major" class="form-check-input" type="radio" name="major" value="Computer Information Technology" required />
+                     <label for="cit_major" class="form-check-label">Computer Information Technology</label>
+                  </div>
+                  <div class="form-check">
+                     <input id="ce_major" class="form-check-input" type="radio" name="major" value="Computer Engineering" />
+                     <label for="ce_major" class="form-check-label">Computer Engineering</label>
+                  </div>
+               </div>
+               <label class="h3" for="continents">Continents Visited</label>
+               <div id="continents">
+                  <div class="form-check">
+                     <input id="no_am" class="form-check-input" type="check" value="North America" tabindex="4" />
+                     <label for="no_am" class="form-check-label">North America</label>
+                  </div>
+                  <div class="form-check">
+                     <input id="so_am" class="form-check-input" type="check" value="South America" />
+                     <label for="so_am" class="form-check-label">South America</label>
+                  </div>
+                  <div class="form-check">
+                     <input id="" class="form-check-input" type="check" value="Europe" tabindex="" />
+                     <label for="" class="form-check-label"></label>
+                  </div>
+                  <div class="form-check">
+                     <input id="" class="form-check-input" type="check" value="" tabindex="" />
+                     <label for="" class="form-check-label"></label>
+                  </div>
+                  <div class="form-check">
+                     <input id="" class="form-check-input" type="check" value="" tabindex="" >
+                     <label for="" class="form-check-label"></label>
+                  </div>
+                  <div class="form-check">
+                     <input id="" class="form-check-input" type="check" value="" tabindex="" >
+                     <label for="" class="form-check-label"></label>
+                  </div>
+                  <div class="form-check">
+                     <input id="" class="form-check-input" type="check" value="" tabindex="" >
+                     <label for="" class="form-check-label"></label>
+                  </div>
+               </div>
+               <div class="mb-3">
+                  <label class="h3" for="comments">Comments</label>
+                  <textarea id="comments" class="form-control" name="comments" tabindex="7"></textarea>
+               </div>
+               <button class="btn btn-primary btn-lg" type="submit" tabindex="8">Submit</button>
+            </form>
+         </div>
+      </div>
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
