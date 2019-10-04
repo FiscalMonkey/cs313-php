@@ -36,19 +36,22 @@
             <div class="list-group">
                <a href="../week03/03prove.php" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
-                     <h5 class="mb-1">Week 03 Prove - Shopping Cart</h5>
+                     <h5 class="mb-1">Shopping Cart - Week 03 Prove</h5>
+                     <small>Score: TBD</small>
                   </div>
                   <p class="mb-1">Create a webpage that allows users to "purchase" items and stores it in a shopping cart and also maintains a session through php.</p>
                </a>
                <a href="../week03/03teach.html" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
-                     <h5 class="mb-1">Week 03 Teach</h5>
+                     <h5 class="mb-1">PHP Forms - Week 03 Teach</h5>
+                     <small>Score: 93%</small>
                   </div>
                   <p class="mb-1">Create a form for students to enter information and submit said form using POST.</p>
                </a>
                <a href="../week02/02teach.html" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
                      <h5 class="mb-1">Week 02 Teach</h5>
+                     <small>Score: 97.67%</small>
                   </div>
                   <p class="mb-1">Super simple webpage that does some basic changes with user interaction.</p>
                </a>
