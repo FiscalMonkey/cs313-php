@@ -33,7 +33,26 @@
             </div>
          </nav>
          <div class="jumbotron">
-            <ul>Coming Soon!</ul>
+            <div class="list-group">
+               <a href="../week03/03ponder.php" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                     <h5 class="mb-1">Week 03 Ponder</h5>
+                  </div>
+                  <p class="mb-1">Create a webpage that allows users to "purchase" items and stores it in a shopping cart and also maintains a session through php.</small>
+               </a>
+               <a href="../week03/03teach.html" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                     <h5 class="mb-1">Week 03 Teach</h5>
+                  </div>
+                  <p class="mb-1">Create a form for students to enter information and submit said form using POST.</p>
+               </a>
+               <a href="../week02/02teach.html" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                     <h5 class="mb-1">Week 02 Teach</h5>
+                  </div>
+                  <p class="mb-1">Super simple webpage that does some basic changes with user interaction.</p>
+               </a>
+            </div>
          </div>
       </div>
 
