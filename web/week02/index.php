@@ -34,11 +34,11 @@
          </nav>
          <div class="jumbotron">
             <div class="list-group">
-               <a href="../week03/03ponder.php" class="list-group-item list-group-item-action">
+               <a href="../week03/03prove.php" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
-                     <h5 class="mb-1">Week 03 Ponder</h5>
+                     <h5 class="mb-1">Week 03 Prove - Shopping Cart</h5>
                   </div>
-                  <p class="mb-1">Create a webpage that allows users to "purchase" items and stores it in a shopping cart and also maintains a session through php.</small>
+                  <p class="mb-1">Create a webpage that allows users to "purchase" items and stores it in a shopping cart and also maintains a session through php.</p>
                </a>
                <a href="../week03/03teach.html" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
