@@ -1,0 +1,28 @@
+.card {
+   max-width: 25rem;
+}
+
+.jumbotron {
+   padding-top: 2rem;
+}
+
+.card-img-top {
+   height: 25rem;
+   transition: width 1s, height 1s, box-shadow 1s;
+   object-fit: cover;
+   background-position: center;
+}
+
+.card-img-top:hover {
+   position: relative;
+   top: -35px;
+   left: -35px;
+   width: 500px;
+   height: auto;
+   display: block;
+   z-index: 999;
+   max-height: none;
+   max-width: none;
+   border-radius: 1vw;
+   box-shadow: 5px 5px 3px black;
+}

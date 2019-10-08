@@ -10,7 +10,7 @@
 
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-    <title>CS 313 - Assignments</title>
+    <title>CS 313 - About Me</title>
   </head>
   <body>
       <div class="container">
@@ -20,50 +20,34 @@
       </div>
       <div class="container">
          <nav class="navbar navbar-expand-sm navbar-light bg-light">
-            <div id="navbarSupportedContent">
+            <div class="" id="navbarSupportedContent">
                <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                     <a class="nav-link disabled" href="index.php">Assignments</a>
-                  </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="about.php">About Me</a>
+                     <a class="nav-link" href="index.php">Assignments</a>
+                  </li>
+                  <li class="nav-item active">
+                     <a class="nav-link disabled" href="about.php">About Me</a>
                   </li>
                </ul>
             </div>
          </nav>
          <div class="jumbotron">
-            <div class="list-group">
-               <a href="week03/03prove.php" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                     <h5 class="mb-1">Shopping Cart - Week 03 Prove</h5>
-                     <small>5 Oct 2019</small>
-                  </div>
-                  <p class="mb-1">Create a simple PHP application to simulate a shopping cart.</p>
-                  <small>Score: TBD <span class="badge badge-danger">LATE</span></small>
-               </a>
-               <a href="week03/03teach.html" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                     <h5 class="mb-1">PHP Forms - Week 03 Teach</h5>
-                     <small>2 Oct 2019</small>
-                  </div>
-                  <p class="mb-1">Create a form for students to enter information and submit said form using POST.</p>
-                  <small>Score: 93%</small>
-               </a>
-               <a href="week02/02teach.html" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                     <h5 class="mb-1">Week 02 Teach</h5>
-                     <small>25 Sep 2019</small>
-                  </div>
-                  <p class="mb-1">Super simple webpage that does some basic changes with user interaction.</p>
-                  <small>Score: 97.67%</small>
-               </a>
-            </div>
+            <p>My name is Dave Moreno. I'm a Junior at BYU-Idaho and I'm working on a BS in Computer Science. I grew up in Alpine, Utah from the time I was one but I was born in Mexico where my father grew up.</p>
+            <p>My current interests include but are not limited to:</p>
+            <ul>
+               <li>Video Games</li>
+               <li><a href="https://brandonsanderson.com/books/">Books by Brandon Sanderson</a></li>
+               <li>Learning about other languages (Russian in particular)</li>
+               <li>Excersising when I have time</li>
+            </ul>
+            <p>Yeah, I'm pretty lame but I have fun with my wife Nan and two dogs, Jack and Eira.</p>
+            <img src="week02/happyfam.jpeg" class="img-fluid" alt="Happy Family">
          </div>
       </div>
 
       <!-- Using PHP to include the same footer -->
       <?php include("week02/footer.html"); ?>
-      
+
       <!-- Optional JavaScript -->
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
