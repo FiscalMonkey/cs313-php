@@ -33,13 +33,21 @@
          </nav>
          <div class="jumbotron">
             <div class="list-group">
+               <a href="week04/" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                     <h5 class="mb-1">DB Setup - Week 04 Prove</h5>
+                     <small>12 Oct 2019</small>
+                  </div>
+                  <p class="mb-1">Setup a simple database.</p>
+                  <small>Percent Complete: TBD</small>
+               </a>
                <a href="week03/03prove.php" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
                      <h5 class="mb-1">Shopping Cart - Week 03 Prove</h5>
                      <small>5 Oct 2019</small>
                   </div>
                   <p class="mb-1">Create a simple PHP application to simulate a shopping cart.</p>
-                  <small>Score: TBD <span class="badge badge-danger">LATE</span></small>
+                  <small>Percent Complete: TBD <span class="badge badge-danger">LATE</span></small>
                </a>
                <a href="week03/03teach.html" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
@@ -47,7 +55,7 @@
                      <small>2 Oct 2019</small>
                   </div>
                   <p class="mb-1">Create a form for students to enter information and submit said form using POST.</p>
-                  <small>Score: 93%</small>
+                  <small>Percent Complete: 93%</small>
                </a>
                <a href="week02/02teach.html" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
@@ -55,7 +63,7 @@
                      <small>25 Sep 2019</small>
                   </div>
                   <p class="mb-1">Super simple webpage that does some basic changes with user interaction.</p>
-                  <small>Score: 97.67%</small>
+                  <small>Percent Complete: 97.67%</small>
                </a>
             </div>
          </div>
