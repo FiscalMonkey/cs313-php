@@ -47,7 +47,7 @@
                      <small>5 Oct 2019</small>
                   </div>
                   <p class="mb-1">Create a simple PHP application to simulate a shopping cart.</p>
-                  <small>Percent Complete: TBD <span class="badge badge-danger">LATE</span></small>
+                  <small>Percent Complete: 93% <span class="badge badge-danger">LATE</span></small>
                </a>
                <a href="week03/03teach.html" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
