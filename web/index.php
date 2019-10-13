@@ -39,7 +39,7 @@
                      <small>12 Oct 2019</small>
                   </div>
                   <p class="mb-1">Setup a simple database.</p>
-                  <small>Percent Complete: 100</small>
+                  <small>Percent Complete: 100%</small>
                </a>
                <a href="week03/03prove.php" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
