@@ -1,0 +1,28 @@
+DROP TABLE IF EXISTS oil_tbl;
+DROP SEQUENCE IF EXISTS oil_s1;
+
+CREATE TABLE oil_tbl 
+( oil_id      INTEGER NOT NULL
+, oil     VARCHAR(10) UNIQUE NOT NULL
+, PRIMARY KEY (oil_id)
+);
+
+CREATE SEQUENCE oil_s1 INCREMENT BY 500 START WITH 10000;
+
+INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '0W');
+INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '5W');
+INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '10W');
+INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '15W');
+INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '20W');
+INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '25W');
+INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '30W');
+INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '35W');
+INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '40W');
+INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '45W');
+INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '50W');
+INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '55W');
+INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '60W');
+INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '5W-30');
+INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '5W-20');
+
+SELECT * FROM oil_tbl;
