@@ -33,13 +33,13 @@
          </nav>
          <div class="jumbotron">
             <div class="list-group">
-               <a href="week04/" class="list-group-item list-group-item-action">
+               <a href="../db" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
                      <h5 class="mb-1">DB Setup - Week 04 Prove</h5>
                      <small>12 Oct 2019</small>
                   </div>
                   <p class="mb-1">Setup a simple database.</p>
-                  <small>Percent Complete: TBD</small>
+                  <small>Percent Complete: 100</small>
                </a>
                <a href="week03/03prove.php" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
