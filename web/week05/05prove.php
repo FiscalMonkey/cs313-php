@@ -2,7 +2,7 @@
 if (!isset($_SESSION)) {
    session_start();
 }
-
+/*
 try {
    $dbUrl = getenv('DATABASE_URL');
 
@@ -25,7 +25,7 @@ try {
 $stmt = $db->prepare('SELECT DISTINCT year FROM motor_tbl ORDER BY year DESC');
 $stmt->execute(array('year' => $year));
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+*/
 
 ?>
 
@@ -103,7 +103,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
    </div>
 
    <!-- Using PHP to include the same footer -->
-   <?php include("week02/footer.html"); ?>
+   <?php include("../week02/footer.html"); ?>
 
    <!-- Optional JavaScript -->
    <script>
