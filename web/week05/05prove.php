@@ -2,7 +2,7 @@
 if (!isset($_SESSION)) {
    session_start();
 }
-/*
+
 try {
    $dbUrl = getenv('DATABASE_URL');
 
@@ -21,7 +21,7 @@ try {
    echo 'Error!: ' . $ex->getMessage();
    die();
 }
-
+/*
 $stmt = $db->prepare('SELECT DISTINCT year FROM motor_tbl ORDER BY year DESC');
 $stmt->execute(array('year' => $year));
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
