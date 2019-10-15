@@ -87,16 +87,12 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                <label class="h5" for="model">Model</label>
                <select id="model" class="form-control" onchange="newModel()" disabled>
                   <option disabled selected value="">Choose Model</option>
-                  <?php foreach ($db->query('SELECT DISTINCT model, model_id FROM motor_tbl ORDER BY model') as $row) {
-                     echo '<option value="' . $row["model_id"] . '">' . $row["model"] . '</option>';
-                  }?>
+                  <div id="models"></div>
                </select>
                <label class="h5" for="motor">Engine</label>
                <select id="motor" class="form-control" disabled>
                   <option disabled selected value="">Choose Engine</option>
-                  <?php foreach ($db->query('SELECT motor, motor_id FROM motor_tbl ORDER BY motor') as $row) {
-                     echo '<option value="' . $row["motor_id"] . '">' . $row["motor"] . '</option>';
-                  }?>
+                  <div id="motors"></div>
                </select>
             </div>
          </form>
@@ -108,9 +104,9 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
    <!-- Optional JavaScript -->
    <script>
-      var make = document.getElementById("make");
-      var model = document.getElementById("model");
-      var motor = document.getElementById("motor");
+      var make = $("make");
+      var model = $("model");
+      var motor = $("motor");
 
       function newYear() {
          make.disabled = false;
@@ -119,8 +115,8 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
          model.options[0].selected = true;
          motor.disabled = true;
          motor.options[0].selected = true;
-         var year = document.getElementById("year").value;
-         $.post("new_year.php", {year: year},
+         var year = $("year").val();
+         $.post("new_year.php",  year: year },
          function(data) {
             $("#makes").html(data);
          });
