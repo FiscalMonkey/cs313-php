@@ -79,7 +79,7 @@ try {
                <label class="h5" for="make">Make</label>
                <select id="make" class="form-control" onchange="newMake()" disabled>
                   <option disabled selected value="">Choose Make</option>
-                  <div id="makes"></div>
+                  <div id="car_makes"></div>
                </select>
                <label class="h5" for="model">Model</label>
                <select id="model" class="form-control" onchange="newModel()" disabled>
@@ -112,7 +112,7 @@ try {
          model.options[0].selected = true;
          motor.disabled = true;
          motor.options[0].selected = true;
-         $("#make").load("new_year.php", { 'year': value }, function(data, status, jqXGR) {
+         $("#car_makes").load("new_year.php", { 'year': value }, function(data, status, jqXGR) {
             console.log("data loaded");
          });
       }
