@@ -25,7 +25,7 @@ try {
 $stmt = $db->prepare('SELECT DISTINCT year FROM motor_tbl ORDER BY year DESC');
 $stmt->execute();
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+echo $rows;
 ?>
 
 <!DOCTYPE html>
