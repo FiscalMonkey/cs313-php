@@ -43,6 +43,14 @@
                <p class="mb-1">Build UI for database access.</p>
                <small>Percent Complete: TBD</small>
             </a>
+            <a href="http://whispering-thicket-79511.herokuapp.com/liveshare.php" class="list-group-item list-group-item-action">
+               <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">DB Access - Week 05 Teach</h5>
+                  <small>17 Oct 2019</small>
+               </div>
+               <p class="mb-1">Make a webpage that displays some scriptures from the database.</p>
+               <small>Percent Complete: 100%</small>
+            </a>
             <a href="https://github.com/FiscalMonkey/cs313-php/tree/master/db" class="list-group-item list-group-item-action">
                <div class="d-flex w-100 justify-content-between">
                   <h5 class="mb-1">DB Setup - Week 04 Prove</h5>
