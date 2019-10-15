@@ -43,9 +43,9 @@ try {
 
    <!-- Optional JavaScript -->
    <script>
-      var make = $("make");
-      var model = $("model");
-      var motor = $("motor");
+      var make = document.getElementById("make");
+      var model = document.getElementById("model");
+      var motor = document.getElementById("motor");
 
       function newYear() {
          make.disabled = false;
