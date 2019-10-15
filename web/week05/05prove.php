@@ -70,31 +70,34 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                <label class="h5" for="year">Year</label>
                <select id="year" class="form-control" onchange="newYear()">
                   <option disabled selected value="">Choose Year</option>
-                  <?php
-                  foreach ($db->query('SELECT DISTINCT year FROM motor_tbl ORDER BY year DESC') as $row) {
+                  <?php foreach ($db->query('SELECT DISTINCT year FROM motor_tbl ORDER BY year DESC') as $row) {
                      echo '<option value="' . $row["year"] . '">' . $row["year"] . '</option>';
                   } ?>
                </select>
                <label class="h5" for="make">Make</label>
                <select id="make" class="form-control" onchange="newMake()" disabled>
                   <option disabled selected value="">Choose Make</option>
-                  <option value="Ford">Ford</option>
-                  <option value="Subaru">Subaru</option>
-                  <?php /* select all unique makes of motors with preselected year */ ?>
+                  <?php foreach ($db->query('SELECT DISTINCT make, make_id FROM motor_tbl ORDER BY make') as $row) {
+                     echo '<option value="' . $row["make_id"] . '">' . $row["make"] . '</option>';
+                  }?>
                </select>
                <label class="h5" for="model">Model</label>
                <select id="model" class="form-control" onchange="newModel()" disabled>
                   <option disabled selected value="">Choose Model</option>
                   <option value="Crown Victoria">Crown Victoria</option>
                   <option value="Outback">Outback</option>
-                  <?php /* select all unique models from motors with year and make */ ?>
+                  <?php foreach ($db->query('SELECT DISTINCT model FROM motor_tbl ORDER BY model') as $row) {
+                     echo '<option value="' . $row["model_id"] . '">' . $row["model"] . '</option>';
+                  }?>
                </select>
                <label class="h5" for="motor">Engine</label>
                <select id="motor" class="form-control" disabled>
                   <option disabled selected value="">Choose Engine</option>
                   <option value="i Cyl-4 2.5">i Cyl-4 2.5</option>
                   <option value="Police Interceptor Cyl-8 4.6">Police Interceptor Cyl-8 4.6</option>
-                  <?php /* select all motors with correct year, make, and model */ ?>
+                  <?php foreach ($db->query('SELECT motor, motor_id FROM motor_tbl ORDER BY motor') as $row) {
+                     echo '<option value="' . $row["motor_id"] . '">' . $row["motor"] . '</option>';
+                  }?>
                </select>
             </div>
          </form>
