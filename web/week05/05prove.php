@@ -70,7 +70,7 @@ try {
          <form id="car">
             <div class="form-group">
                <label class="h5" for="year">Year</label>
-               <select id="year" class="form-control" onchange="newYear()">
+               <select id="year" class="form-control" onchange="newYear(select.value)">
                   <option disabled selected value="">Choose Year</option>
                   <?php foreach ($db->query('SELECT DISTINCT year FROM motor_tbl ORDER BY year DESC') as $row) {
                      echo '<option value="' . $row["year"] . '">' . $row["year"] . '</option>';
@@ -105,15 +105,14 @@ try {
       var model = document.getElementById("model");
       var motor = document.getElementById("motor");
 
-      function newYear() {
+      function newYear(value) {
          make.disabled = false;
          make.options[0].selected = true;
          model.disabled = true;
          model.options[0].selected = true;
          motor.disabled = true;
          motor.options[0].selected = true;
-         var year = $("year").val();
-         $("#makes").load("new_year.php", { 'year': year }, function(data, status, jqXGR) {
+         $("#makes").load("new_year.php", { 'year': value }, function(data, status, jqXGR) {
             console.log("data loaded");
          });
       }
