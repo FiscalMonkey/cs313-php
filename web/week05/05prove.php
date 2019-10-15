@@ -120,19 +120,19 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
          function(data) {
             $("#makes").html(data);
          });
-      }
+      };
 
       function newMake() {
          model.disabled = false;
          model.options[0].selected = true;
          motor.disabled = true;
          motor.options[0].selected = true;
-      }
+      };
 
       function newModel() {
          motor.disabled = false;
          motor.options[0].selected = true;
-      }
+      };
    </script>
    
 </body>
