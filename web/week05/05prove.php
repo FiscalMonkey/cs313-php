@@ -113,10 +113,9 @@ try {
          motor.disabled = true;
          motor.options[0].selected = true;
          var year = $("year").val();
-         $.post("new_year.php", { year: year },
-            function(data) {
-               $("#makes").html(data);
-            });
+         $("#makes").load("new_year.php", { 'year': year }, function(data, status, jqXGR) {
+            console.log("data loaded");
+         };
       }
 
       function newMake() {
