@@ -112,7 +112,7 @@ try {
          model.options[0].selected = true;
          motor.disabled = true;
          motor.options[0].selected = true;
-         $("make").load("new_year.php", { 'year': value }, function(data, status, jqXGR) {
+         $("#make").load("new_year.php", { 'year': value }, function(data, status, jqXGR) {
             console.log("data loaded");
          });
       }
