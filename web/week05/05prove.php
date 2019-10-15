@@ -70,7 +70,7 @@ try {
          <form id="car">
             <div class="form-group">
                <label class="h5" for="year">Year</label>
-               <select id="year" class="form-control" onchange="newYear(select.value)">
+               <select id="year" class="form-control" onchange="newYear(year.value)">
                   <option disabled selected value="">Choose Year</option>
                   <?php foreach ($db->query('SELECT DISTINCT year FROM motor_tbl ORDER BY year DESC') as $row) {
                      echo '<option value="' . $row["year"] . '">' . $row["year"] . '</option>';
