@@ -38,3 +38,11 @@ VALUES
 , 6);
 
 SELECT * FROM motor_tbl;
+
+/* Correctly display motor information with make, model, and oil */
+SELECT a.year, b.make, c.model, a.motor, d.oil, a.oil_cap 
+FROM motor_tbl as a
+INNER JOIN make_tbl AS b ON (a.make_id = b.make_id)
+INNER JOIN model_tbl AS c ON (a.model_id = c.model_id)
+INNER JOIN oil_tbl AS d ON (a.oil_id = d.oil_id)
+ORDER BY make, year;

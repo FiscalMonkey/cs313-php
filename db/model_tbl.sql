@@ -24,3 +24,9 @@ VALUES
 , (SELECT make_id FROM make_tbl WHERE make = 'Ford'));
 
 SELECT * FROM model_tbl;
+
+/* Display models with make and order by make */
+SELECT b.make, a.model 
+FROM model_tbl as a
+INNER JOIN make_tbl AS b ON (a.make_id = b.make_id)
+ORDER BY make, model;
