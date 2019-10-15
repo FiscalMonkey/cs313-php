@@ -21,11 +21,11 @@ try {
    echo 'Error!: ' . $ex->getMessage();
    die();
 }
-
+/*
 $stmt = $db->prepare('SELECT DISTINCT year FROM motor_tbl ORDER BY year DESC');
 $stmt->execute();
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-echo $rows;
+*/
 ?>
 
 <!DOCTYPE html>
@@ -71,8 +71,8 @@ echo $rows;
                <select id="year" class="form-control" onchange="newYear()">
                   <option disabled selected value="">Choose Year</option>
                   <?php
-                  foreach ($rows as $year) {
-                     echo '<option value="' . $year. '">' . $year . '</option>';
+                  foreach ($db->query('SELECT DISTINCT year FROM motor_tbl ORDER BY year DESC') as $row) {
+                     echo '<option value="' . $row["year"] . '">' . $row["year"] . '</option>';
                   } ?>
                </select>
                <label class="h5" for="make">Make</label>
