@@ -115,7 +115,7 @@ try {
          var year = $("year").val();
          $("#makes").load("new_year.php", { 'year': year }, function(data, status, jqXGR) {
             console.log("data loaded");
-         )};
+         });
       }
 
       function newMake() {
