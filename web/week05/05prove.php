@@ -72,7 +72,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                   <option disabled selected value="">Choose Year</option>
                   <?php
                   foreach ($rows as $year) {
-                     echo '<option value="$year">$year</option>';
+                     echo '<option value="' . $year. '">' . $year . '</option>';
                   } ?>
                </select>
                <label class="h5" for="make">Make</label>
