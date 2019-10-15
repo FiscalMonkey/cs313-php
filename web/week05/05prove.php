@@ -1,8 +1,8 @@
 <?php
 if (!isset($_SESSION)) {
    session_start();
- }
- 
+}
+
 try {
    $dbUrl = getenv('DATABASE_URL');
 
@@ -21,6 +21,12 @@ try {
    echo 'Error!: ' . $ex->getMessage();
    die();
 }
+
+$stmt = $db->prepare('SELECT DISTINCT year FROM motor_tbl ORDER BY year DESC');
+$stmt->execute(array('year' => $year));
+$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +56,7 @@ try {
          <div id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                <li class="nav-item active">
-                  <a class="nav-link disabled" href="05prove.php">Database</a>
+                  <a class="nav-link disabled" href="05prove.php">Access</a>
                </li>
                <li class="nav-item">
                   <a class="nav-link disabled" href="#">Add</a>
@@ -59,27 +65,36 @@ try {
          </div>
       </nav>
       <div class="jumbotron">
-         <label for="car">Enter Vehicle Information</label>
+         <label class="h3" for="car">Enter Vehicle Information</label>
          <form id="car">
             <div class="form-group">
-               <label for="year">Year</label>
+               <label class="h5" for="year">Year</label>
                <select id="year" class="form-control" onchange="newYear()">
-                  <option disabled value="">Choose Year</option>
-                  <?php /* select all unique years in motors_tbl and order by year */ ?>
+                  <option disabled selected value="">Choose Year</option>
+                  <?php
+                  foreach ($rows as $year) {
+                     echo '<option value="$year">$year</option>';
+                  } ?>
                </select>
-               <label for="make">Make</label>
+               <label class="h5" for="make">Make</label>
                <select id="make" class="form-control" onchange="newMake()" disabled>
-                  <option disabled value="">Choose Make</option>
+                  <option disabled selected value="">Choose Make</option>
+                  <option value="Ford">Ford</option>
+                  <option value="Subaru">Subaru</option>
                   <?php /* select all unique makes of motors with preselected year */ ?>
                </select>
-               <label for="model">Model</label>
+               <label class="h5" for="model">Model</label>
                <select id="model" class="form-control" onchange="newModel()" disabled>
-                  <option disabled value="">Choose Model</option>
+                  <option disabled selected value="">Choose Model</option>
+                  <option value="Crown Victoria">Crown Victoria</option>
+                  <option value="Outback">Outback</option>
                   <?php /* select all unique models from motors with year and make */ ?>
                </select>
-               <label for="motor">Engine</label>
+               <label class="h5" for="motor">Engine</label>
                <select id="motor" class="form-control" disabled>
-                  <option disabled value="">Choose Engine</option>
+                  <option disabled selected value="">Choose Engine</option>
+                  <option value="i Cyl-4 2.5">i Cyl-4 2.5</option>
+                  <option value="Police Interceptor Cyl-8 4.6">Police Interceptor Cyl-8 4.6</option>
                   <?php /* select all motors with correct year, make, and model */ ?>
                </select>
             </div>
