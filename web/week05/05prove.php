@@ -128,6 +128,9 @@ try {
       function newModel(value) {
          motor.disabled = false;
          motor.options[0].selected = true;
+         $("#motor").load("new_model.php", {'year': year.value, 'make_id': make.value, 'modol_id': model.value }, function(data, status, jqXGR) {
+            console.log("data loaded");
+         });
       }
    </script>
 </body>
