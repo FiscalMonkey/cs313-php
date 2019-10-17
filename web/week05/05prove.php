@@ -74,25 +74,25 @@ try {
             <div class="form-group">
                <label class="h5" for="year">Year</label>
                <select id="year" class="form-control" onchange="newYear()">
-                  <option disabled selected value="">Choose Year</option>
+                  <option disabled selected value="">Choose Year</option required>
                   <?php foreach ($db->query('SELECT DISTINCT year FROM motor_tbl ORDER BY year DESC') as $row) {
                      echo '<option value="' . $row["year"] . '">' . $row["year"] . '</option>';
                   } ?>
                </select>
                <label class="h5" for="make">Make</label>
-               <select id="make" class="form-control" onchange="newMake()" disabled>
+               <select id="make" class="form-control" onchange="newMake()" disabled required>
                   <option disabled selected value="">Choose Make</option>
                </select>
                <label class="h5" for="model">Model</label>
-               <select id="model" class="form-control" onchange="newModel()" disabled>
+               <select id="model" class="form-control" onchange="newModel()" disabled required>
                   <option disabled selected value="">Choose Model</option>
                </select>
                <label class="h5" for="motor">Engine</label>
-               <select id="motor" name="motor" class="form-control" disabled>
+               <select id="motor" name="motor" class="form-control" disabled required>
                   <option disabled selected value="">Choose Engine</option>
                </select>
             </div>
-            <button class="btn btn-success btn-lg" type="submit" name="submit">Submit</button>
+            <input class="btn btn-success btn-lg" type="submit" name="submit">Submit</button>
          </form>
       </div>
       <div id="cars">
@@ -100,6 +100,7 @@ try {
          if (isset($_SESSION["cars"])) {
             include 'load_cars.php';
          }
+         print_r($_SESSION);
          ?>
       </div>
    </div>
