@@ -20,6 +20,10 @@ try {
 } catch (PDOException $ex) {
    echo 'Error!: ' . $ex->getMessage();
    die();
+
+   if (isset($_POST["submit"])) {
+      array_push($_SESSION["motors"], $_POST["motor"]);
+   }
 }
 ?>
 
@@ -94,10 +98,6 @@ try {
       </div>
       <div id="cars">
          <?php
-         if (isset($_POST["submit"])) {
-            array_push($_SESSION["motors"], $_POST["motor"]);
-         }
-
          if (isset($_SESSION["cars"])) {
             include 'load_cars.php';
          }
