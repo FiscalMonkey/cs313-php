@@ -17,9 +17,9 @@ try {
    echo 'Error!: ' . $ex->getMessage();
    die();
 }
-echo '<option disabled selected value="">Choose Make</option>';
-$_SESSION["year"] = $_POST['year'];
-foreach ($db->query('SELECT DISTINCT b.make, a.make_id FROM motor_tbl AS a INNER JOIN make_tbl AS b ON (a.make_id = b.make_id) WHERE a.year = ' . $_SESSION["year"] . '') as $row) {
-   echo '<option value="' . $row["make_id"] . '">' . $row["make"] . '</option>';
+echo '<option disabled selected value="">Choose Model</option>';
+$_SESSION["make_id"] = $_POST['make_id'];
+foreach ($db->query('SELECT DISTINCT b.model, a.model_id FROM motor_tbl AS a INNER JOIN model_tbl AS b ON (a.model_id = b.model_id) WHERE a.year = ' . $_SESSION["year"] . ' AND a.make_id = ' . $_SESSION["make_id"] . '') as $row) {
+   echo '<option value="' . $row["model_id"] . '">' . $row["model"] . '</option>';
 }
 ?>

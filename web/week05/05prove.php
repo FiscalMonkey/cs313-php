@@ -77,7 +77,7 @@ try {
                   } ?>
                </select>
                <label class="h5" for="make">Make</label>
-               <select id="make" class="form-control" onchange="newMake()" disabled>
+               <select id="make" class="form-control" onchange="newMake(make.value)" disabled>
                   <option disabled selected value="">Choose Make</option>
                </select>
                <label class="h5" for="model">Model</label>
@@ -116,14 +116,17 @@ try {
          });
       }
 
-      function newMake() {
+      function newMake(value) {
          model.disabled = false;
          model.options[0].selected = true;
          motor.disabled = true;
          motor.options[0].selected = true;
+         $("#model").load("new_make.php", { 'make_id': value }, function(data, status, jqXGR) {
+            console.log("data loaded");
+         });
       }
 
-      function newModel() {
+      function newModel(value) {
          motor.disabled = false;
          motor.options[0].selected = true;
       }
