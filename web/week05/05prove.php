@@ -20,10 +20,6 @@ try {
 } catch (PDOException $ex) {
    echo 'Error!: ' . $ex->getMessage();
    die();
-
-   if (isset($_POST["submit"])) {
-      array_push($_SESSION["motors"], $_POST["motor"]);
-   }
 }
 ?>
 
@@ -70,8 +66,11 @@ try {
          </div>
       </nav>
       <div class="jumbotron">
+         <?php if (isset($_POST["submit"])) {
+            array_push($_SESSION["motors"], $_POST["motor"]);
+         } ?>
          <label class="h3" for="car">Enter Vehicle Information</label>
-         <form id="car">
+         <form id="car" method="post">
             <div class="form-group">
                <label class="h5" for="year">Year</label>
                <select id="year" class="form-control" onchange="newYear()">
