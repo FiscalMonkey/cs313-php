@@ -41,7 +41,7 @@ try {
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-   
+
 
    <title>CS 313 - 05Prove</title>
 </head>
@@ -85,17 +85,29 @@ try {
                   <option disabled selected value="">Choose Model</option>
                </select>
                <label class="h5" for="motor">Engine</label>
-               <select id="motor" class="form-control" disabled>
+               <select id="motor" name="motor" class="form-control" disabled>
                   <option disabled selected value="">Choose Engine</option>
                </select>
             </div>
+            <button class="btn btn-success btn-lg" type="submit" name="submit">Submit</button>
          </form>
+      </div>
+      <div id="cars">
+         <?php
+         if (isset($_POST["submit"])) {
+            array_push($_SESSION["motors"], $_POST["motor"]);
+         }
+
+         if (isset($_SESSION["cars"])) {
+            include 'load_cars.php';
+         }
+         ?>
       </div>
    </div>
 
    <!-- Using PHP to include the same footer -->
    <?php include("../week02/footer.html"); ?>
-   
+
    <!-- Optional JavaScript -->
    <script>
       var make = document.getElementById("make");
@@ -110,7 +122,9 @@ try {
          model.options[0].selected = true;
          motor.disabled = true;
          motor.options[0].selected = true;
-         $("#make").load("new_year.php", { 'year': year.value }, function(data, status, jqXGR) {
+         $("#make").load("new_year.php", {
+            'year': year.value
+         }, function(data, status, jqXGR) {
             console.log("data loaded");
          });
       }
@@ -120,7 +134,10 @@ try {
          model.options[0].selected = true;
          motor.disabled = true;
          motor.options[0].selected = true;
-         $("#model").load("new_make.php", {'year': year.value, 'make_id': make.value }, function(data, status, jqXGR) {
+         $("#model").load("new_make.php", {
+            'year': year.value,
+            'make_id': make.value
+         }, function(data, status, jqXGR) {
             console.log("data loaded");
          });
       }
@@ -128,9 +145,14 @@ try {
       function newModel() {
          motor.disabled = false;
          motor.options[0].selected = true;
-         $("#motor").load("new_model.php", {'year': year.value, 'make_id': make.value, 'model_id': model.value }, function(data, status, jqXGR) {
+         $("#motor").load("new_model.php", {
+            'year': year.value,
+            'make_id': make.value,
+            'model_id': model.value
+         }, function(data, status, jqXGR) {
             console.log("data loaded");
          });
+
       }
    </script>
 </body>
