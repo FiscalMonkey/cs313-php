@@ -70,18 +70,18 @@ try {
          <form id="car">
             <div class="form-group">
                <label class="h5" for="year">Year</label>
-               <select id="year" class="form-control" onchange="newYear(year.value)">
+               <select id="year" class="form-control" onchange="newYear()">
                   <option disabled selected value="">Choose Year</option>
                   <?php foreach ($db->query('SELECT DISTINCT year FROM motor_tbl ORDER BY year DESC') as $row) {
                      echo '<option value="' . $row["year"] . '">' . $row["year"] . '</option>';
                   } ?>
                </select>
                <label class="h5" for="make">Make</label>
-               <select id="make" class="form-control" onchange="newMake(year.value, make.value)" disabled>
+               <select id="make" class="form-control" onchange="newMake()" disabled>
                   <option disabled selected value="">Choose Make</option>
                </select>
                <label class="h5" for="model">Model</label>
-               <select id="model" class="form-control" onchange="newModel(model.value)" disabled>
+               <select id="model" class="form-control" onchange="newModel()" disabled>
                   <option disabled selected value="">Choose Model</option>
                </select>
                <label class="h5" for="motor">Engine</label>
@@ -101,25 +101,26 @@ try {
       var make = document.getElementById("make");
       var model = document.getElementById("model");
       var motor = document.getElementById("motor");
+      var year = document.getElementById("year");
 
-      function newYear(value) {
+      function newYear() {
          make.disabled = false;
          make.options[0].selected = true;
          model.disabled = true;
          model.options[0].selected = true;
          motor.disabled = true;
          motor.options[0].selected = true;
-         $("#make").load("new_year.php", { 'year': value }, function(data, status, jqXGR) {
+         $("#make").load("new_year.php", { 'year': year.value }, function(data, status, jqXGR) {
             console.log("data loaded");
          });
       }
 
-      function newMake(year, model) {
+      function newMake() {
          model.disabled = false;
          model.options[0].selected = true;
          motor.disabled = true;
          motor.options[0].selected = true;
-         $("#model").load("new_make.php", {'year': year, 'make_id': make }, function(data, status, jqXGR) {
+         $("#model").load("new_make.php", {'year': year.value, 'make_id': make.value }, function(data, status, jqXGR) {
             console.log("data loaded");
          });
       }
