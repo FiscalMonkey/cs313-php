@@ -67,7 +67,7 @@ try {
       </nav>
       <div class="jumbotron">
          <?php if (isset($_POST["submit"])) {
-            array_push($_SESSION["motors"], $_POST["motor"]);
+            array_push($_SESSION["cars"], $_POST["motor"]);
          } ?>
          <label class="h3" for="car">Enter Vehicle Information</label>
          <form id="car" method="post">
