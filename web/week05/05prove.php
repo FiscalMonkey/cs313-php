@@ -92,7 +92,7 @@ try {
                   <option disabled selected value="">Choose Engine</option>
                </select>
             </div>
-            <input class="btn btn-success btn-lg" type="submit" name="submit">Submit</button>
+            <input class="btn btn-success btn-lg" type="submit" value="Submit" name="submit"/>
          </form>
       </div>
       <div id="cars">
