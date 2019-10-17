@@ -101,6 +101,7 @@ try {
             include 'load_cars.php';
          }
          print_r($_SESSION);
+         print($_SESSION["cars"]);
          ?>
       </div>
    </div>
