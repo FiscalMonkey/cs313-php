@@ -81,14 +81,12 @@ try {
                   <option disabled selected value="">Choose Make</option>
                </select>
                <label class="h5" for="model">Model</label>
-               <select id="model" class="form-control" onchange="newModel()" disabled>
+               <select id="model" class="form-control" onchange="newModel(model.value)" disabled>
                   <option disabled selected value="">Choose Model</option>
-                  <div id="models"></div>
                </select>
                <label class="h5" for="motor">Engine</label>
                <select id="motor" class="form-control" disabled>
                   <option disabled selected value="">Choose Engine</option>
-                  <div id="motors"></div>
                </select>
             </div>
          </form>
