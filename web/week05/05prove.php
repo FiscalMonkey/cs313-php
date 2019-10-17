@@ -98,7 +98,7 @@ try {
       <div id="cars">
          <?php
          if (isset($_SESSION["cars"])) {
-            include 'load_cars.php';
+            include ("load_cars.php");
          }
          print_r($_SESSION);
          foreach ($_SESSION["cars"] as $car) {
