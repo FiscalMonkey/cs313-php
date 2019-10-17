@@ -125,10 +125,10 @@ try {
          });
       }
 
-      function newModel(value) {
+      function newModel() {
          motor.disabled = false;
          motor.options[0].selected = true;
-         $("#motor").load("new_model.php", {'year': year.value, 'make_id': make.value, 'modol_id': model.value }, function(data, status, jqXGR) {
+         $("#motor").load("new_model.php", {'year': year.value, 'make_id': make.value, 'model_id': model.value }, function(data, status, jqXGR) {
             console.log("data loaded");
          });
       }
