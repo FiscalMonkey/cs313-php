@@ -101,7 +101,9 @@ try {
             include 'load_cars.php';
          }
          print_r($_SESSION);
-         print($_SESSION["cars"]);
+         foreach ($_SESSION["cars"] as $car) {
+            echo 'motor: ' . $car;
+         }
          ?>
       </div>
    </div>
