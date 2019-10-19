@@ -1,5 +1,5 @@
 <?php
-session_unset();
+session_destroy();
 if (!isset($_SESSION)) {
    session_start();
 }
