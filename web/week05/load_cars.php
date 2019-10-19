@@ -29,7 +29,6 @@ echo '<div id="car_table" class="table-responsive"><table class="table table-str
                <th scope="col">Engine</th>
                <th scope="col">Oil Grade</th>
                <th scope="col">Engine Cap. (l)</th>
-               <th style="display:none;" scope="col">ID</th>
             </tr></thead>
             <tbody>';
 foreach ($_SESSION["cars"] as $car) {
@@ -46,7 +45,7 @@ WHERE motor_id = ' . $car) as $row) {
       <td>' . $row["motor"] . '</td>
       <td>' . $row["oil"] . '</td>
       <td>' . $row["oil_cap"] . '</td>
-      <td>' . $car . '</td>
+      <td style="display:none;">' . $car . '</td>
    </tr>';
    }
 }
