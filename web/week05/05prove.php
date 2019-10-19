@@ -2,10 +2,10 @@
 if (!isset($_SESSION)) {
    session_start();
 }
-/* delete last entry if reloading */
-if (isset($_POST["motor"])) {
-   unset($_POST["motor"]);
-}
+/* delete last entry if reloading 
+if (isset($_POST)) {
+   unset($_POST);
+}*/
 
 try {
    $dbUrl = getenv('DATABASE_URL');
