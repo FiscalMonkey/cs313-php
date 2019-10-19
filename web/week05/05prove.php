@@ -2,10 +2,6 @@
 if (!isset($_SESSION)) {
    session_start();
 }
-/* delete last entry if reloading 
-if (isset($_POST)) {
-   unset($_POST);
-}*/
 
 try {
    $dbUrl = getenv('DATABASE_URL');
@@ -76,7 +72,7 @@ try {
                $_SESSION["cars"] = array();
             }
             /* Search array before adding duplicates */
-            if (!array_search($_POST["motor"], $_SESSION["cars"])) {
+            if (array_search($_POST["motor"], $_SESSION["cars"]) == false) {
                array_push($_SESSION["cars"], $_POST["motor"]);
             }
          } ?>
