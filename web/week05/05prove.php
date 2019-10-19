@@ -133,6 +133,7 @@ try {
          }, function(data, status, jqXGR) {
             console.log("data loaded");
          });
+         $("#oil").html("");
       }
 
       function newMake() {
@@ -146,6 +147,7 @@ try {
          }, function(data, status, jqXGR) {
             console.log("data loaded");
          });
+         $("#oil").html("");
       }
 
       function newModel() {
@@ -158,7 +160,7 @@ try {
          }, function(data, status, jqXGR) {
             console.log("data loaded");
          });
-
+         $("#oil").html("");
       }
 
       function newMotor() {
