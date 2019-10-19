@@ -1,4 +1,5 @@
 <?php
+session_unset();
 if (!isset($_SESSION)) {
    session_start();
 }
@@ -105,9 +106,6 @@ try {
          <?php
          if (isset($_SESSION["cars"])) {
             include("load_cars.php");
-         }
-         foreach ($_SESSION["cars"] as $car) {
-            echo 'motor: ' . $car;
          }
          ?>
       </div>
