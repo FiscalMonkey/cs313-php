@@ -23,12 +23,13 @@ try {
 echo '<label for="car_table" class="h5">Saved Vehicles</label>';
 echo '<div id="car_table" class="table-responsive"><table class="table table-striped">
             <thead class="thead-dark"><tr>
-                  <th scope="col">Year</th>
-                  <th scope="col">Make</th>
-                  <th scope="col">Model</th>
-                  <th scope="col">Engine</th>
-                  <th scope="col">Oil Grade</th>
-                  <th scope="col">Engine Cap. (l)</th>
+               <th scope="col">Year</th>
+               <th scope="col">Make</th>
+               <th scope="col">Model</th>
+               <th scope="col">Engine</th>
+               <th scope="col">Oil Grade</th>
+               <th scope="col">Engine Cap. (l)</th>
+               <th style="display:none;" scope="col">ID</th>
             </tr></thead>
             <tbody>';
 foreach ($_SESSION["cars"] as $car) {
@@ -45,7 +46,7 @@ WHERE motor_id = ' . $car) as $row) {
       <td>' . $row["motor"] . '</td>
       <td>' . $row["oil"] . '</td>
       <td>' . $row["oil_cap"] . '</td>
-      <td class="hidden">' . $car . '</td>
+      <td>' . $car . '</td>
    </tr>';
    }
 }
