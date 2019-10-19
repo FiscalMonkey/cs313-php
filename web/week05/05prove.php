@@ -108,7 +108,7 @@ try {
       <div id="cars">
          <?php
          /* load any cars that have been saved as session variables */
-         if (isset($_SESSION["cars"])) {
+         if (!empty($_SESSION["cars"])) {
             include("load_cars.php");
          }
          ?>
