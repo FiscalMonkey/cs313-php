@@ -67,6 +67,9 @@ try {
       </nav>
       <div class="jumbotron">
          <?php if (isset($_POST["submit"])) {
+            if (!isset($_SESSION["cars"])) {
+               $_SESSION["cars"] = array();
+            }
             array_push($_SESSION["cars"], $_POST["motor"]);
          } ?>
          <label class="h3" for="car">Enter Vehicle Information</label>
@@ -103,7 +106,6 @@ try {
          if (isset($_SESSION["cars"])) {
             include("load_cars.php");
          }
-         print_r($_SESSION);
          foreach ($_SESSION["cars"] as $car) {
             echo 'motor: ' . $car;
          }

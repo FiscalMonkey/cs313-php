@@ -27,8 +27,8 @@ echo '<div class="table-responsive"><table class="table table-striped">
                   <th scope="col">Make</th>
                   <th scope="col">Model</th>
                   <th scope="col">Engine</th>
-                  <th scope="col">Oil</th>
-                  <th scope="col">Volume</th>
+                  <th scope="col">Oil Grade</th>
+                  <th scope="col">Engine Cap.</th>
             </tr></thead>
             <tbody>';
 foreach ($_SESSION["cars"] as $car) {
