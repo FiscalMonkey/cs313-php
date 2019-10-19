@@ -1,7 +1,11 @@
 <?php
-unset($_SESSION["cars"]);
+session_unset();
 if (!isset($_SESSION)) {
    session_start();
+}
+/* delete last entry if reloading */
+if (isset($_POST["motor"])) {
+   unset($_POST["motor"]);
 }
 
 try {
@@ -68,10 +72,14 @@ try {
       </nav>
       <div class="jumbotron">
          <?php if (isset($_POST["submit"])) {
+            /*create variable as array if not set */
             if (!isset($_SESSION["cars"])) {
                $_SESSION["cars"] = array();
             }
-            array_push($_SESSION["cars"], $_POST["motor"]);
+            /* Search array before adding duplicates */
+            if (!array_search($_POST["motor"], $_SESSION["cars"])) {
+               array_push($_SESSION["cars"], $_POST["motor"]);
+            }
          } ?>
          <label class="h3" for="car">Enter Vehicle Information</label>
          <form id="car" method="post">
@@ -104,6 +112,7 @@ try {
       </div>
       <div id="cars">
          <?php
+         /* load any cars that have been saved as session variables */
          if (isset($_SESSION["cars"])) {
             include("load_cars.php");
          }
