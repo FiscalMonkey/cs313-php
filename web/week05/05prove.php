@@ -1,5 +1,5 @@
 <?php
-session_unset();
+unset($_SESSION["cars"]);
 if (!isset($_SESSION)) {
    session_start();
 }
