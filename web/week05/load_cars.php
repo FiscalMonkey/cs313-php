@@ -45,6 +45,7 @@ WHERE motor_id = ' . $car) as $row) {
       <td>' . $row["motor"] . '</td>
       <td>' . $row["oil"] . '</td>
       <td>' . $row["oil_cap"] . '</td>
+      <td class="hidden">' . $car . '</td>
    </tr>';
    }
 }
