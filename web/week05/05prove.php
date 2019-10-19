@@ -91,14 +91,16 @@ try {
                <select id="motor" name="motor" class="form-control" disabled required>
                   <option disabled selected value="">Choose Engine</option>
                </select>
+               <div id="oil">
+               </div>
             </div>
-            <input class="btn btn-success btn-lg" type="submit" value="Submit" name="submit"/>
+            <input class="btn btn-success btn-lg" type="submit" value="Save Vehicle" name="submit" />
          </form>
       </div>
       <div id="cars">
          <?php
          if (isset($_SESSION["cars"])) {
-            include ("load_cars.php");
+            include("load_cars.php");
          }
          print_r($_SESSION);
          foreach ($_SESSION["cars"] as $car) {
@@ -156,6 +158,14 @@ try {
             console.log("data loaded");
          });
 
+      }
+
+      function newMotor() {
+         $("#oil").load("new_motor.php", {
+            'motor_id' : motor.value
+         }, function(data, status, jqXGR) {
+            console.log("data loaded");
+         });
       }
    </script>
 </body>
