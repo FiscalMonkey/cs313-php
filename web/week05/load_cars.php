@@ -1,25 +1,7 @@
 <?php
-if (!isset($_SESSION)) {
-   session_start();
-}
-try {
-   $dbUrl = getenv('DATABASE_URL');
+require "../dbConnect.php";
+$db = get_db();
 
-   $dbOpts = parse_url($dbUrl);
-
-   $dbHost = $dbOpts["host"];
-   $dbPort = $dbOpts["port"];
-   $dbUser = $dbOpts["user"];
-   $dbPassword = $dbOpts["pass"];
-   $dbName = ltrim($dbOpts["path"], '/');
-
-   $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
-
-   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $ex) {
-   echo 'Error!: ' . $ex->getMessage();
-   die();
-}
 echo '<label for="car_table" class="h5">Saved Vehicles</label>';
 echo '<div id="car_table" class="table-responsive"><table class="table table-striped">
             <thead class="thead-dark"><tr>
