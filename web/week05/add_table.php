@@ -74,6 +74,7 @@ $db = get_db();
          WHERE NOT EXISTS (
          SELECT 1 FROM make_tbl WHERE make = :make
          )");
+         echo $makeSt;
          $makeSt->execute(array('make' => $make));
          /*
          $stmt = $db->prepare("INSERT INTO motor_tbl
