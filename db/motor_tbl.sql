@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS motor_tbl;
 DROP SEQUENCE IF EXISTS motor_s1;
 
 CREATE TABLE motor_tbl 
-( motor_id        INTEGER NOT NULL
+( motor_id        SERIAL
 , motor     VARCHAR(30) NOT NULL
 , year      INTEGER NOT NULL
 , model_id  INTEGER NOT NULL
@@ -17,28 +17,24 @@ CREATE TABLE motor_tbl
 , FOREIGN KEY (grade2_id) REFERENCES grade2_tbl(grade2_id)
 );
 
-CREATE SEQUENCE motor_s1 INCREMENT BY 1 START WITH 1001;
-
-INSERT INTO motor_tbl
+INSERT INTO motor_tbl(motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap)
 VALUES 
-( NEXTVAL('motor_s1')
-, 'i 4-Cyl 2.5'
+('i 4-Cyl 2.5'
 , 2005
-, (SELECT model_id FROM model_tbl WHERE model = 'Outback')
-, (SELECT make_id FROM make_tbl WHERE make = 'Subaru')
-, (SELECT grade1_id FROM grade1_tbl WHERE grade1 = '5W')
-, (SELECT grade2_id FROM grade2_tbl WHERE grade2 = '30')
+,(SELECT model_id FROM model_tbl WHERE model = 'Outback')
+,(SELECT make_id FROM make_tbl WHERE make = 'Subaru')
+,(SELECT grade1_id FROM grade1_tbl WHERE grade1 = '5W')
+,(SELECT grade2_id FROM grade2_tbl WHERE grade2 = '30')
 , 4.4);
 
-INSERT INTO motor_tbl
+INSERT INTO motor_tbl(motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap)
 VALUES 
-( NEXTVAL('motor_s1')
-, 'Police Interceptor 8-Cyl 4.6'
+('Police Interceptor 8-Cyl 4.6'
 , 2008
-, (SELECT model_id FROM model_tbl WHERE model = 'Crown Victoria')
-, (SELECT make_id FROM make_tbl WHERE make = 'Ford')
-, (SELECT grade1_id FROM grade1_tbl WHERE grade1 = '5W')
-, (SELECT grade2_id FROM grade2_tbl WHERE grade2 = '20')
+,(SELECT model_id FROM model_tbl WHERE model = 'Crown Victoria')
+,(SELECT make_id FROM make_tbl WHERE make = 'Ford')
+,(SELECT grade1_id FROM grade1_tbl WHERE grade1 = '5W')
+,(SELECT grade2_id FROM grade2_tbl WHERE grade2 = '20')
 , 6);
 
 SELECT * FROM motor_tbl;
