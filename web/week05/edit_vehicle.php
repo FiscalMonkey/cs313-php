@@ -5,6 +5,15 @@ if (!isset($_SESSION)) {
 
 require "../dbConnect.php";
 $db = get_db();
+$motor_id = $_POST['motor'];
+$car = array();
+$car = $db->query('SELECT a.year, b.make, c.model, a.motor, d.grade1, e.grade2, a.oil_cap 
+FROM motor_tbl as a
+INNER JOIN make_tbl AS b ON a.make_id = b.make_id
+INNER JOIN model_tbl AS c ON a.model_id = c.model_id
+INNER JOIN grade1_tbl AS d ON a.grade1_id = d.grade1_id
+INNER JOIN grade2_tbl AS e ON a.grade2_id = e.grade2_id
+WHERE motor_id = ' . $motor_id);
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +36,7 @@ $db = get_db();
 
 
 
-   <title>CS 313 - 05Prove Edit</title>
+   <title>Edit Vehicle</title>
 </head>
 
 <body>
@@ -46,8 +55,8 @@ $db = get_db();
                <li class="nav-item">
                   <a class="nav-link" href="add_table.php">Add</a>
                </li>
-               <li class="nav-item active">
-                  <a class="nav-link disabled" href="edit_table.php">Edit</a>
+               <li class="nav-item">
+                  <a class="nav-link" href="edit_table.php">Edit</a>
                </li>
                <li class="nav-item">
                   <a class="nav-link" href="remove_table.php">Remove</a>
@@ -56,26 +65,26 @@ $db = get_db();
          </div>
       </nav>
       <div class="jumbotron">
-         <label class="h3" for="car">Select Vehicle to Edit</label>
+         <label class="h3" for="car">Edit Vehicle</label>
          <form id="car" method="post" action="edit_vehicle.php">
             <div class="form-group">
                <label class="h5" for="year">Year</label>
-               <select id="year" name="year" class="form-control" onchange="newYear()">
+               <select id="year" class="form-control" onchange="newYear()">
                   <option disabled selected value="">Choose Year</option required>
                   <?php foreach ($db->query('SELECT DISTINCT year FROM motor_tbl ORDER BY year DESC') as $row) {
                      echo '<option value="' . $row["year"] . '">' . $row["year"] . '</option>';
                   } ?>
                </select>
                <label class="h5" for="make">Make</label>
-               <select id="make" name="make" class="form-control" onchange="newMake()" disabled required>
+               <select id="make" class="form-control" onchange="newMake()" disabled required>
                   <option disabled selected value="">Choose Make</option>
                </select>
                <label class="h5" for="model">Model</label>
-               <select id="model" name="model" class="form-control" onchange="newModel()" disabled required>
+               <select id="model" class="form-control" onchange="newModel()" disabled required>
                   <option disabled selected value="">Choose Model</option>
                </select>
                <label class="h5" for="motor">Engine</label>
-               <select id="motor" name="motor" name="motor" class="form-control" disabled required>
+               <select id="motor" name="motor" class="form-control" disabled required>
                   <option disabled selected value="">Choose Engine</option>
                </select>
             </div>
