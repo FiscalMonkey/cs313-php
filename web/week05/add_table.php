@@ -68,12 +68,12 @@ $db = get_db();
          $g1 = $_POST['grade1'];
          $g2 = $_POST['grade2'];
          $cap = $_POST['cap'];
-         // insert make if doesn't exist
+         /*// insert make if doesn't exist 
          $makeSt = $db->prepare('INSERT INTO make_tbl VALUES (NEXTVAL("make_s1"), :make)
          ON CONFLICT DO NOTHING');
          echo $makeSt;
          $makeSt->execute(array('make' => $make));
-         /*
+         
          $stmt = $db->prepare("INSERT INTO motor_tbl
          VALUES
          ( NEXTVAL('motor_s1')
