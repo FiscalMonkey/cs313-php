@@ -43,17 +43,18 @@ $db = get_db();
                <li class="nav-item">
                   <a class="nav-link" href="05prove.php">Access</a>
                </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="add_table.php">Add</a>
+               </li>
                <li class="nav-item active">
                   <a class="nav-link disabled" href="edit_table.php">Edit</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="remove_table.php">Remove</a>
                </li>
             </ul>
          </div>
       </nav>
-      <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
-         <button type="button" class="btn btn-success">Add</button>
-         <button type="button" class="btn btn-primary">Edit</button>
-         <button type="button" class="btn btn-danger">Remove</button>
-      </div>
       <div class="jumbotron">
          <?php if (isset($_POST["submit"])) {
             /*create variable as array if not set */
@@ -65,19 +66,17 @@ $db = get_db();
                array_push($_SESSION["cars"], $_POST["motor"]);
             }
          } ?>
-         <label class="h3" for="car">Enter Vehicle Information</label>
+         <label class="h3" for="car">Select Vehicle Information to Edit</label>
          <form id="car" method="post">
-            
-            <input class="btn btn-success btn-lg" type="submit" value="Add Vehicle" name="submit" />
+            <select id="table" class="form-control" onchange="" required>
+               <option disabled selected value="">Choose Category</option>
+               <option value="0">
+            </select>
+            <input class="btn btn-success btn-lg" type="submit" value="Edit Vehicle" name="submit" />
          </form>
       </div>
       <div id="cars">
-         <?php
-         /* load any cars that have been saved as session variables */
-         if (!empty($_SESSION["cars"])) {
-            include("load_cars.php");
-         }
-         ?>
+
       </div>
    </div>
 

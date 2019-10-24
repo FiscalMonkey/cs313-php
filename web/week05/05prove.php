@@ -44,7 +44,13 @@ $db = get_db();
                   <a class="nav-link disabled" href="05prove.php">Access</a>
                </li>
                <li class="nav-item">
+                  <a class="nav-link" href="add_table.php">Add</a>
+               </li>
+               <li class="nav-item">
                   <a class="nav-link" href="edit_table.php">Edit</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="remove_table.php">Remove</a>
                </li>
             </ul>
          </div>
