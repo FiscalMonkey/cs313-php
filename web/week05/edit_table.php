@@ -27,7 +27,7 @@ $db = get_db();
 
 
 
-   <title>CS 313 - 05Prove</title>
+   <title>CS 313 - 05Prove Edit</title>
 </head>
 
 <body>
@@ -40,15 +40,20 @@ $db = get_db();
       <nav class="navbar navbar-expand-sm navbar-light bg-light">
          <div id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-               <li class="nav-item active">
-                  <a class="nav-link disabled" href="05prove.php">Access</a>
-               </li>
                <li class="nav-item">
-                  <a class="nav-link" href="edit_table.php">Edit</a>
+                  <a class="nav-link" href="05prove.php">Access</a>
+               </li>
+               <li class="nav-item active">
+                  <a class="nav-link disabled" href="edit_table.php">Edit</a>
                </li>
             </ul>
          </div>
       </nav>
+      <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+         <button type="button" class="btn btn-success">Add</button>
+         <button type="button" class="btn btn-primary">Edit</button>
+         <button type="button" class="btn btn-danger">Remove</button>
+      </div>
       <div class="jumbotron">
          <?php if (isset($_POST["submit"])) {
             /*create variable as array if not set */
@@ -62,31 +67,8 @@ $db = get_db();
          } ?>
          <label class="h3" for="car">Enter Vehicle Information</label>
          <form id="car" method="post">
-            <div class="form-group">
-               <label class="h5" for="year">Year</label>
-               <select id="year" class="form-control" onchange="newYear()">
-                  <option disabled selected value="">Choose Year</option required>
-                  <?php foreach ($db->query('SELECT DISTINCT year FROM motor_tbl ORDER BY year DESC') as $row) {
-                     echo '<option value="' . $row["year"] . '">' . $row["year"] . '</option>';
-                  } ?>
-               </select>
-               <label class="h5" for="make">Make</label>
-               <select id="make" class="form-control" onchange="newMake()" disabled required>
-                  <option disabled selected value="">Choose Make</option>
-               </select>
-               <label class="h5" for="model">Model</label>
-               <select id="model" class="form-control" onchange="newModel()" disabled required>
-                  <option disabled selected value="">Choose Model</option>
-               </select>
-               <label class="h5" for="motor">Engine</label>
-               <select id="motor" name="motor" class="form-control" onchange="newMotor()" disabled required>
-                  <option disabled selected value="">Choose Engine</option>
-               </select>
-
-            </div>
-            <input class="btn btn-success btn-lg" type="submit" value="Save Vehicle" name="submit" />
-            <div id="oil">
-            </div>
+            
+            <input class="btn btn-success btn-lg" type="submit" value="Add Vehicle" name="submit" />
          </form>
       </div>
       <div id="cars">
