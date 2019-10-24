@@ -89,27 +89,25 @@ $db = get_db();
                   <input class="form-control" id="motor" type="text" name="motor" tabindex="4" required>
                </div>
                <label class="h5" for="oil">Oil Grade</label>
-               <div id="oil">
-                  <div class="col-md-1 mb-1">
-                     <select class="form-control" name="grade1">
-                        <option value="" disabled selected>5W</option>
-                        <?php foreach ($db->query('SELECT grade1_id, grade1 FROM grade1_tbl') as $row) {
-                           echo '<option value="' . $row["grade1_id"] . '">' . $row["grade1"] . '</option>';
-                        } ?>
-                     </select>
-                  </div>
-                  <div class="col-md-1 mb-1">
-                     <select class="form-control">
-                        <option value="" disabled selected>30</option>
-                        <?php foreach ($db->query('SELECT grade2_id, grade2 FROM grade2_tbl') as $row) {
-                           echo '<option value="' . $row["grade2_id"] . '">' . $row["grade2"] . '</option>';
-                        } ?>
-                     </select>
-                  </div>
+               <div id="oil" class="col-md-2 mb-1">
+                  <select class="form-control" name="grade1">
+                     <option value="" disabled selected>5W</option>
+                     <?php foreach ($db->query('SELECT grade1_id, grade1 FROM grade1_tbl') as $row) {
+                        echo '<option value="' . $row["grade1_id"] . '">' . $row["grade1"] . '</option>';
+                     } ?>
+                  </select>
                </div>
-               <div class="col-md-1 mb-1">
+               <div class="col-md-2 mb-1">
+                  <select class="form-control">
+                     <option value="" disabled selected>30</option>
+                     <?php foreach ($db->query('SELECT grade2_id, grade2 FROM grade2_tbl') as $row) {
+                        echo '<option value="' . $row["grade2_id"] . '">' . $row["grade2"] . '</option>';
+                     } ?>
+                  </select>
+               </div>
+               <div class="col-md-2 mb-1">
                   <label class="h5" for="cap">Oil Capacity</label>
-                  <input class="form-control" id="cap" type="number" name="cap" min="0" max="15" step="0.1" tabindex="6" required><span>L.</span>
+                  <input class="form-control" id="cap" type="number" name="cap" min="0" max="15" step="0.1" tabindex="6" required>
                </div>
             </div>
             <input class="btn btn-success btn-lg" type="submit" value="Add Vehicle" name="submit" tabindex="7" />
