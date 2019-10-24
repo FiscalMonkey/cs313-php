@@ -60,7 +60,39 @@ $db = get_db();
          </div>
       </nav>
       <?php if (isset($_POST["submit"])) {
+         // initialize variables
+         $year = $_POST['year'];
+         $make = $_POST['make'];
+         $model = $_POST['model'];
+         $motor = $_POST['motor'];
+         $g1 = $_POST['grade1'];
+         $g2 = $_POST['grade2'];
+         $cap = $_POST['cap'];
+         // insert make if doesn't exist
+         $makeSt = $db->prepare("INSERT INTO make_tbl 
+         SELECT NEXTVAL(make_s1), :make
+         WHERE NOT EXISTS (
+         SELECT 1 FROM make_tbl WHERE make = :make
+         )");
+         $makeSt->execute(array('make' => $make));
+         /*
+         $stmt = $db->prepare("INSERT INTO motor_tbl
+         VALUES
+         ( NEXTVAL('motor_s1')
+         , :motor
+         , :year
+         , (SELECT model_id FROM model_tbl WHERE model = :model)
+         , (SELECT make_id FROM make_tbl WHERE make = :make)
+         , (SELECT grade1_id FROM grade1_tbl WHERE grade1 = :grade1)
+         , (SELECT grade2_id FROM grade2_tbl WHERE grade2 = :grade2)
+         , :cap)");
 
+         $stmt->execute(array('motor' => $_POST['motor'], 'year' => $_POST['year'], 'model' => $_POST['model'], 'make' => $_POST['make'], 'grade1' => $_POST['grade1'], 'grade2' => $_POST['grade2'], 'cap' => $_POST['cap']));
+         */
+         $message = "Vehicle was added.";
+         echo "<script type='text/javascript'>alert('$message');</script>";
+
+         unset($_POST['submit']);
       } ?>
       <div class="jumbotron">
 
@@ -69,7 +101,7 @@ $db = get_db();
             <div class="form-row">
                <div class="col-md-2 mb-1">
                   <label class="h5" for="year">Year</label>
-                  <select class="form-control" id="year" tabindex="1" autofocus required>
+                  <select class="form-control" name="year" id="year" tabindex="1" autofocus required>
                      <option value="" disabled selected>Year</option>
                      <?php for ($i = date("Y") + 1; $i >= 1900; $i--) {
                         echo '<option value="' . $i . '">' . $i . '</option>';
@@ -92,7 +124,7 @@ $db = get_db();
                </div>
                <div class="col-md-2 mb-1">
                   <label class="h5" for="oil1">Oil Grade 1</label>
-                  <select id="oil1" class="form-control" name="grade1" required>
+                  <select id="oil1" class="form-control" name="grade1" tabindex="5" required>
                      <option value="" disabled selected>Grade 1</option>
                      <?php foreach ($db->query('SELECT grade1_id, grade1 FROM grade1_tbl') as $row) {
                         echo '<option value="' . $row["grade1_id"] . '">' . $row["grade1"] . '</option>';
@@ -101,7 +133,7 @@ $db = get_db();
                </div>
                <div class="col-md-2 mb-1">
                   <label class="h5" for="oil2">Oil Grade 2</label>
-                  <select id="oil2" class="form-control" required>
+                  <select id="oil2" class="form-control" name="grade2" tabindex="6" required>
                      <option value="" disabled selected>Grade 2</option>
                      <?php foreach ($db->query('SELECT grade2_id, grade2 FROM grade2_tbl') as $row) {
                         echo '<option value="' . $row["grade2_id"] . '">' . $row["grade2"] . '</option>';
@@ -110,10 +142,10 @@ $db = get_db();
                </div>
                <div class="col-md-2 mb-1">
                   <label class="h5" for="cap">Oil Capacity</label>
-                  <input class="form-control" id="cap" type="number" name="cap" min="0" max="15" step="0.1" tabindex="6" required>
+                  <input class="form-control" id="cap" type="number" name="cap" min="0" max="15" step="0.1" tabindex="7" required>
                </div>
             </div>
-            <input class="btn btn-success btn-lg" type="submit" value="Add Vehicle" name="submit" tabindex="7" />
+            <input class="btn btn-success btn-lg" type="submit" value="Add Vehicle" name="submit" tabindex="8" />
          </form>
       </div>
    </div>
@@ -125,20 +157,7 @@ $db = get_db();
    <script>
       function validateForm(form) {
          var valid = false;
-         var validYear = validateYear(form.year.value);
          var validOil = validateOil(form.oil.value);
-         return valid;
-      }
-
-      function validateYear(value) {
-         var valid = false;
-         var curYear = new Date().getFullYear();
-         if (value > curYear + 1 || value < 1900) {
-            $("year_error").html("Year must be after 1900 and before " + (curYear + 1));
-         } else {
-            $("year_error").html("");
-            valid = true;
-         }
          return valid;
       }
 
