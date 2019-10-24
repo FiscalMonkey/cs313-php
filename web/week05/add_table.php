@@ -59,7 +59,7 @@ $db = get_db();
             </ul>
          </div>
       </nav>
-      <?php if (isset($_POST["submit"])) {
+      <?php if (isset($_POST['submit'])) {
          // initialize variables
          $year = $_POST['year'];
          $make = $_POST['make'];
@@ -69,11 +69,11 @@ $db = get_db();
          $g2 = $_POST['grade2'];
          $cap = $_POST['cap'];
          // insert make if doesn't exist
-         $makeSt = $db->prepare("INSERT INTO make_tbl 
+         $makeSt = $db->prepare('INSERT INTO make_tbl 
          SELECT NEXTVAL(make_s1), :make
          WHERE NOT EXISTS (
          SELECT 1 FROM make_tbl WHERE make = :make
-         )");
+         )');
          echo $makeSt;
          $makeSt->execute(array('make' => $make));
          /*
