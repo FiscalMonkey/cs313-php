@@ -72,7 +72,7 @@ $db = get_db();
          $makeSt = $db->prepare('INSERT INTO make_tbl 
          SELECT NEXTVAL(make_s1), :make
          WHERE NOT EXISTS (
-         SELECT 1 FROM make_tbl WHERE make = :make
+         SELECT make FROM make_tbl WHERE make = :make
          )');
          echo $makeSt;
          $makeSt->execute(array('make' => $make));
