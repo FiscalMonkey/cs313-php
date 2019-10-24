@@ -73,7 +73,7 @@ $db = get_db();
                   <label class="h5" for="year">Year</label>
                   <select class="form-control" id="year" tabindex="1" autofocus required>
                      <option value="" disabled selected>Year</option>
-                     <?php for ($i = date("Y") + 1; $i >= 1900; $i++) {
+                     <?php for ($i = date("Y") + 1; $i >= 1900; $i--) {
                         echo '<option value="' . $i . '">' . $i . '</option>';
                      } ?>
                   </select>
