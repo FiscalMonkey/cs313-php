@@ -55,9 +55,20 @@ $db = get_db();
             </ul>
          </div>
       </nav>
+      <?php
+       if (isset($_POST['submit'])) {
+         $motor_id = $_POST["motor"];
+
+         $stmt = $db->prepare('DELETE FROM motor_tbl WHERE motor_id = ' . $motor_id);
+         $stmt->execute();
+         
+         $message = "Vehicle was deleted.";
+         echo "<script type='text/javascript'>alert('$message');</script>";
+       }
+       ?>
       <div class="jumbotron">
          <label class="h3" for="car">Remvoe Vehicle from Database</label>
-         <form id="car" method="post" action="rm_vehicle.php">
+         <form id="car" method="post">
             <div class="form-group">
                <label class="h5" for="year">Year</label>
                <select id="year" class="form-control" onchange="newYear()" tabindex="1" autofocus required>
