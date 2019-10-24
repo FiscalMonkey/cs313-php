@@ -64,6 +64,8 @@ $db = get_db();
          
          $message = "Vehicle was deleted.";
          echo "<script type='text/javascript'>alert('$message');</script>";
+
+         unset($_POST['submit']);
        }
        ?>
       <div class="jumbotron">
