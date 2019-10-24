@@ -97,7 +97,7 @@ $db = get_db();
       <div class="jumbotron">
 
          <label class="h3" for="car">Add Vehicle to Database</label>
-         <form id="car" method="post" onsubmit="return validateForm(this)">
+         <form id="car" method="post">
             <div class="form-row">
                <div class="col-md-2 mb-1">
                   <label class="h5" for="year">Year</label>
@@ -155,16 +155,6 @@ $db = get_db();
 
    <!-- Optional JavaScript -->
    <script>
-      function validateForm(form) {
-         var valid = false;
-         var validOil = validateOil(form.oil.value);
-         return valid;
-      }
-
-      function validateOil(value) {
-         var valid = false;
-         /[]/.test(value);
-      }
    </script>
 </body>
 
