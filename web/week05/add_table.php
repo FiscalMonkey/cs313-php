@@ -68,47 +68,52 @@ $db = get_db();
          } ?>
          <label class="h3" for="car">Enter Vehicle Information</label>
          <form id="car" method="post" onsubmit="return validateForm(this)">
-            <div class="form-group">
-               <label class="h5" for="year">Year</label>
-               <input class="form-control" id="year" type="number" name="year" min="1900" max="<?php echo date("Y") + 1; ?>" maxlength="4" tabindex="1" placeholder="1900-<?php echo date("Y") + 1; ?>" autofocus required>
-            </div>
-            <div class="form-group">
-               <label class="h5" for="make">Make</label>
-               <input class="form-control" id="make" type="text" name="make" tabindex="2" required>
-            </div>
-            <div class="form-group">
-               <label class="h5" for="model">Model</label>
-               <input class="form-control" id="model" type="text" name="model" tabindex="3" required>
-            </div>
-            <div class="form-group">
-               <label class="h5" for="motor">Engine</label>
-               <input class="form-control" id="motor" type="text" name="motor" tabindex="4" required>
-            </div>
-            <label class="h5" for="oil">Oil Grade</label>
-            <div class="form-row" id="oil">
-
+            <div class="form-row">
                <div class="col-md-2 mb-1">
-                  <select class="form-control" name="grade1">
-                     <?php foreach ($db->query('SELECT grade1_id, grade1 FROM grade1_tbl') as $row) {
-                        echo '<option value="' . $row["grade1_id"] . '">' . $row["grade1"] . '</option>';
-                     } ?>
-                  </select>
+                  <label class="h5" for="year">Year</label>
+                  <input class="form-control" id="year" type="number" name="year" min="1900" max="<?php echo date("Y") + 1; ?>" maxlength="4" tabindex="1" placeholder="1900-<?php echo date("Y") + 1; ?>" autofocus required>
                </div>
-               <div class="col-md-2 mb-1">
-                  <select class="form-control">
-                     <?php foreach ($db->query('SELECT grade2_id, grade2 FROM grade2_tbl') as $row) {
-                        echo '<option value="' . $row["grade2_id"] . '">' . $row["grade2"] . '</option>';
-                     } ?>
-                  </select>
+               <div class="col-md-4 mb-3">
+                  <label class="h5" for="make">Make</label>
+                  <input class="form-control" id="make" type="text" name="make" tabindex="2" required>
+               </div>
+               <div class="col-md-4 mb-3">
+                  <label class="h5" for="model">Model</label>
+                  <input class="form-control" id="model" type="text" name="model" tabindex="3" required>
                </div>
             </div>
-            <label class="h5" for="cap">Engine Oil Capacity</label>
-            <input class="form-control" id="cap" type="number" name="cap" min="0" max="15" step="0.1" tabindex="6" required>
-            <div id="cap_error" class="invalid-feedback"></div>
+            <div class="form-row">
+               <div class="col-md-4 mb-3">
+                  <label class="h5" for="motor">Engine</label>
+                  <input class="form-control" id="motor" type="text" name="motor" tabindex="4" required>
+               </div>
+               <label class="h5" for="oil">Oil Grade</label>
+               <div class="form-group" id="oil">
+                  <div class="col-md-1 mb-1">
+                     <select class="form-control" name="grade1">
+                        <option value="" disabled selected>5W</option>
+                        <?php foreach ($db->query('SELECT grade1_id, grade1 FROM grade1_tbl') as $row) {
+                           echo '<option value="' . $row["grade1_id"] . '">' . $row["grade1"] . '</option>';
+                        } ?>
+                     </select>
+                  </div>
+                  <div class="col-md-1 mb-1">
+                     <select class="form-control">
+                        <option value="" disabled selected>30</option>
+                        <?php foreach ($db->query('SELECT grade2_id, grade2 FROM grade2_tbl') as $row) {
+                           echo '<option value="' . $row["grade2_id"] . '">' . $row["grade2"] . '</option>';
+                        } ?>
+                     </select>
+                  </div>
+               </div>
+               <div class="col-md-1 mb-1">
+                  <label class="h5" for="cap">Engine Oil Capacity</label>
+                  <input class="form-control" id="cap" type="number" name="cap" min="0" max="15" step="0.1" tabindex="6" required>
+               </div>
+            </div>
+            <input class="btn btn-success btn-lg" type="submit" value="Add Vehicle" name="submit" tabindex="7" />
+         </form>
       </div>
-      <input class="btn btn-success btn-lg" type="submit" value="Add Vehicle" name="submit" tabindex="7" />
-      </form>
-   </div>
    </div>
 
    <!-- Using PHP to include the same footer -->
