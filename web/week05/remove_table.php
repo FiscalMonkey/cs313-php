@@ -57,7 +57,7 @@ $db = get_db();
       </nav>
       <div class="jumbotron">
          <label class="h3" for="car">Remvoe Vehicle from Database</label>
-         <form id="car" method="post">
+         <form id="car" method="post" action="rm_vehicle.php">
             <div class="form-group">
                <label class="h5" for="year">Year</label>
                <select id="year" class="form-control" onchange="newYear()" tabindex="1" autofocus required>
