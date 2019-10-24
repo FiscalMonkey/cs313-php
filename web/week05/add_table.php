@@ -70,8 +70,8 @@ $db = get_db();
          $cap = $_POST['cap'];
          echo $make;
          // insert make if doesn't exist 
-         $makeSt = $db->prepare('INSERT INTO make_tbl VALUES ( NEXTVAL(\'make_s1\'), \':make\')
-         ON CONFLICT DO NOTHING');
+         $makeSt = $db->prepare('INSERT INTO make_tbl VALUES ( NEXTVAL("make_s1"), ":make")
+         ON CONFLICT (make) DO NOTHING');
          $makeSt->execute(array('make' => $make));
          /*
          $stmt = $db->prepare("INSERT INTO motor_tbl
