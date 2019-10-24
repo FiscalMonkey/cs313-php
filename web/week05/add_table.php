@@ -66,8 +66,7 @@ $db = get_db();
                array_push($_SESSION["cars"], $_POST["motor"]);
             }
          } ?>
-         <h2>Add Vehicle to Database</h2>
-         <label class="h3" for="car">Enter Vehicle Information</label>
+         <label class="h3" for="car">Add Vehicle to Database</label>
          <form id="car" method="post" onsubmit="return validateForm(this)">
             <div class="form-row">
                <div class="col-md-2 mb-1">
@@ -91,7 +90,7 @@ $db = get_db();
                <div class="col-md-2 mb-1">
                   <label class="h5" for="oil1">Oil Grade 1</label>
                   <select id="oil1" class="form-control" name="grade1">
-                     <option value="" disabled selected>5W</option>
+                     <option value="" disabled selected>Grade 1</option>
                      <?php foreach ($db->query('SELECT grade1_id, grade1 FROM grade1_tbl') as $row) {
                         echo '<option value="' . $row["grade1_id"] . '">' . $row["grade1"] . '</option>';
                      } ?>
@@ -100,7 +99,7 @@ $db = get_db();
                <div class="col-md-2 mb-1">
                   <label class="h5" for="oil2">Oil Grade 2</label>
                   <select id="oil2" class="form-control">
-                     <option value="" disabled selected>30</option>
+                     <option value="" disabled selected>Grade 2</option>
                      <?php foreach ($db->query('SELECT grade2_id, grade2 FROM grade2_tbl') as $row) {
                         echo '<option value="' . $row["grade2_id"] . '">' . $row["grade2"] . '</option>';
                      } ?>
