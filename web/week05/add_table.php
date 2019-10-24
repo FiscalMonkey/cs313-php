@@ -70,18 +70,18 @@ $db = get_db();
          <form id="car" method="post" onsubmit="return validateForm(this)">
             <div class="form-group">
                <label class="h5" for="year">Year</label>
-               <input class="form-control" id="year" type="number" name="year" tabindex="1" autofocus required>
+               <input class="form-control" id="year" type="number" name="year" tabindex="1" autofocus>
                <div id="year_error" class="invalid-feedback"></div>
                <label class="h5" for="make">Make</label>
-               <input class="form-control" id="make" type="text" name="make" tabindex="2" required>
+               <input class="form-control" id="make" type="text" name="make" tabindex="2">
                <label class="h5" for="model">Model</label>
-               <input class="form-control" id="model" type="text" name="model" tabindex="3" required>
+               <input class="form-control" id="model" type="text" name="model" tabindex="3">
                <label class="h5" for="motor">Engine</label>
-               <input class="form-control" id="motor" type="text" name="motor" tabindex="4" required>
+               <input class="form-control" id="motor" type="text" name="motor" tabindex="4">
                <label class="h5" for="oil">Oil Grade</label>
-               <input class="form-control" id="oil" type="text" name="oil" tabindex="5" required>
+               <input class="form-control" id="oil" type="text" name="oil" tabindex="5">
                <label class="h5" for="cap">Engine Oil Capacity</label>
-               <input class="form-control" id="cap" type="number" name="cap" tabindex="6" required>
+               <input class="form-control" id="cap" type="number" name="cap" tabindex="6">
             </div>
             <input class="btn btn-success btn-lg" type="submit" value="Add Vehicle" name="submit" tabindex="7" />
          </form>
@@ -104,7 +104,7 @@ $db = get_db();
             // on the right side
             year: {
                required: true,
-               digits: true,
+               number: true,
                rangelength: [4, 4],
                range: [1900, curYear + 1]
             },
@@ -117,7 +117,7 @@ $db = get_db();
             },
             cap: {
                required: true,
-               number: true
+               digits: true
                range: [0, 100]
             }
          },
@@ -125,7 +125,7 @@ $db = get_db();
          messages: {
             year: {
                required: "Year is required",
-               digits: "Year must be numbers",
+               number: "Year must be a number",
                rangelength: "Year must be 4 numbers",
                range: "Year must be between 1900-" + (curYear + 1)
             },
@@ -137,7 +137,7 @@ $db = get_db();
             },
             cap: {
                required: "Engine Oil Capacity is required",
-               number: "Engine Oil Capacity must be a number",
+               digits: "Engine Oil Capacity must be a number",
                range: "Engine Oil Capacity must be between 0-100"
             }
          },
