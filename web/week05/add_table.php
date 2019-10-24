@@ -70,7 +70,7 @@ $db = get_db();
          <form id="car" method="post" onsubmit="return validateForm(this)">
             <div class="form-group">
                <label class="h5" for="year">Year</label>
-               <input class="form-control" id="year" type="number" name="year" tabindex="1" autofocus required>
+               <input class="form-control" id="year" type="number" name="year" min="1900" max="<?php echo date("Y") + 1; ?>" maxlength="4" tabindex="1" autofocus required>
                <div id="year_error" class="invalid-feedback"></div>
                <label class="h5" for="make">Make</label>
                <input class="form-control" id="make" type="text" name="make" tabindex="2" required>
@@ -80,8 +80,10 @@ $db = get_db();
                <input class="form-control" id="motor" type="text" name="motor" tabindex="4" required>
                <label class="h5" for="oil">Oil Grade</label>
                <input class="form-control" id="oil" type="text" name="oil" tabindex="5" required>
+               <div id="oil_error" class="invalid-feedback"></div>
                <label class="h5" for="cap">Engine Oil Capacity</label>
-               <input class="form-control" id="cap" type="number" name="cap" tabindex="6" required>
+               <input class="form-control" id="cap" type="number" name="cap" min="0" step="0.1" tabindex="6" required>
+               <div id="cap_error" class="invalid-feedback"></div>
             </div>
             <input class="btn btn-success btn-lg" type="submit" value="Add Vehicle" name="submit" tabindex="7" />
          </form>
@@ -93,61 +95,7 @@ $db = get_db();
 
    <!-- Optional JavaScript -->
    <script>
-      var curYear = new Date().getFullYear();
-      // Initialize form validation on the registration form.
-      // It has the name attribute "registration"
-      $("#car").validate({
-         // Specify validation rules
-         rules: {
-            // The key name on the left side is the name attribute
-            // of an input field. Validation rules are defined
-            // on the right side
-            year: {
-               required: true,
-               number: true,
-               rangelength: [4, 4],
-               range: [1900, curYear + 1]
-            },
-            make: "required",
-            model: "required",
-            motor: "required",
-            oil: {
-               required: true,
 
-            },
-            cap: {
-               required: true,
-               digits: true
-               range: [0, 100]
-            }
-         },
-         // Specify validation error messages
-         messages: {
-            year: {
-               required: "Year is required",
-               number: "Year must be a number",
-               rangelength: "Year must be 4 numbers",
-               range: "Year must be between 1900-" + (curYear + 1)
-            },
-            make: "Make is required",
-            model: "Model is required",
-            motor: "Engine is required",
-            oil: {
-               required: "",
-            },
-            cap: {
-               required: "Engine Oil Capacity is required",
-               digits: "Engine Oil Capacity must be a number",
-               range: "Engine Oil Capacity must be between 0-100"
-            }
-         },
-         // Make sure the form is submitted to the destination defined
-         // in the "action" attribute of the form when valid
-         submitHandler: function(form) {
-            form.submit();
-         }
-      });
-/*
       function validateForm(form) {
          var valid = false;
          var validYear = validateYear(form.year.value);
@@ -170,9 +118,10 @@ $db = get_db();
       function validateOil(value) {
          var valid = false;
          /[]/.test(value);
-      }*/
+      }
+
+      
    </script>
-   <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
 </body>
 
 </html>
