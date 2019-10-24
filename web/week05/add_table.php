@@ -66,12 +66,13 @@ $db = get_db();
                array_push($_SESSION["cars"], $_POST["motor"]);
             }
          } ?>
+         <h2>Add Vehicle to Database</h2>
          <label class="h3" for="car">Enter Vehicle Information</label>
          <form id="car" method="post" onsubmit="return validateForm(this)">
             <div class="form-row">
                <div class="col-md-2 mb-1">
                   <label class="h5" for="year">Year</label>
-                  <input class="form-control" id="year" type="number" name="year" min="1900" max="<?php echo date("Y") + 1; ?>" maxlength="4" tabindex="1" placeholder="1900-<?php echo date("Y") + 1; ?>" autofocus required>
+                  <input class="form-control" id="year" type="number" name="year" min="1900" max="<?php echo date("Y") + 1; ?>" maxlength="4" tabindex="1" autofocus required>
                </div>
                <div class="col-md-4 mb-3">
                   <label class="h5" for="make">Make</label>
@@ -88,7 +89,7 @@ $db = get_db();
                   <input class="form-control" id="motor" type="text" name="motor" tabindex="4" required>
                </div>
                <label class="h5" for="oil">Oil Grade</label>
-               <div class="form-group" id="oil">
+               <div id="oil">
                   <div class="col-md-1 mb-1">
                      <select class="form-control" name="grade1">
                         <option value="" disabled selected>5W</option>
@@ -107,8 +108,8 @@ $db = get_db();
                   </div>
                </div>
                <div class="col-md-1 mb-1">
-                  <label class="h5" for="cap">Engine Oil Capacity</label>
-                  <input class="form-control" id="cap" type="number" name="cap" min="0" max="15" step="0.1" tabindex="6" required>
+                  <label class="h5" for="cap">Oil Capacity</label>
+                  <input class="form-control" id="cap" type="number" name="cap" min="0" max="15" step="0.1" tabindex="6" required><span>L.</span>
                </div>
             </div>
             <input class="btn btn-success btn-lg" type="submit" value="Add Vehicle" name="submit" tabindex="7" />
