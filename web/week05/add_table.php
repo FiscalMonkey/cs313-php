@@ -71,7 +71,12 @@ $db = get_db();
             <div class="form-row">
                <div class="col-md-2 mb-1">
                   <label class="h5" for="year">Year</label>
-                  <input class="form-control" id="year" type="number" name="year" min="1900" max="<?php echo date("Y") + 1; ?>" maxlength="4" tabindex="1" autofocus required>
+                  <select class="form-control" id="year" tabindex="1" autofocus required>
+                     <option value="" disabled selected>Year</option>
+                     <?php for ($i = date("Y") + 1; $i >= 1900; $i++) {
+                        echo '<option value="' . $i . '">' . $i . '</option>';
+                     } ?>
+                  </select>
                </div>
                <div class="col-md-4 mb-3">
                   <label class="h5" for="make">Make</label>
@@ -89,7 +94,7 @@ $db = get_db();
                </div>
                <div class="col-md-2 mb-1">
                   <label class="h5" for="oil1">Oil Grade 1</label>
-                  <select id="oil1" class="form-control" name="grade1">
+                  <select id="oil1" class="form-control" name="grade1" required>
                      <option value="" disabled selected>Grade 1</option>
                      <?php foreach ($db->query('SELECT grade1_id, grade1 FROM grade1_tbl') as $row) {
                         echo '<option value="' . $row["grade1_id"] . '">' . $row["grade1"] . '</option>';
@@ -98,7 +103,7 @@ $db = get_db();
                </div>
                <div class="col-md-2 mb-1">
                   <label class="h5" for="oil2">Oil Grade 2</label>
-                  <select id="oil2" class="form-control">
+                  <select id="oil2" class="form-control" required>
                      <option value="" disabled selected>Grade 2</option>
                      <?php foreach ($db->query('SELECT grade2_id, grade2 FROM grade2_tbl') as $row) {
                         echo '<option value="' . $row["grade2_id"] . '">' . $row["grade2"] . '</option>';
