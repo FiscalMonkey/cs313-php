@@ -62,7 +62,7 @@ $db = get_db();
       <?php if (isset($_POST['submit'])) {
          // initialize variables
          $year = $_POST['year'];
-         $make = $_POST['make'];
+         $make = "'" . $_POST['make'] . "'";
          $model = $_POST['model'];
          $motor = $_POST['motor'];
          $g1 = $_POST['grade1'];
@@ -70,7 +70,7 @@ $db = get_db();
          $cap = $_POST['cap'];
          echo $make;
          // insert make if doesn't exist 
-         $makeSt = $db->prepare('INSERT INTO make_tbl (make) VALUES (\':make\')
+         $makeSt = $db->prepare('INSERT INTO make_tbl (make) VALUES (:make)
          ON CONFLICT (make) DO NOTHING');
          $makeSt->execute(array('make' => $make));
          /*
