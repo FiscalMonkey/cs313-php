@@ -62,7 +62,7 @@ $db = get_db();
       <?php if (isset($_POST['submit'])) {
          // initialize variables
          $year = $_POST['year'];
-         $make = "'" . $_POST['make'] . "'";
+         $make = $_POST['make'];
          $model = $_POST['model'];
          $motor = $_POST['motor'];
          $g1 = $_POST['grade1'];
