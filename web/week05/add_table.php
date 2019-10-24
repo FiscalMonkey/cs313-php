@@ -70,8 +70,7 @@ $db = get_db();
          <form id="car" method="post" onsubmit="return validateForm(this)">
             <div class="form-group">
                <label class="h5" for="year">Year</label>
-               <input class="form-control" id="year" type="number" name="year" min="1900" max="<?php echo date("Y") + 1; ?>" maxlength="4" tabindex="1" autofocus required>
-               <div id="year_error" class="invalid-feedback"></div>
+               <input class="form-control" id="year" type="number" name="year" min="1900" max="<?php echo date("Y") + 1; ?>" maxlength="4" tabindex="1" placeholder="1900-<?php echo date("Y") + 1; ?>" autofocus required>
                <label class="h5" for="make">Make</label>
                <input class="form-control" id="make" type="text" name="make" tabindex="2" required>
                <label class="h5" for="model">Model</label>
@@ -79,10 +78,10 @@ $db = get_db();
                <label class="h5" for="motor">Engine</label>
                <input class="form-control" id="motor" type="text" name="motor" tabindex="4" required>
                <label class="h5" for="oil">Oil Grade</label>
-               <input class="form-control" id="oil" type="text" name="oil" tabindex="5" required>
-               <div id="oil_error" class="invalid-feedback"></div>
+               <select class="form-control"><?php ?></select>
+               <select class="form-control"><?php ?></select>
                <label class="h5" for="cap">Engine Oil Capacity</label>
-               <input class="form-control" id="cap" type="number" name="cap" min="0" step="0.1" tabindex="6" required>
+               <input class="form-control" id="cap" type="number" name="cap" min="0" max="15" step="0.1" tabindex="6" required>
                <div id="cap_error" class="invalid-feedback"></div>
             </div>
             <input class="btn btn-success btn-lg" type="submit" value="Add Vehicle" name="submit" tabindex="7" />

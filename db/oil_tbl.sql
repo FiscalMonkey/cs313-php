@@ -1,28 +1,31 @@
-DROP TABLE IF EXISTS oil_tbl;
-DROP SEQUENCE IF EXISTS oil_s1;
-
-CREATE TABLE oil_tbl 
-( oil_id      INTEGER NOT NULL
-, oil     VARCHAR(10) UNIQUE NOT NULL
-, PRIMARY KEY (oil_id)
+CREATE TABLE grade1_tbl 
+( grade1_id  SERIAL
+, grade1     VARCHAR(3) UNIQUE NOT NULL
+, PRIMARY KEY (grade1_id)
 );
 
-CREATE SEQUENCE oil_s1 INCREMENT BY 500 START WITH 10000;
+INSERT INTO grade1_tbl(grade1) VALUES ('0W');
+INSERT INTO grade1_tbl(grade1) VALUES ('5W');
+INSERT INTO grade1_tbl(grade1) VALUES ('10W');
+INSERT INTO grade1_tbl(grade1) VALUES ('15W');
+INSERT INTO grade1_tbl(grade1) VALUES ('20W');
+INSERT INTO grade1_tbl(grade1) VALUES ('25W');
 
-INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '0W');
-INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '5W');
-INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '10W');
-INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '15W');
-INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '20W');
-INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '25W');
-INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '30W');
-INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '35W');
-INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '40W');
-INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '45W');
-INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '50W');
-INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '55W');
-INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '60W');
-INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '5W-30');
-INSERT INTO oil_tbl VALUES ( NEXTVAL('oil_s1'), '5W-20');
+SELECT * FROM grade1_tbl;
 
-SELECT * FROM oil_tbl;
+CREATE TABLE grade2_tbl 
+( grade2_id  SERIAL
+, grade2     VARCHAR(2) UNIQUE NOT NULL
+, PRIMARY KEY (grade2_id)
+);
+
+INSERT INTO grade2_tbl(grade2) VALUES ('8');
+INSERT INTO grade2_tbl(grade2) VALUES ('12');
+INSERT INTO grade2_tbl(grade2) VALUES ('16');
+INSERT INTO grade2_tbl(grade2) VALUES ('20');
+INSERT INTO grade2_tbl(grade2) VALUES ('30');
+INSERT INTO grade2_tbl(grade2) VALUES ('40');
+INSERT INTO grade2_tbl(grade2) VALUES ('50');
+INSERT INTO grade2_tbl(grade2) VALUES ('60');
+
+SELECT * FROM grade2_tbl;
