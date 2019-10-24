@@ -59,8 +59,8 @@ $db = get_db();
        if (isset($_POST['submit'])) {
          $motor_id = $_POST["motor"];
 
-         $stmt = $db->prepare('DELETE FROM motor_tbl WHERE motor_id = ' . $motor_id);
-         $stmt->execute();
+         $stmt = $db->prepare('DELETE FROM motor_tbl WHERE motor_id = :motor');
+         $stmt->execute(array('motor' => $motor_id));
          
          $message = "Vehicle was deleted.";
          echo "<script type='text/javascript'>alert('$message');</script>";
