@@ -18,7 +18,8 @@ foreach ($_SESSION["cars"] as $car) {
 FROM motor_tbl as a
 INNER JOIN make_tbl AS b ON a.make_id = b.make_id
 INNER JOIN model_tbl AS c ON a.model_id = c.model_id
-INNER JOIN oil_tbl AS d ON a.oil_id = d.oil_id
+INNER JOIN grade1_tbl AS d ON a.grade1_id = d.grade1_id
+INNER JOIN grade2_tbl AS e ON a.grade2_id = e.grade2_id
 WHERE motor_id = ' . $car) as $row) {
       echo '<tr>
       <th scope="row">' . $row["year"] . '</th>
