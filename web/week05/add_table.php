@@ -68,25 +68,25 @@ $db = get_db();
          $g1 = $_POST['grade1'];
          $g2 = $_POST['grade2'];
          $cap = $_POST['cap'];
-         echo $_POST['make'] . '<br>';
-         echo $make;
          // insert make if doesn't exist 
          $makeSt = $db->prepare('INSERT INTO make_tbl (make) VALUES (:make) ON CONFLICT (make) DO NOTHING');
          $makeSt->execute(array(make => $make));
-         /*
-         $stmt = $db->prepare("INSERT INTO motor_tbl
-         VALUES
-         ( NEXTVAL('motor_s1')
-         , :motor
+         // insert model if doesn't exist 
+         $makeSt = $db->prepare('INSERT INTO model_tbl (model) VALUES (:model) ON CONFLICT (model) DO NOTHING');
+         $makeSt->execute(array(model => $model));
+         // insert motor into database
+         $stmt = $db->prepare("INSERT INTO motor_tbl(motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap)
+         VALUES 
+         ( :motor
          , :year
-         , (SELECT model_id FROM model_tbl WHERE model = :model)
-         , (SELECT make_id FROM make_tbl WHERE make = :make)
-         , (SELECT grade1_id FROM grade1_tbl WHERE grade1 = :grade1)
-         , (SELECT grade2_id FROM grade2_tbl WHERE grade2 = :grade2)
-         , :cap)");
+         ,(SELECT model_id FROM model_tbl WHERE model = :model)
+         ,(SELECT make_id FROM make_tbl WHERE make = :make)
+         ,(SELECT grade1_id FROM grade1_tbl WHERE grade1 = :grade1)
+         ,(SELECT grade2_id FROM grade2_tbl WHERE grade2 = :grade2)
+         , :cap);");
 
-         $stmt->execute(array('motor' => $_POST['motor'], 'year' => $_POST['year'], 'model' => $_POST['model'], 'make' => $_POST['make'], 'grade1' => $_POST['grade1'], 'grade2' => $_POST['grade2'], 'cap' => $_POST['cap']));
-         */
+         $stmt->execute(array(motor => $_POST['motor'], year => $_POST['year'], model => $_POST['model'], make => $_POST['make'], grade1 => $_POST['grade1'], grade2 => $_POST['grade2'], cap => $_POST['cap']));
+         
          $message = "Vehicle was added.";
          echo "<script type='text/javascript'>alert('$message');</script>";
 
