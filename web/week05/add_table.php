@@ -29,7 +29,7 @@ $db = get_db();
       .auto-cap {
          text-transform: capitalize;
       }
-      </style>
+   </style>
 
    <title>Add Vehicle</title>
 </head>
@@ -75,7 +75,7 @@ $db = get_db();
          $makeSt = $db->prepare('INSERT INTO model_tbl (model) VALUES (:model) ON CONFLICT (model) DO NOTHING');
          $makeSt->execute(array(model => $model));
          // insert motor into database
-         $stmt = $db->prepare("INSERT INTO motor_tbl(motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap)
+         $stmt = $db->prepare('INSERT INTO motor_tbl(motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap)
          VALUES 
          ( :motor
          , :year
@@ -83,10 +83,20 @@ $db = get_db();
          ,(SELECT make_id FROM make_tbl WHERE make = :make)
          ,(SELECT grade1_id FROM grade1_tbl WHERE grade1 = :grade1)
          ,(SELECT grade2_id FROM grade2_tbl WHERE grade2 = :grade2)
-         , :cap);");
+         , :cap);');
+
+         echo "INSERT INTO motor_tbl(motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap)
+VALUES 
+( :motor
+, :year
+,(SELECT model_id FROM model_tbl WHERE model = :model)
+,(SELECT make_id FROM make_tbl WHERE make = :make)
+,(SELECT grade1_id FROM grade1_tbl WHERE grade1 = :grade1)
+,(SELECT grade2_id FROM grade2_tbl WHERE grade2 = :grade2)
+, :cap);";
 
          $stmt->execute(array(motor => $_POST['motor'], year => $_POST['year'], model => $_POST['model'], make => $_POST['make'], grade1 => $_POST['grade1'], grade2 => $_POST['grade2'], cap => $_POST['cap']));
-         
+
          $message = "Vehicle was added.";
          echo "<script type='text/javascript'>alert('$message');</script>";
 
