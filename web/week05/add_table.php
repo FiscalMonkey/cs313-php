@@ -85,17 +85,15 @@ $db = get_db();
          ,(SELECT grade2_id FROM grade2_tbl WHERE grade2 = :grade2)
          , :cap);');
 
-         echo "INSERT INTO motor_tbl(motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap)
-VALUES 
-( :motor
-, :year
-,(SELECT model_id FROM model_tbl WHERE model = :model)
-,(SELECT make_id FROM make_tbl WHERE make = :make)
-,(SELECT grade1_id FROM grade1_tbl WHERE grade1 = :grade1)
-,(SELECT grade2_id FROM grade2_tbl WHERE grade2 = :grade2)
-, :cap);";
+         echo $motor;
+         echo $year;
+         echo $model;
+         echo $make;
+         echo $g1;
+         echo $g2;
+         echo $cap;
 
-         $stmt->execute(array(motor => $_POST['motor'], year => $_POST['year'], model => $_POST['model'], make => $_POST['make'], grade1 => $_POST['grade1'], grade2 => $_POST['grade2'], cap => $_POST['cap']));
+         $stmt->execute(array(motor => $motor, year => $year, model => $model, make => $make, grade1 => $g1, grade2 => $g2, cap => $cap));
 
          $message = "Vehicle was added.";
          echo "<script type='text/javascript'>alert('$message');</script>";
