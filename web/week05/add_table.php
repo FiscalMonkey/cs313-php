@@ -38,7 +38,7 @@ $db = get_db();
                }
                i++;
             }
-            input.innerHTML = val;
+            input.value = val;
          }
       }
    </script>
