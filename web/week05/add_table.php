@@ -26,19 +26,29 @@ $db = get_db();
    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
    <script type="text/javascript">
-      function autoCap(input) {
-         var val = input.value;
-         var i = 1;
+      function autoCapMake() {
+         var val = $('#make').val();
          if (val != NULL) {
-            val[0].toUpperCase();  
-            while (i < val.length)
-            {
-               if (val[i - 1] == ' ') {
+            var i = 0;
+            while (i < val.length) {
+               if (i == 0 || val[i - 1] == ' ') {
                   val[i].toUpperCase();
                }
-               i++;
             }
-            input.value = val;
+            $('#make').html(val);  
+         }
+      }
+
+      function autoCapModel() {
+         var val = $('#model').val();
+         if (val != NULL) {
+            var i = 0;
+            while (i < val.length) {
+               if (i == 0 || val[i - 1] == ' ') {
+                  val[i].toUpperCase();
+               }
+            }
+            $('#model').html(val);  
          }
       }
    </script>
@@ -129,7 +139,7 @@ $db = get_db();
                </div>
                <div class="col-md-4 mb-3">
                   <label class="h5" for="make">Make</label>
-                  <input class="form-control auto-cap" id="make" type="text" onchange="autoCap(make)" name="make" tabindex="2" required>
+                  <input class="form-control auto-cap" id="make" type="text" onchange="autoCapMake()" name="make" tabindex="2" required>
                </div>
                <div class="col-md-4 mb-3">
                   <label class="h5" for="model">Model</label>
