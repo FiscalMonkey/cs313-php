@@ -27,23 +27,23 @@ $db = get_db();
 
    <script type="text/javascript">
       function autoCapMake() {
-         var val = $('#make').val();
-         if (val != NULL) {
-            var i = 0;
-            while (i < val.length) {
+         var val = $("#make").val();
+         if (val != null) {
+            var i;
+            for (i = 0; i < val.length; i++) {
                if (i == 0 || val[i - 1] == ' ') {
                   val[i].toUpperCase();
                }
             }
-            $('#make').html(val);  
+            $("#make").text(val);  
          }
       }
 
       function autoCapModel() {
          var val = $('#model').val();
-         if (val != NULL) {
-            var i = 0;
-            while (i < val.length) {
+         if (val != null) {
+            var i;
+            for (i = 0; i < val.length; i++) {
                if (i == 0 || val[i - 1] == ' ') {
                   val[i].toUpperCase();
                }
