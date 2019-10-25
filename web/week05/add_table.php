@@ -29,12 +29,14 @@ $db = get_db();
       function autoCapMake() {
          var val = $("#make").val();
          if (val != null) {
+            console.log(val);
             var i;
             for (i = 0; i < val.length; i++) {
                if (i == 0 || val[i - 1] == ' ') {
                   val[i].toUpperCase();
                }
             }
+            console.log(val);
             $("#make").text(val);  
          }
       }
@@ -42,12 +44,14 @@ $db = get_db();
       function autoCapModel() {
          var val = $('#model').val();
          if (val != null) {
+            console.log(val);
             var i;
             for (i = 0; i < val.length; i++) {
                if (i == 0 || val[i - 1] == ' ') {
                   val[i].toUpperCase();
                }
             }
+            console.log(val);
             $('#model').html(val);  
          }
       }
