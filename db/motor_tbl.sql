@@ -17,6 +17,8 @@ CREATE TABLE motor_tbl
 , FOREIGN KEY (grade2_id) REFERENCES grade2_tbl(grade2_id)
 );
 
+CREATE UNIQUE INDEX motor_i1 ON motor_tbl (motor, year, make_id, model_id, grade1_id, grade2_id);
+
 INSERT INTO motor_tbl(motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap)
 VALUES 
 ('i 4-Cyl 2.5'
