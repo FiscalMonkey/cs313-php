@@ -25,11 +25,23 @@ $db = get_db();
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-   <style>
-      .auto-cap {
-         text-transform: capitalize;
+   <script type="text/javascript">
+      function autoCap(input) {
+         var val = input.value;
+         var i = 1;
+         if (val != NULL) {
+            val[0].toUpperCase();  
+            while (i < val.length)
+            {
+               if (val[i - 1] == ' ') {
+                  val[i].toUpperCase();
+               }
+               i++;
+            }
+            input.innerHTML = val;
+         }
       }
-   </style>
+   </script>
 
    <title>Add Vehicle</title>
 </head>
@@ -72,10 +84,10 @@ $db = get_db();
          $makeSt = $db->prepare('INSERT INTO make_tbl (make) VALUES (:make) ON CONFLICT (make) DO NOTHING');
          $makeSt->execute(array(make => $make));
          // insert model if doesn't exist 
-         $makeSt = $db->prepare('INSERT INTO model_tbl (model) VALUES (:model) ON CONFLICT (model) DO NOTHING');
-         $makeSt->execute(array(model => $model));
+         $modelSt = $db->prepare('INSERT INTO model_tbl (model) VALUES (:model) ON CONFLICT (model) DO NOTHING');
+         $modelSt->execute(array(model => $model));
          // insert motor into database
-         $stmt = $db->prepare('INSERT INTO motor_tbl(motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap)
+         $motorSt = $db->prepare('INSERT INTO motor_tbl(motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap)
          VALUES 
          ( :motor
          , :year
@@ -83,7 +95,8 @@ $db = get_db();
          ,(SELECT make_id FROM make_tbl WHERE make = :make)
          ,(SELECT grade1_id FROM grade1_tbl WHERE grade1 = :grade1)
          ,(SELECT grade2_id FROM grade2_tbl WHERE grade2 = :grade2)
-         , :cap);');
+         , :cap)
+         ON CONFLICT (motor) DO NOTHING');
 
          echo $motor;
          echo $year;
@@ -93,7 +106,7 @@ $db = get_db();
          echo $g2;
          echo $cap;
 
-         $stmt->execute(array(motor => $motor, year => $year, model => $model, make => $make, grade1 => $g1, grade2 => $g2, cap => $cap));
+         $motorSt->execute(array(motor => $motor, year => $year, model => $model, make => $make, grade1 => $g1, grade2 => $g2, cap => $cap));
 
          $message = "Vehicle was added.";
          echo "<script type='text/javascript'>alert('$message');</script>";
@@ -116,11 +129,11 @@ $db = get_db();
                </div>
                <div class="col-md-4 mb-3">
                   <label class="h5" for="make">Make</label>
-                  <input class="form-control auto-cap" id="make" type="text" name="make" tabindex="2" required>
+                  <input class="form-control auto-cap" id="make" type="text" onchange="autoCap(make)" name="make" tabindex="2" required>
                </div>
                <div class="col-md-4 mb-3">
                   <label class="h5" for="model">Model</label>
-                  <input class="form-control auto-cap" id="model" type="text" name="model" tabindex="3" required>
+                  <input class="form-control auto-cap" id="model" type="text" onchange="autoCap(model)" name="model" tabindex="3" required>
                </div>
             </div>
             <div class="form-row">
