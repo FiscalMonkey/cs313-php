@@ -62,7 +62,7 @@ $db = get_db();
                }
             }
             console.log(newVal);
-            $('#model').text(newVal);  
+            $('#model').val() = newVal;  
          }
       }
    </script>
