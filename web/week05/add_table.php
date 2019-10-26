@@ -27,18 +27,22 @@ $db = get_db();
 
    <script type="text/javascript">
       function autoCapMake() {
-         var val = $("#make").val();
+         var val = $('#make').val();
+         var newVal = '';
          if (val != null) {
             console.log(val);
             var i;
             for (i = 0; i < val.length; i++) {
                if (i == 0 || val[i - 1] == ' ') {
-                  val[i] = val[i].toUpperCase();
-                  console.log(val[i]);
+                  newVal = newVal.concat(val[i].toUpperCase());
+                  console.log(newVal[i]);
+               }
+               else {
+                  newVal = newVal.concat(val[i]);
                }
             }
-            console.log(val);
-            $("#make").text(val);  
+            console.log(newVal);
+            $('#make').text(newVal);  
          }
       }
 
@@ -58,7 +62,7 @@ $db = get_db();
                }
             }
             console.log(newVal);
-            $('#model').html(newVal);  
+            $('#model').text(newVal);  
          }
       }
    </script>
