@@ -44,14 +44,14 @@ $db = get_db();
 
       function autoCapModel() {
          var val = $('#model').val();
-         var newVal;
+         var newVal = '';
          if (val != null) {
             console.log(val);
             var i;
             for (i = 0; i < val.length; i++) {
                if (i == 0 || val[i - 1] == ' ') {
                   newVal[i] = val[i].toUpperCase();
-                  console.log(val[i]);
+                  console.log(newVal[i]);
                }
                else {
                   newVal[i] = val[i];
