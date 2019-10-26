@@ -55,6 +55,7 @@ $db = get_db();
       </nav>
       <?php if (isset($_POST['submit'])) {
          // initialize variables
+         echo 'Submit recieved<br>';
          $year = $_POST['year'];
          $make = ucwords($_POST['make']);
          $model = ucwords($_POST['model']);
@@ -62,14 +63,17 @@ $db = get_db();
          $g1 = $_POST['grade1'];
          $g2 = $_POST['grade2'];
          $cap = $_POST['cap'];
+         echo 'Variables Initialized<br>';
          // insert make if doesn't exist 
          $makeSt = $db->prepare('INSERT INTO make_tbl (make) VALUES (:make) ON CONFLICT (make) DO NOTHING');
+         echo 'Make insert compiled<br>';
          $makeSt->execute(array(make => $make));
-         echo $makeSt;
+         echo 'Make insert attempted<br>';
          // insert model if doesn't exist 
          $modelSt = $db->prepare('INSERT INTO model_tbl (model, make_id) VALUES (:model, (SELECT make_id FROM make_tbl WHERE make = :make)) ON CONFLICT (model) DO NOTHING');
+         echo 'Model insert compiled<br>';
          $modelSt->execute(array(model => $model, make => $make));
-         echo $modelSt;
+         echo 'Model insert attempted<br>';
          // insert motor into database
          $motorSt = $db->prepare('INSERT INTO motor_tbl(motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap)
          VALUES 
@@ -89,9 +93,10 @@ $db = get_db();
          echo $g1;
          echo $g2;
          echo $cap;
+         echo 'Motor Insert compiled<br>';
 
          $motorSt->execute(array(motor => $motor, year => $year, model => $model, make => $make, grade1 => $g1, grade2 => $g2, cap => $cap));
-
+         echo 'Motor insert attempted';
          $message = "Vehicle was added.";
          echo "<script type='text/javascript'>alert('$message');</script>";
 
