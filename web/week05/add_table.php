@@ -60,8 +60,8 @@ $db = get_db();
          $make = ucwords($_POST['make']);
          $model = ucwords($_POST['model']);
          $motor = $_POST['motor'];
-         $g1 = $_POST['grade1'];
-         $g2 = $_POST['grade2'];
+         $grade1 = $_POST['grade1'];
+         $grade2 = $_POST['grade2'];
          $cap = $_POST['cap'];
          echo 'Variables Initialized<br>';
          // insert make if doesn't exist 
@@ -86,7 +86,7 @@ $db = get_db();
          , :cap)');
          echo 'Motor Insert compiled<br>';
 
-         $motorSt->execute(array(':motor' => $motor, ':year' => $year, ':model' => $model, ':make' => $make, ':grade1' => $g1, ':grade2' => $g2, ':cap' => $cap));
+         $motorSt->execute(array(':motor' => $motor, ':year' => $year, ':model' => $model, ':make' => $make, ':grade1' => $grade1, ':grade2' => $grade2, ':cap' => $cap));
          echo 'Motor insert attempted';
          $message = "Vehicle was added.";
          echo "<script type='text/javascript'>alert('$message');</script>";
