@@ -25,49 +25,7 @@ $db = get_db();
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-   <script type="text/javascript">
-      function autoCapMake() {
-         var val = $('#make').val();
-         var newVal = '';
-         if (val != null) {
-            console.log(val);
-            var i;
-            for (i = 0; i < val.length; i++) {
-               if (i == 0 || val[i - 1] == ' ') {
-                  newVal = newVal.concat(val[i].toUpperCase());
-                  console.log(newVal[i]);
-               }
-               else {
-                  newVal = newVal.concat(val[i]);
-               }
-            }
-            console.log(newVal);
-            $('#make').text(newVal);  
-         }
-      }
-
-      function autoCapModel() {
-         var val = $('#model').val();
-         var newVal = '';
-         if (val != null) {
-            console.log(val);
-            var i;
-            for (i = 0; i < val.length; i++) {
-               if (i == 0 || val[i - 1] == ' ') {
-                  newVal = newVal.concat(val[i].toUpperCase());
-                  console.log(newVal[i]);
-               }
-               else {
-                  newVal = newVal.concat(val[i]);
-               }
-            }
-            console.log(newVal);
-            $('#model').val() = newVal;  
-         }
-      }
-   </script>
-
-   <title>Add Vehicle</title>
+   <title>Add Vehicle - Oil Determinator</title>
 </head>
 
 <body>
@@ -107,9 +65,11 @@ $db = get_db();
          // insert make if doesn't exist 
          $makeSt = $db->prepare('INSERT INTO make_tbl (make) VALUES (:make) ON CONFLICT (make) DO NOTHING');
          $makeSt->execute(array(make => $make));
+         echo $makeSt . '<br>';
          // insert model if doesn't exist 
-         $modelSt = $db->prepare('INSERT INTO model_tbl (model) VALUES (:model) ON CONFLICT (model) DO NOTHING');
-         $modelSt->execute(array(model => $model));
+         $modelSt = $db->prepare('INSERT INTO model_tbl (model, make_id) VALUES (:model, (SELECT make_id FROM make_tbl WHERE make = :make)) ON CONFLICT (model) DO NOTHING');
+         $modelSt->execute(array(model => $model, make => $make));
+         echo $modelSt . '<br>';
          // insert motor into database
          $motorSt = $db->prepare('INSERT INTO motor_tbl(motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap)
          VALUES 
