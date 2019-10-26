@@ -75,9 +75,17 @@ $db = get_db();
          $modelSt->execute(array(':model' => $model, ':make' => $make));
          echo 'Model insert attempted<br>';
          // insert motor into database
-         $motorSt = $db->prepare('INSERT INTO motor_tbl (motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap) VALUES (:motor, :year, (SELECT model_id FROM model_tbl WHERE model = :model), (SELECT make_id FROM make_tbl WHERE make = :make), (SELECT grade1_id FROM grade1_tbl WHERE grade1 = :grade1), (SELECT grade2_id FROM grade2_tbl WHERE grade2 = :grade2), :cap)');
+         $motorSt = $db->prepare('INSERT INTO motor_tbl (motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap) 
+         VALUES 
+         ( :motor
+         , :year
+         ,(SELECT model_id FROM model_tbl WHERE model = :model)
+         ,(SELECT make_id FROM make_tbl WHERE make = :make)
+         ,(SELECT grade1_id FROM grade1_tbl WHERE grade1 = :grade1)
+         ,(SELECT grade2_id FROM grade2_tbl WHERE grade2 = :grade2)
+         , :cap)');
          echo 'Motor Insert compiled<br>';
-         echo '' . $motorSt . '<br>';
+
          $motorSt->execute(array(':motor' => $motor, ':year' => $year, ':model' => $model, ':make' => $make, ':grade1' => $g1, ':grade2' => $g2, ':cap' => $cap));
          echo 'Motor insert attempted';
          $message = "Vehicle was added.";
