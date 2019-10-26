@@ -34,6 +34,7 @@ $db = get_db();
             for (i = 0; i < val.length; i++) {
                if (i == 0 || val[i - 1] == ' ') {
                   val[i] = val[i].toUpperCase();
+                  console.log(val[i]);
                }
             }
             console.log(val);
@@ -49,6 +50,7 @@ $db = get_db();
             for (i = 0; i < val.length; i++) {
                if (i == 0 || val[i - 1] == ' ') {
                   val[i] = val[i].toUpperCase();
+                  console.log(val[i]);
                }
             }
             console.log(val);
