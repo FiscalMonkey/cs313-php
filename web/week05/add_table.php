@@ -50,15 +50,15 @@ $db = get_db();
             var i;
             for (i = 0; i < val.length; i++) {
                if (i == 0 || val[i - 1] == ' ') {
-                  newVal[i] = val[i].toUpperCase();
+                  newVal = newVal.concat(val[i].toUpperCase());
                   console.log(newVal[i]);
                }
                else {
-                  newVal[i] = val[i];
+                  newVal = newVal.concat(val[i]);
                }
             }
-            console.log(val);
-            $('#model').html(val);  
+            console.log(newVal);
+            $('#model').html(newVal);  
          }
       }
    </script>
