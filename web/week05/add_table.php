@@ -65,11 +65,11 @@ $db = get_db();
          // insert make if doesn't exist 
          $makeSt = $db->prepare('INSERT INTO make_tbl (make) VALUES (:make) ON CONFLICT (make) DO NOTHING');
          $makeSt->execute(array(make => $make));
-         echo $makeSt . '<br>';
+         echo $makeSt;
          // insert model if doesn't exist 
          $modelSt = $db->prepare('INSERT INTO model_tbl (model, make_id) VALUES (:model, (SELECT make_id FROM make_tbl WHERE make = :make)) ON CONFLICT (model) DO NOTHING');
          $modelSt->execute(array(model => $model, make => $make));
-         echo $modelSt . '<br>';
+         echo $modelSt;
          // insert motor into database
          $motorSt = $db->prepare('INSERT INTO motor_tbl(motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap)
          VALUES 
@@ -113,11 +113,11 @@ $db = get_db();
                </div>
                <div class="col-md-4 mb-3">
                   <label class="h5" for="make">Make</label>
-                  <input class="form-control auto-cap" id="make" type="text" onchange="autoCapMake()" name="make" tabindex="2" required>
+                  <input class="form-control auto-cap" id="make" type="text" name="make" tabindex="2" required>
                </div>
                <div class="col-md-4 mb-3">
                   <label class="h5" for="model">Model</label>
-                  <input class="form-control auto-cap" id="model" type="text" onchange="autoCapModel()" name="model" tabindex="3" required>
+                  <input class="form-control auto-cap" id="model" type="text" name="model" tabindex="3" required>
                </div>
             </div>
             <div class="form-row">
