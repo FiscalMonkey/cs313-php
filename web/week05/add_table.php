@@ -44,13 +44,17 @@ $db = get_db();
 
       function autoCapModel() {
          var val = $('#model').val();
+         var newVal;
          if (val != null) {
             console.log(val);
             var i;
             for (i = 0; i < val.length; i++) {
                if (i == 0 || val[i - 1] == ' ') {
-                  val[i] = val[i].toUpperCase();
+                  newVal[i] = val[i].toUpperCase();
                   console.log(val[i]);
+               }
+               else {
+                  newVal[i] = val[i];
                }
             }
             console.log(val);
@@ -149,7 +153,7 @@ $db = get_db();
                </div>
                <div class="col-md-4 mb-3">
                   <label class="h5" for="model">Model</label>
-                  <input class="form-control auto-cap" id="model" type="text" onchange="autoCap(model)" name="model" tabindex="3" required>
+                  <input class="form-control auto-cap" id="model" type="text" onchange="autoCapModel()" name="model" tabindex="3" required>
                </div>
             </div>
             <div class="form-row">
