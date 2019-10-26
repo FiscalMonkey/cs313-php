@@ -67,23 +67,23 @@ $db = get_db();
          // insert make if doesn't exist 
          $makeSt = $db->prepare('INSERT INTO make_tbl (make) VALUES (:make) ON CONFLICT (make) DO NOTHING');
          echo 'Make insert compiled<br>';
-         $makeSt->execute(array(make => $make));
+         $makeSt->execute(array(':make' => $make));
          echo 'Make insert attempted<br>';
          // insert model if doesn't exist 
          $modelSt = $db->prepare('INSERT INTO model_tbl (model, make_id) VALUES (:model, (SELECT make_id FROM make_tbl WHERE make = :make)) ON CONFLICT (model) DO NOTHING');
          echo 'Model insert compiled<br>';
-         $modelSt->execute(array(model => $model, make => $make));
+         $modelSt->execute(array(':model' => $model, ':make' => $make));
          echo 'Model insert attempted<br>';
          // insert motor into database
-         $motorSt = $db->prepare('INSERT INTO motor_tbl(motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap)
+         $motorSt = $db->prepare('INSERT INTO motor_tbl (motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap)
          VALUES 
          ( :motor
          , :year
-         ,(SELECT model_id FROM model_tbl WHERE model = :model)
-         ,(SELECT make_id FROM make_tbl WHERE make = :make)
-         ,(SELECT grade1_id FROM grade1_tbl WHERE grade1 = :grade1)
-         ,(SELECT grade2_id FROM grade2_tbl WHERE grade2 = :grade2)
-         , :cap)
+         ,(SELECT model_id FROM model_tbl WHERE model = :model )
+         ,(SELECT make_id FROM make_tbl WHERE make = :make )
+         ,(SELECT grade1_id FROM grade1_tbl WHERE grade1 = :grade1 )
+         ,(SELECT grade2_id FROM grade2_tbl WHERE grade2 = :grade2 )
+         , :cap )
          ON CONFLICT (motor) DO NOTHING');
 
          echo $motor;
@@ -95,7 +95,7 @@ $db = get_db();
          echo $cap;
          echo 'Motor Insert compiled<br>';
 
-         $motorSt->execute(array(motor => $motor, year => $year, model => $model, make => $make, grade1 => $g1, grade2 => $g2, cap => $cap));
+         $motorSt->execute(array(':motor' => $motor, ':year' => $year, ':model' => $model, ':make' => $make, ':grade1' => $g1, ':grade2' => $g2, ':cap' => $cap));
          echo 'Motor insert attempted';
          $message = "Vehicle was added.";
          echo "<script type='text/javascript'>alert('$message');</script>";
