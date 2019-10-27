@@ -92,7 +92,7 @@ $db = get_db();
          echo $grade1 . ': ' . gettype($grade1) . '<br>';
          echo $grade2 . ': ' . gettype($grade2) . '<br>';
          echo $cap . ': ' . gettype($cap) . '<br>';
-         $motorSt->execute(array(':motor' => $motor, ':year' => $year, ':model' => $model, ':make' => $make, ':grade1' => $grade1, ':grade2' => $grade2, ':cap' => $cap));
+         $motorSt->execute(array(':motor' => $motor, ':year' => (int)$year, ':model' => $model, ':make' => $make, ':grade1' => (int)$grade1, ':grade2' => (int)$grade2, ':cap' => (int)$cap));
          echo 'Motor insert attempted';
          $message = "Vehicle was added.";
          echo "<script type='text/javascript'>alert('$message');</script>";
