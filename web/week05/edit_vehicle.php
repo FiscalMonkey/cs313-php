@@ -14,7 +14,7 @@ INNER JOIN grade1_tbl AS d ON a.grade1_id = d.grade1_id
 INNER JOIN grade2_tbl AS e ON a.grade2_id = e.grade2_id
 WHERE motor_id = ' . (int) $motor_id);
 //echo 'Year = ' . $car['year'] . ': ' . gettype($car['year']);
-echo $car['grade1'];
+
 ?>
 
 <!DOCTYPE html>
