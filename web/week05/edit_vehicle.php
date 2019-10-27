@@ -116,14 +116,11 @@ WHERE motor_id = ' . $motor_id) as $row) {
          } catch (PDOException $e) {
             echo $message;
          }
-
-         echo "<script>
+         unset($_POST['submit']);
+         echo "<script type='text/javascript'>
             alert('Vehicle was successfully edited');
             window.location.href='https://sleepy-citadel-12320.herokuapp.com/week05/05prove.php';
             </script>";
-
-         unset($_POST['submit']);
-         header("Location: https://sleepy-citadel-12320.herokuapp.com/week05/05prove.php");
       } ?>
       <div class="jumbotron">
          <label class="h3" for="car">Edit Vehicle</label>
