@@ -117,8 +117,10 @@ WHERE motor_id = ' . $motor_id) as $row) {
             echo $message;
          }
 
-         $message = "Vehicle was added.";
-         echo "<script type='text/javascript'>alert('$message');</script>";
+         echo "<script>
+            alert('Vehicle was successfully edited');
+            window.location.href='https://sleepy-citadel-12320.herokuapp.com/week05/05prove.php';
+            </script>";
 
          unset($_POST['submit']);
          header("Location: https://sleepy-citadel-12320.herokuapp.com/week05/05prove.php");
@@ -183,7 +185,7 @@ WHERE motor_id = ' . $motor_id) as $row) {
                   <input class="form-control" id="cap" type="number" name="cap" min="0" max="15" step="0.1" value="<?php echo $car['oil_cap']; ?>" tabindex="7" required>
                </div>
             </div>
-            <input type="hidden" name="motor_id" value="<?php echo $motor_id; ?>" >
+            <input type="hidden" name="motor_id" value="<?php echo $motor_id; ?>">
             <input class="btn btn-success btn-lg" type="submit" value="Submit Vehicle" name="submit" tabindex="8" />
          </form>
       </div>
