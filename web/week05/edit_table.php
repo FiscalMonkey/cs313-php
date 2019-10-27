@@ -60,18 +60,18 @@ $db = get_db();
          <form id="car" method="get" action="edit_vehicle.php">
             <div class="form-group">
                <label class="h5" for="year">Year</label>
-               <select id="year" name="year" class="form-control" onchange="newYear()">
+               <select id="year" class="form-control" onchange="newYear()">
                   <option disabled selected value="">Choose Year</option required>
                   <?php foreach ($db->query('SELECT DISTINCT year FROM motor_tbl ORDER BY year DESC') as $row) {
                      echo '<option value="' . $row["year"] . '">' . $row["year"] . '</option>';
                   } ?>
                </select>
                <label class="h5" for="make">Make</label>
-               <select id="make" name="make" class="form-control" onchange="newMake()" disabled required>
+               <select id="make" class="form-control" onchange="newMake()" disabled required>
                   <option disabled selected value="">Choose Make</option>
                </select>
                <label class="h5" for="model">Model</label>
-               <select id="model" name="model" class="form-control" onchange="newModel()" disabled required>
+               <select id="model" class="form-control" onchange="newModel()" disabled required>
                   <option disabled selected value="">Choose Model</option>
                </select>
                <label class="h5" for="motor">Engine</label>
@@ -139,13 +139,6 @@ $db = get_db();
          $("#oil").html("");
       }
 
-      function newMotor() {
-         $("#oil").load("new_motor.php", {
-            'motor_id': motor.value
-         }, function(data, status, jqXGR) {
-            console.log("data loaded");
-         });
-      }
    </script>
 </body>
 
