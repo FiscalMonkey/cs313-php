@@ -86,8 +86,6 @@ WHERE motor_id = ' . $motor_id) as $row) {
                $makeUp = $db->prepare('UPDATE motor_tbl SET make_id = (SELECT make_id FROM make_tbl WHERE make = :make) WHERE motor_id = ' . (int) $motor_id);
                $makeUp->execute(array(':make' => $make));
             } catch (PDOException $e) {
-               $message = 'Make insertion and update failed: ' . $e;
-               echo "<script type='text/javascript'>alert('$message');</script>";
                echo $message;
             }
          }
@@ -102,8 +100,6 @@ WHERE motor_id = ' . $motor_id) as $row) {
                $modelUp = $db->prepare('UPDATE motor_tbl SET model_id = (SELECT model_id FROM model_tbl WHERE model = :model) WHERE motor_id = ' . (int) $motor_id);
                $modelUp->execute(array(':model' => $model));
             } catch (PDOException $e) {
-               $message = 'Model insertion and update failed: ' . $e;
-               echo "<script type='text/javascript'>alert('$message');</script>";
                echo $message;
             }
          }
@@ -112,14 +108,12 @@ WHERE motor_id = ' . $motor_id) as $row) {
             $motorSt = $db->prepare('UPDATE motor_tbl 
             SET year = :year
             , motor = :motor
-            , grade1_id = (SELECT grade1_id FROM grade1_tbl WHERE grade1 = :grade1)
-            , grade2_id = (SELECT grade2_id FROM grade2_tbl WHERE grade2 = :grade2)
+            , grade1_id = :grade1
+            , grade2_id = :grade2
             , oil_cap = :cap
             WHERE motor_id = ' . $motor_id);
             $motorSt->execute(array(':motor' => $motor, ':year' => (int) $year, ':grade1' => (int) $grade1, ':grade2' => (int) $grade2, ':cap' => (float) $cap));
          } catch (PDOException $e) {
-            $message = 'Vehicle update failed: ' . $e;
-            echo "<script type='text/javascript'>alert('$message');</script>";
             echo $message;
          }
 
