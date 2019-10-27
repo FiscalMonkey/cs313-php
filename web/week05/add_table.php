@@ -55,42 +55,42 @@ $db = get_db();
       </nav>
       <?php if (isset($_POST['submit'])) {
          // initialize variables
-         $year = (int)$_POST['year'];
+         $year = $_POST['year'];
          $make = ucwords($_POST['make']);
          $model = ucwords($_POST['model']);
          $motor = $_POST['motor'];
-         $grade1 = (int)$_POST['grade1'];
-         $grade2 = (int)$_POST['grade2'];
-         $cap = (int)$_POST['cap'];
+         $grade1 = $_POST['grade1'];
+         $grade2 = $_POST['grade2'];
+         $cap = $_POST['cap'];
          // insert make if doesn't exist 
          try {
-         $makeSt = $db->prepare('INSERT INTO make_tbl (make) VALUES (:make) ON CONFLICT (make) DO NOTHING');
-         $makeSt->execute(array(':make' => $make)); 
+            $makeSt = $db->prepare('INSERT INTO make_tbl (make) VALUES (:make) ON CONFLICT (make) DO NOTHING');
+            $makeSt->execute(array(':make' => $make));
          } catch (PDOException $e) {
             $message = 'Make insertion failed: ' . $e;
             echo "<script type='text/javascript'>alert('$message');</script>";
          }
          // insert model if doesn't exist 
          try {
-         $modelSt = $db->prepare('INSERT INTO model_tbl (model, make_id) VALUES (:model, (SELECT make_id FROM make_tbl WHERE make = :make)) ON CONFLICT (model) DO NOTHING');
-         $modelSt->execute(array(':model' => $model, ':make' => $make));
+            $modelSt = $db->prepare('INSERT INTO model_tbl (model, make_id) VALUES (:model, (SELECT make_id FROM make_tbl WHERE make = :make)) ON CONFLICT (model) DO NOTHING');
+            $modelSt->execute(array(':model' => $model, ':make' => $make));
          } catch (PDOException $e) {
             $message = 'Model insertion failed: ' . $e;
             echo "<script type='text/javascript'>alert('$message');</script>";
          }
          // insert motor into database
          try {
-         $motorSt = $db->prepare('INSERT INTO motor_tbl (motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap) 
-         VALUES 
-         ( :motor
-         , :year
-         ,(SELECT model_id FROM model_tbl WHERE model = :model)
-         ,(SELECT make_id FROM make_tbl WHERE make = :make)
-         , :grade1
-         , :grade2
-         , :cap)
-         ON CONFLICT ');
-         $motorSt->execute(array(':motor' => $motor, ':year' => (int)$year, ':model' => $model, ':make' => $make, ':grade1' => (int)$grade1, ':grade2' => (int)$grade2, ':cap' => (float)$cap));
+            $motorSt = $db->prepare('INSERT INTO motor_tbl (motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap) 
+            VALUES 
+            ( :motor
+            , :year
+            ,(SELECT model_id FROM model_tbl WHERE model = :model)
+            ,(SELECT make_id FROM make_tbl WHERE make = :make)
+            , :grade1
+            , :grade2
+            , :cap)
+            ON CONFLICT ');
+            $motorSt->execute(array(':motor' => $motor, ':year' => (int) $year, ':model' => $model, ':make' => $make, ':grade1' => (int) $grade1, ':grade2' => (int) $grade2, ':cap' => (float) $cap));
          } catch (PDOException $e) {
             $message = 'Vehicle insertion failed: ' . $e;
             echo "<script type='text/javascript'>alert('$message');</script>";
