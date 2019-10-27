@@ -76,13 +76,13 @@ WHERE motor_id = ' . $motor_id);
          $motor_id = $_POST['motor_id'];
          // insert make if doesn't exist 
          try {
-            $makeUp = $db->prepare('UPDATE motor_tbl SET make_id = (SELECT make_id FROM make_tbl WHERE make = :make) WHERE motor_id = ' . $motor_id);
+            $makeUp = $db->prepare('UPDATE motor_tbl SET make_id = (SELECT make_id FROM make_tbl WHERE make = :make) WHERE motor_id = ' . (int) $motor_id);
             $makeUp->execute(array(':make' => $make));
          } catch (PDOException $e) {
             try {
                $makeIn = $db->prepare('INSERT INTO make_tbl (make) VALUES (:make) ON CONFLICT (make) DO NOTHING');
                $makeIn->execute(array(':make' => $make));
-               $makeUp = $db->prepare('UPDATE motor_tbl SET make_id = (SELECT make_id FROM make_tbl WHERE make = :make) WHERE motor_id = ' . $motor_id);
+               $makeUp = $db->prepare('UPDATE motor_tbl SET make_id = (SELECT make_id FROM make_tbl WHERE make = :make) WHERE motor_id = ' . (int) $motor_id);
                $makeUp->execute(array(':make' => $make));
             } catch (PDOException $e) {
                $message = 'Make insertion and update failed: ' . $e;
@@ -92,13 +92,13 @@ WHERE motor_id = ' . $motor_id);
          }
          // insert model if doesn't exist 
          try {
-            $modelUp = $db->prepare('UPDATE motor_tbl SET model_id = (SELECT model_id FROM model_tbl WHERE model = :model) WHERE motor_id = ' . $motor_id);
+            $modelUp = $db->prepare('UPDATE motor_tbl SET model_id = (SELECT model_id FROM model_tbl WHERE model = :model) WHERE motor_id = ' . (int) $motor_id);
             $modelUp->execute(array(':model' => $model));
          } catch (PDOException $e) {
             try {
                $modelIn = $db->prepare('INSERT INTO model_tbl (model, make_id) VALUES (:model, (SELECT make_id FROM make_tbl WHERE make = :make)) ON CONFLICT (model) DO NOTHING');
                $modelIn->execute(array(':model' => $model, ':make' => $make));
-               $modelUp = $db->prepare('UPDATE motor_tbl SET model_id = (SELECT model_id FROM model_tbl WHERE model = :model) WHERE motor_id = ' . $motor_id);
+               $modelUp = $db->prepare('UPDATE motor_tbl SET model_id = (SELECT model_id FROM model_tbl WHERE model = :model) WHERE motor_id = ' . (int) $motor_id);
                $modelUp->execute(array(':model' => $model));
             } catch (PDOException $e) {
                $message = 'Model insertion and update failed: ' . $e;
@@ -108,18 +108,16 @@ WHERE motor_id = ' . $motor_id);
          }
          // insert motor into database
          try {
-            $motorSt = $db->prepare('UPDATE motor_tbl (motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap) 
-            VALUES 
-            ( :motor
-            , :year
-            ,(SELECT model_id FROM model_tbl WHERE model = :model)
-            ,(SELECT make_id FROM make_tbl WHERE make = :make)
-            , :grade1
-            , :grade2
-            , :cap)');
-            $motorSt->execute(array(':motor' => $motor, ':year' => (int) $year, ':model' => $model, ':make' => $make, ':grade1' => (int) $grade1, ':grade2' => (int) $grade2, ':cap' => (float) $cap));
+            $motorSt = $db->prepare('UPDATE motor_tbl 
+            SET year = :year
+            , motor = :motor
+            , grade1_id = (SELECT grade1_id FROM grade1_tbl WHERE grade1 = :grade1)
+            , grade2_id = (SELECT grade2_id FROM grade2_tbl WHERE grade2 = :grade2
+            , oil_cap = :cap
+            WHERE motor_id = ' . $motor_id);
+            $motorSt->execute(array(':motor' => $motor, ':year' => (int) $year, ':grade1' => (int) $grade1, ':grade2' => (int) $grade2, ':cap' => (float) $cap));
          } catch (PDOException $e) {
-            $message = 'Vehicle insertion failed: ' . $e;
+            $message = 'Vehicle update failed: ' . $e;
             echo "<script type='text/javascript'>alert('$message');</script>";
             echo $message;
          }
