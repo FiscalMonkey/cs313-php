@@ -64,7 +64,7 @@ $db = get_db();
          $cap = $_POST['cap'];
          // insert make if doesn't exist 
          try {
-            $makeSt = $db->prepare('INSERT INTO make_tbl (make) VALUES (:make) ON CONFLICT (make) DO NOTHING');
+            $makeSt = $db->prepare('INSERT INTO make_tbl (make) VALUES (:make)');
             $makeSt->execute(array(':make' => $make));
          } catch (PDOException $e) {
             $message = 'Make insertion failed: ' . $e;
@@ -88,8 +88,7 @@ $db = get_db();
             ,(SELECT make_id FROM make_tbl WHERE make = :make)
             , :grade1
             , :grade2
-            , :cap)
-            ON CONFLICT ');
+            , :cap)');
             $motorSt->execute(array(':motor' => $motor, ':year' => (int) $year, ':model' => $model, ':make' => $make, ':grade1' => (int) $grade1, ':grade2' => (int) $grade2, ':cap' => (float) $cap));
          } catch (PDOException $e) {
             $message = 'Vehicle insertion failed: ' . $e;
