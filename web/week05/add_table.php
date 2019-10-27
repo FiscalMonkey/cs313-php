@@ -64,7 +64,7 @@ $db = get_db();
          $cap = $_POST['cap'];
          // insert make if doesn't exist 
          try {
-            $makeSt = $db->prepare('INSERT INTO make_tbl (make) VALUES (:make)');
+            $makeSt = $db->prepare('INSERT INTO make_tbl (make) VALUES (:make) ON CONFLICT (make) DO NOTHING');
             $makeSt->execute(array(':make' => $make));
          } catch (PDOException $e) {
             $message = 'Make insertion failed: ' . $e;
