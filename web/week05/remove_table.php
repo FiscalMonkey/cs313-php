@@ -61,11 +61,12 @@ $db = get_db();
 
          $stmt = $db->prepare('DELETE FROM motor_tbl WHERE motor_id = :motor');
          $stmt->execute(array('motor' => $motor_id));
-         
-         $message = "Vehicle was deleted.";
-         echo "<script type='text/javascript'>alert('$message');</script>";
 
          unset($_POST['submit']);
+         echo "<script type='text/javascript'>
+            alert('Vehicle was successfully removed');
+            window.location.href='https://sleepy-citadel-12320.herokuapp.com/week05/05prove.php';
+            </script>";
        }
        ?>
       <div class="jumbotron">

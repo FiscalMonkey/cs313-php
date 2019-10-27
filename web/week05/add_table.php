@@ -98,10 +98,11 @@ $db = get_db();
             echo $message;
          }
 
-         $message = "Vehicle was added.";
-         echo "<script type='text/javascript'>alert('$message');</script>";
-
          unset($_POST['submit']);
+         echo "<script type='text/javascript'>
+            alert('Vehicle was successfully added');
+            window.location.href='https://sleepy-citadel-12320.herokuapp.com/week05/05prove.php';
+            </script>";
       } ?>
       <div class="jumbotron">
 
