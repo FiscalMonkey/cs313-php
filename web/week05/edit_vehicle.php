@@ -6,14 +6,16 @@ if (!isset($_SESSION)) {
 require "../dbConnect.php";
 $db = get_db();
 $motor_id = $_GET['motor'];
-$car = $db->query('SELECT a.year, b.make, c.model, a.motor, d.grade1, e.grade2, a.oil_cap 
+foreach ($db->query('SELECT a.year, b.make, c.model, a.motor, d.grade1, e.grade2, a.oil_cap 
 FROM motor_tbl as a
 INNER JOIN make_tbl AS b ON a.make_id = b.make_id
 INNER JOIN model_tbl AS c ON a.model_id = c.model_id
 INNER JOIN grade1_tbl AS d ON a.grade1_id = d.grade1_id
 INNER JOIN grade2_tbl AS e ON a.grade2_id = e.grade2_id
-WHERE motor_id = ' . $motor_id);
-//echo 'Year = ' . $car['year'] . ': ' . gettype($car['year']);
+WHERE motor_id = ' . $motor_id) as $row) {
+   $car = $row;
+}
+echo 'motor = ' . $motor_id . ': ' . gettype($motor_id);
 
 ?>
 
