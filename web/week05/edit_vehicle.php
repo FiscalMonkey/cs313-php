@@ -64,98 +64,139 @@ WHERE motor_id = ' . $motor_id);
             </ul>
          </div>
       </nav>
+      <?php if (isset($_POST['submit'])) {
+         // initialize variables
+         $year = $_POST['year'];
+         $make = $_POST['make'];
+         $model = $_POST['model'];
+         $motor = $_POST['motor'];
+         $grade1 = $_POST['grade1'];
+         $grade2 = $_POST['grade2'];
+         $cap = $_POST['cap'];
+         $motor_id = $_POST['motor_id'];
+         // insert make if doesn't exist 
+         try {
+            $makeUp = $db->prepare('UPDATE motor_tbl SET make_id = (SELECT make_id FROM make_tbl WHERE make = :make) WHERE motor_id = ' . $motor_id);
+            $makeUp->execute(array(':make' => $make));
+         } catch (PDOException $e) {
+            try {
+               $makeIn = $db->prepare('INSERT INTO make_tbl (make) VALUES (:make) ON CONFLICT (make) DO NOTHING');
+               $makeIn->execute(array(':make' => $make));
+               $makeUp = $db->prepare('UPDATE motor_tbl SET make_id = (SELECT make_id FROM make_tbl WHERE make = :make) WHERE motor_id = ' . $motor_id);
+               $makeUp->execute(array(':make' => $make));
+            } catch (PDOException $e) {
+               $message = 'Make insertion and update failed: ' . $e;
+               echo "<script type='text/javascript'>alert('$message');</script>";
+               echo $message;
+            }
+         }
+         // insert model if doesn't exist 
+         try {
+            $modelUp = $db->prepare('UPDATE motor_tbl SET model_id = (SELECT model_id FROM model_tbl WHERE model = :model) WHERE motor_id = ' . $motor_id);
+            $modelUp->execute(array(':model' => $model));
+         } catch (PDOException $e) {
+            try {
+               $modelIn = $db->prepare('INSERT INTO model_tbl (model, make_id) VALUES (:model, (SELECT make_id FROM make_tbl WHERE make = :make)) ON CONFLICT (model) DO NOTHING');
+               $modelIn->execute(array(':model' => $model, ':make' => $make));
+               $modelUp = $db->prepare('UPDATE motor_tbl SET model_id = (SELECT model_id FROM model_tbl WHERE model = :model) WHERE motor_id = ' . $motor_id);
+               $modelUp->execute(array(':model' => $model));
+            } catch (PDOException $e) {
+               $message = 'Model insertion and update failed: ' . $e;
+               echo "<script type='text/javascript'>alert('$message');</script>";
+               echo $message;
+            }
+         }
+         // insert motor into database
+         try {
+            $motorSt = $db->prepare('UPDATE motor_tbl (motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap) 
+            VALUES 
+            ( :motor
+            , :year
+            ,(SELECT model_id FROM model_tbl WHERE model = :model)
+            ,(SELECT make_id FROM make_tbl WHERE make = :make)
+            , :grade1
+            , :grade2
+            , :cap)');
+            $motorSt->execute(array(':motor' => $motor, ':year' => (int) $year, ':model' => $model, ':make' => $make, ':grade1' => (int) $grade1, ':grade2' => (int) $grade2, ':cap' => (float) $cap));
+         } catch (PDOException $e) {
+            $message = 'Vehicle insertion failed: ' . $e;
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            echo $message;
+         }
+
+         $message = "Vehicle was added.";
+         echo "<script type='text/javascript'>alert('$message');</script>";
+
+         unset($_POST['submit']);
+      } ?>
       <div class="jumbotron">
          <label class="h3" for="car">Edit Vehicle</label>
-         <form id="car" method="post" action="edit_vehicle.php">
-            <div class="form-group">
-               <label class="h5" for="year">Year</label>
-               <select id="year" class="form-control" onchange="newYear()">
-                  <option disabled selected value="">Choose Year</option required>
-                  <?php foreach ($db->query('SELECT DISTINCT year FROM motor_tbl ORDER BY year DESC') as $row) {
-                     echo '<option value="' . $row["year"] . '">' . $row["year"] . '</option>';
-                  } ?>
-               </select>
-               <label class="h5" for="make">Make</label>
-               <select id="make" class="form-control" onchange="newMake()" disabled required>
-                  <option disabled selected value="">Choose Make</option>
-               </select>
-               <label class="h5" for="model">Model</label>
-               <select id="model" class="form-control" onchange="newModel()" disabled required>
-                  <option disabled selected value="">Choose Model</option>
-               </select>
-               <label class="h5" for="motor">Engine</label>
-               <select id="motor" name="motor" class="form-control" disabled required>
-                  <option disabled selected value="">Choose Engine</option>
-               </select>
+         <form id="car" method="post">
+            <div class="form-row">
+               <div class="col-md-2 mb-1">
+                  <label class="h5" for="year">Year</label>
+                  <select class="form-control" name="year" id="year" tabindex="1" autofocus required>
+                     <?php for ($i = date("Y") + 1; $i >= 1900; $i--) {
+                        if ($i != (int) $car['year']) {
+                           echo '<option value="' . $i . '">' . $i . '</option>';
+                        } else {
+                           echo '<option value"' . $i . '" selected>' . $i . '</option>';
+                        }
+                     } ?>
+                  </select>
+               </div>
+               <div class="col-md-4 mb-3">
+                  <label class="h5" for="make">Make</label>
+                  <input class="form-control auto-cap" id="make" type="text" name="make" value="<?php echo $car['make']; ?>" tabindex="2" required>
+               </div>
+               <div class="col-md-4 mb-3">
+                  <label class="h5" for="model">Model</label>
+                  <input class="form-control auto-cap" id="model" type="text" name="model" value="<?php echo $car['model']; ?>" tabindex="3" required>
+               </div>
             </div>
-            <input class="btn btn-primary btn-lg" type="submit" value="Edit Vehicle" name="submit" />
+            <div class="form-row">
+               <div class="col-md-4 mb-3">
+                  <label class="h5" for="motor">Engine</label>
+                  <input class="form-control" id="motor" type="text" name="motor" value="<?php echo $car['motor']; ?>" tabindex="4" required>
+               </div>
+               <div class="col-md-2 mb-1">
+                  <label class="h5" for="oil1">Oil Grade 1</label>
+                  <select id="oil1" class="form-control" name="grade1" tabindex="5" required>
+                     <?php foreach ($db->query('SELECT grade1_id, grade1 FROM grade1_tbl') as $row) {
+                        if ($row['grade1'] != $car['grade1']) {
+                           echo '<option value="' . $row["grade1_id"] . '">' . $row["grade1"] . '</option>';
+                        } else {
+                           echo '<option value="' . $row["grade1_id"] . '" selected>' . $row["grade1"] . '</option>';
+                        }
+                     } ?>
+                  </select>
+               </div>
+               <div class="col-md-2 mb-1">
+                  <label class="h5" for="oil2">Oil Grade 2</label>
+                  <select id="oil2" class="form-control" name="grade2" tabindex="6" required>
+                     <option value="" disabled selected>Grade 2</option>
+                     <?php foreach ($db->query('SELECT grade2_id, grade2 FROM grade2_tbl') as $row) {
+                        if ($row['grade2'] != $car['grade2']) {
+                           echo '<option value="' . $row["grade2_id"] . '">' . $row["grade2"] . '</option>';
+                        } else {
+                           echo '<option value="' . $row["grade2_id"] . '" selected>' . $row["grade2"] . '</option>';
+                        }
+                     } ?>
+                  </select>
+               </div>
+               <div class="col-md-2 mb-1">
+                  <label class="h5" for="cap">Oil Capacity</label>
+                  <input class="form-control" id="cap" type="number" name="cap" min="0" max="15" step="0.1" value="<?php echo $car['oil_cap']; ?>" tabindex="7" required>
+               </div>
+            </div>
+            <input type="hidden" name="motor_id" value="<?php echo $motor_id; ?>" >
+            <input class="btn btn-success btn-lg" type="submit" value="Submit Vehicle" name="submit" tabindex="8" />
          </form>
-      </div>
-      <div id="cars">
-
       </div>
    </div>
 
    <!-- Using PHP to include the same footer -->
    <?php include("../week02/footer.html"); ?>
-
-   <!-- Optional JavaScript -->
-   <script>
-      var make = document.getElementById("make");
-      var model = document.getElementById("model");
-      var motor = document.getElementById("motor");
-      var year = document.getElementById("year");
-
-      function newYear() {
-         make.disabled = false;
-         make.options[0].selected = true;
-         model.disabled = true;
-         model.options[0].selected = true;
-         motor.disabled = true;
-         motor.options[0].selected = true;
-         $("#make").load("new_year.php", {
-            'year': year.value
-         }, function(data, status, jqXGR) {
-            console.log("data loaded");
-         });
-         $("#oil").html("");
-      }
-
-      function newMake() {
-         model.disabled = false;
-         model.options[0].selected = true;
-         motor.disabled = true;
-         motor.options[0].selected = true;
-         $("#model").load("new_make.php", {
-            'year': year.value,
-            'make_id': make.value
-         }, function(data, status, jqXGR) {
-            console.log("data loaded");
-         });
-         $("#oil").html("");
-      }
-
-      function newModel() {
-         motor.disabled = false;
-         motor.options[0].selected = true;
-         $("#motor").load("new_model.php", {
-            'year': year.value,
-            'make_id': make.value,
-            'model_id': model.value
-         }, function(data, status, jqXGR) {
-            console.log("data loaded");
-         });
-         $("#oil").html("");
-      }
-
-      function newMotor() {
-         $("#oil").load("new_motor.php", {
-            'motor_id': motor.value
-         }, function(data, status, jqXGR) {
-            console.log("data loaded");
-         });
-      }
-   </script>
 </body>
 
 </html>
