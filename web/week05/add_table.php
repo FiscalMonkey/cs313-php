@@ -85,7 +85,13 @@ $db = get_db();
          ,(SELECT grade2_id FROM grade2_tbl WHERE grade2 = :grade2)
          , :cap)');
          echo 'Motor Insert compiled<br>';
-
+         echo $year . ': ' . gettype($year) . '<br>';
+         echo $motor . ': ' . gettype($motor) . '<br>';
+         echo $make . ': ' . gettype($make) . '<br>';
+         echo $model . ': ' . gettype($model) . '<br>';
+         echo $grade1 . ': ' . gettype($grade1) . '<br>';
+         echo $grade2 . ': ' . gettype($grade2) . '<br>';
+         echo $cap . ': ' . gettype($cap) . '<br>';
          $motorSt->execute(array(':motor' => $motor, ':year' => $year, ':model' => $model, ':make' => $make, ':grade1' => $grade1, ':grade2' => $grade2, ':cap' => $cap));
          echo 'Motor insert attempted';
          $message = "Vehicle was added.";
