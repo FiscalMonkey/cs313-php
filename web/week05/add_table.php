@@ -55,7 +55,6 @@ $db = get_db();
       </nav>
       <?php if (isset($_POST['submit'])) {
          // initialize variables
-         echo 'Submit recieved<br>';
          $year = (int)$_POST['year'];
          $make = ucwords($_POST['make']);
          $model = ucwords($_POST['model']);
@@ -63,18 +62,24 @@ $db = get_db();
          $grade1 = (int)$_POST['grade1'];
          $grade2 = (int)$_POST['grade2'];
          $cap = (int)$_POST['cap'];
-         echo 'Variables Initialized<br>';
          // insert make if doesn't exist 
+         try {
          $makeSt = $db->prepare('INSERT INTO make_tbl (make) VALUES (:make) ON CONFLICT (make) DO NOTHING');
-         echo 'Make insert compiled<br>';
-         $makeSt->execute(array(':make' => $make));
-         echo 'Make insert attempted<br>';
+         $makeSt->execute(array(':make' => $make)); 
+         } catch (PDOException $e) {
+            $message = 'Make insertion failed: ' . $e;
+            echo "<script type='text/javascript'>alert('$message');</script>";
+         }
          // insert model if doesn't exist 
+         try {
          $modelSt = $db->prepare('INSERT INTO model_tbl (model, make_id) VALUES (:model, (SELECT make_id FROM make_tbl WHERE make = :make)) ON CONFLICT (model) DO NOTHING');
-         echo 'Model insert compiled<br>';
          $modelSt->execute(array(':model' => $model, ':make' => $make));
-         echo 'Model insert attempted<br>';
+         } catch (PDOException $e) {
+            $message = 'Model insertion failed: ' . $e;
+            echo "<script type='text/javascript'>alert('$message');</script>";
+         }
          // insert motor into database
+         try {
          $motorSt = $db->prepare('INSERT INTO motor_tbl (motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap) 
          VALUES 
          ( :motor
@@ -83,17 +88,14 @@ $db = get_db();
          ,(SELECT make_id FROM make_tbl WHERE make = :make)
          , :grade1
          , :grade2
-         , :cap)');
-         echo 'Motor Insert compiled<br>';
-         echo $year . ': ' . gettype($year) . '<br>';
-         echo $motor . ': ' . gettype($motor) . '<br>';
-         echo $make . ': ' . gettype($make) . '<br>';
-         echo $model . ': ' . gettype($model) . '<br>';
-         echo $grade1 . ': ' . gettype($grade1) . '<br>';
-         echo $grade2 . ': ' . gettype($grade2) . '<br>';
-         echo $cap . ': ' . gettype($cap) . '<br>';
+         , :cap)
+         ON CONFLICT ');
          $motorSt->execute(array(':motor' => $motor, ':year' => (int)$year, ':model' => $model, ':make' => $make, ':grade1' => (int)$grade1, ':grade2' => (int)$grade2, ':cap' => (float)$cap));
-         echo 'Motor insert attempted';
+         } catch (PDOException $e) {
+            $message = 'Vehicle insertion failed: ' . $e;
+            echo "<script type='text/javascript'>alert('$message');</script>";
+         }
+
          $message = "Vehicle was added.";
          echo "<script type='text/javascript'>alert('$message');</script>";
 
