@@ -121,6 +121,7 @@ WHERE motor_id = ' . $motor_id) as $row) {
          echo "<script type='text/javascript'>alert('$message');</script>";
 
          unset($_POST['submit']);
+         header("Location: https://sleepy-citadel-12320.herokuapp.com/week05/05prove.php");
       } ?>
       <div class="jumbotron">
          <label class="h3" for="car">Edit Vehicle</label>
