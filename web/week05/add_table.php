@@ -56,13 +56,13 @@ $db = get_db();
       <?php if (isset($_POST['submit'])) {
          // initialize variables
          echo 'Submit recieved<br>';
-         $year = $_POST['year'];
+         $year = (int)$_POST['year'];
          $make = ucwords($_POST['make']);
          $model = ucwords($_POST['model']);
          $motor = $_POST['motor'];
-         $grade1 = $_POST['grade1'];
-         $grade2 = $_POST['grade2'];
-         $cap = $_POST['cap'];
+         $grade1 = (int)$_POST['grade1'];
+         $grade2 = (int)$_POST['grade2'];
+         $cap = (int)$_POST['cap'];
          echo 'Variables Initialized<br>';
          // insert make if doesn't exist 
          $makeSt = $db->prepare('INSERT INTO make_tbl (make) VALUES (:make) ON CONFLICT (make) DO NOTHING');
@@ -81,8 +81,8 @@ $db = get_db();
          , :year
          ,(SELECT model_id FROM model_tbl WHERE model = :model)
          ,(SELECT make_id FROM make_tbl WHERE make = :make)
-         ,(SELECT grade1_id FROM grade1_tbl WHERE grade1 = :grade1)
-         ,(SELECT grade2_id FROM grade2_tbl WHERE grade2 = :grade2)
+         , :grade1
+         , :grade2
          , :cap)');
          echo 'Motor Insert compiled<br>';
          echo $year . ': ' . gettype($year) . '<br>';
