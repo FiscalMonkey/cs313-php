@@ -69,6 +69,7 @@ $db = get_db();
          } catch (PDOException $e) {
             $message = 'Make insertion failed: ' . $e;
             echo "<script type='text/javascript'>alert('$message');</script>";
+            echo $message;
          }
          // insert model if doesn't exist 
          try {
@@ -77,6 +78,7 @@ $db = get_db();
          } catch (PDOException $e) {
             $message = 'Model insertion failed: ' . $e;
             echo "<script type='text/javascript'>alert('$message');</script>";
+            echo $message;
          }
          // insert motor into database
          try {
@@ -93,6 +95,7 @@ $db = get_db();
          } catch (PDOException $e) {
             $message = 'Vehicle insertion failed: ' . $e;
             echo "<script type='text/javascript'>alert('$message');</script>";
+            echo $message;
          }
 
          $message = "Vehicle was added.";
