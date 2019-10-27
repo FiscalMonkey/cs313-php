@@ -15,8 +15,6 @@ INNER JOIN grade2_tbl AS e ON a.grade2_id = e.grade2_id
 WHERE motor_id = ' . $motor_id) as $row) {
    $car = $row;
 }
-echo 'motor = ' . $motor_id . ': ' . gettype($motor_id);
-
 ?>
 
 <!DOCTYPE html>
@@ -115,7 +113,7 @@ echo 'motor = ' . $motor_id . ': ' . gettype($motor_id);
             SET year = :year
             , motor = :motor
             , grade1_id = (SELECT grade1_id FROM grade1_tbl WHERE grade1 = :grade1)
-            , grade2_id = (SELECT grade2_id FROM grade2_tbl WHERE grade2 = :grade2
+            , grade2_id = (SELECT grade2_id FROM grade2_tbl WHERE grade2 = :grade2)
             , oil_cap = :cap
             WHERE motor_id = ' . $motor_id);
             $motorSt->execute(array(':motor' => $motor, ':year' => (int) $year, ':grade1' => (int) $grade1, ':grade2' => (int) $grade2, ':cap' => (float) $cap));
