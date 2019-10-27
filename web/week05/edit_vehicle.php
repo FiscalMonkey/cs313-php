@@ -6,7 +6,6 @@ if (!isset($_SESSION)) {
 require "../dbConnect.php";
 $db = get_db();
 $motor_id = $_GET['motor'];
-$car = array();
 $car = $db->query('SELECT a.year, b.make, c.model, a.motor, d.grade1, e.grade2, a.oil_cap 
 FROM motor_tbl as a
 INNER JOIN make_tbl AS b ON a.make_id = b.make_id
