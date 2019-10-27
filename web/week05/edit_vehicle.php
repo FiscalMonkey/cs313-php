@@ -135,10 +135,10 @@ WHERE motor_id = ' . $motor_id);
                   <label class="h5" for="year">Year</label>
                   <select class="form-control" name="year" id="year" tabindex="1" autofocus required>
                      <?php for ($i = date("Y") + 1; $i >= 1900; $i--) {
-                        if ($i != (int) $car['year']) {
-                           echo '<option value="' . $i . '">' . $i . '</option>';
+                        if ($i == $car['year']) {
+                           echo '<option value="' . $i . '" selected>' . $i . '</option>';
                         } else {
-                           echo '<option value"' . $i . '" selected>' . $i . '</option>';
+                           echo '<option value"' . $i . '">' . $i . '</option>';
                         }
                      } ?>
                   </select>
