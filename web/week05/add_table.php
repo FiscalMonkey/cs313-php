@@ -2,6 +2,10 @@
 if (!isset($_SESSION)) {
    session_start();
 }
+if(!isset($_SESSION['login'])){ //if login in session is not set
+   $_SESSION['return'] = "add_table.php";
+   header("Location: login.php");
+}
 
 require "../dbConnect.php";
 $db = get_db();
