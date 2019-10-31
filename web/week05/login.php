@@ -11,17 +11,17 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
    <script type="text/javascript">
-      $(document).ready(function() {
+      $('#signup').click(function() {
          $('#new_user').modal('show');
       });
+
       function validPassword() {
-         var pass1 = $('#pass1').val();
-         var pass2 = $("#conf_pass").val();
+         var pass1 = $('#password1').val();
+         var pass2 = $("#password2").val();
          if (pass1 != pass2) {
             $("#password2").removeClass("is-valid").addClass("is-invalid");
             $("#password_invalid").html("Passwords must match!");
-         }
-         else {
+         } else {
             $("#password2").removeClass("is-invalid").addClass("is-valid");
             $("#password_invalid").html("");
          }
@@ -62,8 +62,10 @@
          </form>
          <br>
          <br>
-         <label for="signup">Don't have a login?</label>
-         <a href="signUp.php"><button id="signup" class="btn btn-primary">Sign Up</button></a>
+         <div class="form-group">
+            <label for="signup">Don't have a login?</label>
+            <a href="signUp.php"><button id="signup" class="btn btn-primary">Sign Up</button></a>
+         </div>
       </div>
    </div>
    <div class="modal fade" id="new_user" tabindex="-1" role="dialog" aria-labelledby="Sign Up" aria-hidden="true">
