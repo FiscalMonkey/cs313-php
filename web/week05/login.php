@@ -11,10 +11,6 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
    <script type="text/javascript">
-      $('#signup').click(function() {
-         $('#new_user').modal('show');
-      });
-
       function validPassword() {
          var pass1 = $('#password1').val();
          var pass2 = $("#password2").val();
@@ -64,7 +60,7 @@
          <br>
          <div class="form-group">
             <label for="signup">Don't have a login?</label>
-            <button id="signup" class="btn btn-primary">Sign Up</button>
+            <button id="signup" class="btn btn-primary form-control" data-togle="modal" data-target="#new_user">Sign Up</button>
          </div>
       </div>
    </div>
@@ -73,7 +69,7 @@
          <div class="modal-content">
             <form id="sign_up_user">
                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+                  <h5 class="modal-title" id="modalLabel">Sign Up</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true">&times;</span>
                   </button>
