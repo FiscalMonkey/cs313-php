@@ -64,7 +64,7 @@
          <br>
          <div class="form-group">
             <label for="signup">Don't have a login?</label>
-            <a href="signUp.php"><button id="signup" class="btn btn-primary">Sign Up</button></a>
+            <button id="signup" class="btn btn-primary">Sign Up</button>
          </div>
       </div>
    </div>
