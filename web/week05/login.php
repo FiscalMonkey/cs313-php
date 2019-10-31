@@ -10,16 +10,32 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+   <script type="text/javascript">
+      $(document).ready(function() {
+         $('#new_user').modal('show');
+      });
+      function validPassword() {
+         var pass1 = $('#pass1').val();
+         var pass2 = $("#conf_pass").val();
+         if (pass1 != pass2) {
+            $("#password2").removeClass("is-valid").addClass("is-invalid");
+            $("#password_invalid").html("Passwords must match!");
+         }
+         else {
+            $("#password2").removeClass("is-invalid").addClass("is-valid");
+            $("#password_invalid").html("");
+         }
+      }
+   </script>
 </head>
 
 <body>
-   <header>
-      <div class="jumbotron">
-         <h1 class="display-4">Login</h1>
-      </div>
-   </header>
-
    <div class="container">
+      <header>
+         <div class="jumbotron">
+            <h1 class="display-4">Login</h1>
+         </div>
+      </header>
       <div class="shadow p-4 mb-4 bg-white">
          <?php
 
@@ -50,7 +66,39 @@
          <a href="signUp.php"><button id="signup" class="btn btn-primary">Sign Up</button></a>
       </div>
    </div>
-
+   <div class="modal fade" id="new_user" tabindex="-1" role="dialog" aria-labelledby="Sign Up" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <form id="sign_up_user">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+                  <div class="form-group">
+                     <label for="username1">Username</label>
+                     <input type="text" class="form-control" id="username1" placeholder="Username" required>
+                  </div>
+                  <div class="form-group">
+                     <label for="password1">Password</label>
+                     <input type="password" class="form-control" id="password1" onchange="validPassword()" placeholder="Password" required>
+                  </div>
+                  <div class="form-group">
+                     <label for="password2">Confirm Password</label>
+                     <input type="password" class="form-control" id="password2" onchange="validPassword()" placeholder="Confirm Password" required>
+                     <div class="invalid-feedback" id="password_invalid"></div>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-primary">Sign Up</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
 
    <?php include "../week02/footer.html" ?>
 </body>

@@ -14,10 +14,11 @@ function clean_input($data) {
 echo "username = $username";
 echo "<br>password = $password";
 
-$statement = $db->prepare("SELECT password FROM user_tbl WHERE username = '$username'");
+$statement = $db->prepare("SELECT user_id, password FROM user_tbl WHERE username = '$username'");
 $statement->execute();
 $row = $statement->fetch(PDO::FETCH_ASSOC);
 $hash = $row['password'];
+$user = $row['user_id'];
 $hash = trim($hash);
 echo ("<br>hash = $hash");
 
@@ -30,6 +31,7 @@ if (!$row)
 if (password_verify($password, $hash)) {
     $_SESSION['username'] = $username;
     echo "<br> It worked!";
+    $_SESSION['user'] = $user;
     header("Location: " . $_SESSION['return']);
 }
 else {
