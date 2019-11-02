@@ -38,7 +38,7 @@ $db = get_db();
    </div>
    <div class="container">
       <nav class="navbar navbar-expand-sm navbar-light bg-light">
-         <div id="navbarSupportedContent">
+         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                <li class="nav-item active">
                   <a class="nav-link disabled" href="05prove.php">Access</a>
