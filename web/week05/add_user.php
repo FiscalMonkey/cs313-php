@@ -23,6 +23,6 @@ $statement = $db->prepare("INSERT INTO user_tbl(username, pswrd) VALUES('$userna
 $statement->execute();
 $_SESSION['username'] = $username;
 
-header("Location: welcome.php");
+//header("Location: " . $_SESSION['return']);
 
 ?>

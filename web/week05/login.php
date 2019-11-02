@@ -32,7 +32,7 @@ if (!isset($_SESSION)) {
          console.log("validating Username");
       $.ajax({
          type: "POST",
-         url: "check_username.php",
+         url:  "check_username.php",
          data: "username =" + id,
          success: function(result) {
                if (result == true) {
@@ -100,16 +100,16 @@ if (!isset($_SESSION)) {
                <div class="modal-body">
                   <div class="form-group">
                      <label for="username1">Username</label>
-                     <input type="text" class="form-control" id="username1" onchange="validUsername(this.value)" placeholder="Username" required>
+                     <input type="text" class="form-control" id="username1" name="username1" onchange="validUsername(this.value)" placeholder="Username" required>
                   </div>
                   <div id="username_invalid"></div>
                   <div class="form-group">
                      <label for="password1">Password</label>
-                     <input type="password" class="form-control" id="password1" onchange="validPassword()" placeholder="Password" required>
+                     <input type="password" class="form-control" id="password1" name="password1" onchange="validPassword()" placeholder="Password" required>
                   </div>
                   <div class="form-group">
                      <label for="password2">Confirm Password</label>
-                     <input type="password" class="form-control" id="password2" onchange="validPassword()" placeholder="Confirm Password" required>
+                     <input type="password" class="form-control" id="password2" name="password2" onchange="validPassword()" placeholder="Confirm Password" required>
                      <div class="invalid-feedback" id="password_invalid"></div>
                   </div>
                </div>

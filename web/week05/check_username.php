@@ -5,14 +5,15 @@ if (!isset($_SESSION)) {
 require "../dbConnect.php";
 $db = get_db();
 
-$username = clean_input($_POST['username']);
-echo $username;
 function clean_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
 }
+
+$username = clean_input($_POST['username']);
+echo $username;
 
 $statement = $db->prepare("SELECT username FROM user_tbl WHERE username = '$username'");
 $statement->execute();
