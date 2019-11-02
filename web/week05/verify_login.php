@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 require "../dbConnect.php";
 $db = get_db();
 
@@ -14,7 +16,7 @@ function clean_input($data) {
 echo "username = $username";
 echo "<br>password = $password";
 
-$statement = $db->prepare("SELECT user_id, password FROM user_tbl WHERE username = '$username'");
+$statement = $db->prepare("SELECT user_id, pswrd FROM user_tbl WHERE username = '$username'");
 $statement->execute();
 $row = $statement->fetch(PDO::FETCH_ASSOC);
 $hash = $row['password'];
