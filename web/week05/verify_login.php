@@ -23,6 +23,9 @@ $hash = trim($hash);
 if (password_verify($password, $hash)) {
     $_SESSION['username'] = $username;
     $_SESSION['user_id'] = $user_id;
+    echo "<script type='text/javascript'>
+            alert('Login successfull');
+            </script>";
     if (isset($_SESSION['return'])) {
         header("Location: " . $_SESSION['return']);
     } else {
