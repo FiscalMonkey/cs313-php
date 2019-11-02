@@ -26,7 +26,7 @@ echo ("<br>hash = $hash");
 
 if (!$row)
 {
-    header("Location: login.php?err=1");
+    //header("Location: login.php?err=1");
     exit();
 }
 
@@ -34,10 +34,10 @@ if (password_verify($password, $hash)) {
     $_SESSION['username'] = $username;
     echo "<br> It worked!";
     $_SESSION['user'] = $user;
-    header("Location: " . $_SESSION['return']);
+   // header("Location: " . $_SESSION['return']);
 }
 else {
-    header("Location: login.php?err=2");
+   // header("Location: login.php?err=2");
     echo "<br>Username or Password is incorrect.";
 }
 ?>
