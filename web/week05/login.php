@@ -29,6 +29,7 @@ if (!isset($_SESSION)) {
       }
 
       function validUsername(id) {
+         console.log("validating Username");
       $.ajax({
          type: "POST",
          url: "check_username.php",
@@ -89,7 +90,7 @@ if (!isset($_SESSION)) {
    <div class="modal fade" id="new_user" tabindex="-1" role="dialog" aria-labelledby="Sign Up" aria-hidden="true">
       <div class="modal-dialog" role="document">
          <div class="modal-content">
-            <form id="sign_up_user" method="post" onSubmit="add_user.php">
+            <form id="sign_up_user" method="post" action="add_user.php">
                <div class="modal-header">
                   <h5 class="modal-title" id="modalLabel">Sign Up</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">

@@ -14,7 +14,7 @@ function clean_input($data) {
     return $data;
 }
 
-$statement = $db->prepare("SELECT username FROM user_tbl WHERE username = $username");
+$statement = $db->prepare("SELECT username FROM user_tbl WHERE username = '$username'");
 $statement->execute();
 $row = $statement->fetch(PDO::FETCH_ASSOC);
 $taken = $row['username'];
