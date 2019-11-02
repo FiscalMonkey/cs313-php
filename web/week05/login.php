@@ -22,6 +22,24 @@
             $("#password_invalid").html("");
          }
       }
+
+      function validUsername(id) {
+      $.ajax({
+         type: "POST",
+         url: "check_username.php",
+         data: "username =" + id,
+         success: function(result) {
+               if (result == true) {
+                  $("#username1").removeClass("is-valid").addClass("is-invalid");
+                  $("#username_invalid").html("That username is taken!");
+               }
+               else {
+                  $("#username1").removeClass("is-invalid").addClass("is-valid");
+                  $("#username_invalid").html("");
+            }
+         }
+      });
+   };
    </script>
 </head>
 
@@ -34,7 +52,6 @@
       </header>
       <div class="shadow p-4 mb-4 bg-white">
          <?php
-
          if ($_GET['err'] == 1) {
             echo "<p style='color:red;'>Invalid Username</p>";
          }
@@ -42,17 +59,16 @@
          if ($_GET['err'] == 2) {
             echo "<p style='color:red;'>Invalid password</p>";
          }
-
          ?>
          <form action="verify_login.php" method="post">
             <div class="form-group">
-               <label for="exampleInputEmail1">Username</label>
+               <label for="username">Username</label>
                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
                <small id="emailHelp" class="form-text text-muted"></small>
             </div>
             <div class="form-group">
-               <label for="exampleInputPassword1">Password</label>
-               <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password" required>
+               <label for="password">Password</label>
+               <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
             </div>
             <button type="submit" class="btn btn-success">Login</button>
          </form>
@@ -68,7 +84,7 @@
    <div class="modal fade" id="new_user" tabindex="-1" role="dialog" aria-labelledby="Sign Up" aria-hidden="true">
       <div class="modal-dialog" role="document">
          <div class="modal-content">
-            <form id="sign_up_user">
+            <form id="sign_up_user" method="post" onSubmit="add_user.php">
                <div class="modal-header">
                   <h5 class="modal-title" id="modalLabel">Sign Up</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -78,8 +94,9 @@
                <div class="modal-body">
                   <div class="form-group">
                      <label for="username1">Username</label>
-                     <input type="text" class="form-control" id="username1" placeholder="Username" required>
+                     <input type="text" class="form-control" id="username1" onchange="validUsername(this.value)" placeholder="Username" required>
                   </div>
+                  <div id="username_invalid"></div>
                   <div class="form-group">
                      <label for="password1">Password</label>
                      <input type="password" class="form-control" id="password1" onchange="validPassword()" placeholder="Password" required>
@@ -92,7 +109,7 @@
                </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-primary">Sign Up</button>
+                  <button type="submit" class="btn btn-primary">Sign Up</button>
                </div>
             </form>
          </div>
