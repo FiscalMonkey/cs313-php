@@ -29,7 +29,7 @@ if (!isset($_SESSION)) {
       }
 
       function validUsername(id) {
-         console.log("validating Username");
+         console.log("validating Username: " + id);
       $.ajax({
          type: "POST",
          url:  "check_username.php",
@@ -61,7 +61,6 @@ if (!isset($_SESSION)) {
          if ($_GET['err'] == 1) {
             echo "<p style='color:red;'>Invalid Username or Password</p>";
          }
-         unset($_GET['err']);
          ?>
          <form action="verify_login.php" method="post">
             <div class="form-group">

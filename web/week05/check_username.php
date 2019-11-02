@@ -23,5 +23,5 @@ if ($taken != '') {
     $isGood = false;
 }
 
-echo $isGood;
+echo ($isGood);
 ?>
