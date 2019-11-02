@@ -19,7 +19,7 @@ $hash = password_hash($password, PASSWORD_DEFAULT);
 echo "<br>username = $username";
 echo "<br>hashed password = $hash";
 $hash = trim($hash);
-$statement = $db->prepare("INSERT INTO user_tbl(username, pswrd) VALUES('$username', '$hash')");
+$statement = $db->prepare("INSERT INTO user_tbl(username, pswrd, creation_date) VALUES('$username', '$hash', CURRENT_TIMESTAMP)");
 $statement->execute();
 $_SESSION['username'] = $username;
 
