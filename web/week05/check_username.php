@@ -18,9 +18,9 @@ $statement = $db->prepare("SELECT username FROM user_tbl WHERE username = '$user
 $statement->execute();
 $row = $statement->fetch(PDO::FETCH_ASSOC);
 $taken = $row['username'];
-$isGood = false;
-if ($taken == '') {
-    $isGood = true;
+$isGood = true;
+if ($taken) {
+    $isGood = false;
 }
 
 echo ($isGood);
