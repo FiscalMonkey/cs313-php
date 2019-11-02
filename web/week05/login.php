@@ -59,12 +59,9 @@ if (!isset($_SESSION)) {
       <div class="shadow p-4 mb-4 bg-white">
          <?php
          if ($_GET['err'] == 1) {
-            echo "<p style='color:red;'>Invalid Username</p>";
+            echo "<p style='color:red;'>Invalid Username or Password</p>";
          }
-
-         if ($_GET['err'] == 2) {
-            echo "<p style='color:red;'>Invalid password</p>";
-         }
+         unset($_GET['err']);
          ?>
          <form action="verify_login.php" method="post">
             <div class="form-group">
