@@ -55,7 +55,7 @@ $db = get_db();
             </ul>
             <?php
             if (!isset($_SESSION['username'])) { echo '<a href="login.php"><button class="btn btn-outline-primary" type="button">Login</button></a>'; }
-            else { echo '<span id="user">' . $_SESSION['username'] . '</span><a href="logout.php"><button type="button" class="btn btn-danger">Logout</button></a>'; }
+            else { echo '<span id="user">' . $_SESSION['username'] . '</span><a href="logout.php"><button type="button" class="btn btn-outline-danger">Logout</button></a>'; }
             ?>
          </div>
       </nav>
