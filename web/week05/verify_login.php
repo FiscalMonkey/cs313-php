@@ -25,6 +25,7 @@ if (password_verify($password, $hash)) {
     $_SESSION['user_id'] = $user_id;
     echo "<script type='text/javascript'>
             alert('Login successfull');
+            window.location.href='https://sleepy-citadel-12320.herokuapp.com/week05/" . $_SESSION['return'] . ";
             </script>";
     if (isset($_SESSION['return'])) {
         header("Location: " . $_SESSION['return']);
