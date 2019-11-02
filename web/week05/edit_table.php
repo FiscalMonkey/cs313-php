@@ -58,7 +58,7 @@ $db = get_db();
                </li>
             </ul>
             <?php
-            echo '<span id="user">' . $_SESSION['username'] . '</span><a href="logout.php"><button type="button" class="btn btn-danger">Logout</button></a>';
+            echo '<span id="user">' . $_SESSION['username'] . '</span><a href="logout.php"><button type="button" class="btn btn-outline-danger">Logout</button></a>';
             ?>
          </div>
       </nav>
