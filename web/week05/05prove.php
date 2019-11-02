@@ -53,10 +53,12 @@ $db = get_db();
                   <a class="nav-link" href="remove_table.php">Remove</a>
                </li>
             </ul>
-            <?php
-            if (!isset($_SESSION['username'])) { echo '<a href="login.php"><button class="btn btn-sm btn-outline-primary" type="button">Login</button></a>'; }
-            else { echo '<span id="user">' . $_SESSION['username'] . '</span><a href="logout.php"><button type="button" class="btn btn-outline-danger">Logout</button></a>'; }
-            ?>
+            <form class="form-inline my-2 my-lg-0">
+               <?php
+               if (!isset($_SESSION['username'])) { echo '<a href="login.php"><button class="btn btn-outline-primary" type="button">Login</button></a>'; }
+               else { echo '<span id="user">' . $_SESSION['username'] . '</span><a href="logout.php"><button type="button" class="btn btn-outline-danger">Logout</button></a>'; }
+               ?>
+            </form>
          </div>
       </nav>
       <div class="jumbotron">
