@@ -1,8 +1,7 @@
 DROP TABLE IF EXISTS motor_tbl;
-DROP SEQUENCE IF EXISTS motor_s1;
 
 CREATE TABLE motor_tbl 
-( motor_id        SERIAL
+( motor_id        SERIAL UNIQUE
 , motor           VARCHAR(30) NOT NULL
 , year            INTEGER NOT NULL
 , model_id        INTEGER REFERENCES model_tbl(model_id)
@@ -18,9 +17,10 @@ CREATE TABLE motor_tbl
 
 CREATE UNIQUE INDEX motor_i1 ON motor_tbl (motor, year, make_id, model_id, grade1_id, grade2_id);
 
-INSERT INTO motor_tbl(motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap)
+INSERT INTO motor_tbl
 VALUES 
-('i 4-Cyl 2.5'
+( DEFAULT
+,'i 4-Cyl 2.5'
 , 2005
 ,(SELECT model_id FROM model_tbl WHERE model = 'Outback')
 ,(SELECT make_id FROM make_tbl WHERE make = 'Subaru')
@@ -28,13 +28,14 @@ VALUES
 ,(SELECT grade2_id FROM grade2_tbl WHERE grade2 = '30')
 , 4.4
 , 1
-, current_date
+, CURRENT_TIMESTAMP
 , 1
-, current_date);
+, CURRENT_TIMESTAMP);
 
-INSERT INTO motor_tbl(motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap)
+INSERT INTO motor_tbl
 VALUES 
-('Police Interceptor 8-Cyl 4.6'
+( DEFAULT
+,'Police Interceptor 8-Cyl 4.6'
 , 2008
 ,(SELECT model_id FROM model_tbl WHERE model = 'Crown Victoria')
 ,(SELECT make_id FROM make_tbl WHERE make = 'Ford')
@@ -42,9 +43,9 @@ VALUES
 ,(SELECT grade2_id FROM grade2_tbl WHERE grade2 = '20')
 , 6
 , 1
-, current_date
+, CURRENT_TIMESTAMP
 , 1
-, current_date);
+, CURRENT_TIMESTAMP);
 
 SELECT * FROM motor_tbl;
 
