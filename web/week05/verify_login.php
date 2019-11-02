@@ -17,12 +17,12 @@ $statement = $db->prepare("SELECT user_id, pswrd FROM user_tbl WHERE username = 
 $statement->execute();
 $row = $statement->fetch(PDO::FETCH_ASSOC);
 $hash = $row['pswrd'];
-$user = $row['user_id'];
+$user_id = $row['user_id'];
 $hash = trim($hash);
 
 if (password_verify($password, $hash)) {
     $_SESSION['username'] = $username;
-    $_SESSION['user'] = $user;
+    $_SESSION['user_id'] = $user_id;
     if (isset($_SESSION['return'])) {
         header("Location: " . $_SESSION['return']);
     } else {

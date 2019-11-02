@@ -55,6 +55,9 @@ $db = get_db();
                   <a class="nav-link" href="remove_table.php">Remove</a>
                </li>
             </ul>
+            <?php
+            echo '<span id="user">' . $_SESSION['username'] . '</span><a href="logout.php"><button type="button" class="btn btn-danger">Logout</button></a>';
+            ?>
          </div>
       </nav>
       <?php if (isset($_POST['submit'])) {
