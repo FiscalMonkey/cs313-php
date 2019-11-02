@@ -30,22 +30,22 @@ if (!isset($_SESSION)) {
 
       function validUsername(id) {
          console.log("validating Username: " + id);
-      $.ajax({
-         type: "POST",
-         url:  "check_username.php",
-         data: "username =" + id,
-         success: function(result) {
-               if (result == false) {
-                  $("#username1").removeClass("is-valid").addClass("is-invalid");
-                  $("#username_invalid").html("That username is taken!");
-               }
-               else {
-                  $("#username1").removeClass("is-invalid").addClass("is-valid");
-                  $("#username_invalid").html("");
-               }
-         }
-      });
-   };
+         $.ajax({
+            type: "POST",
+            url:  "check_username.php",
+            data: {username : id},
+            success: function(result) {
+                  if (result == false) {
+                     $("#username1").removeClass("is-valid").addClass("is-invalid");
+                     $("#username_invalid").html("That username is taken!");
+                  }
+                  else {
+                     $("#username1").removeClass("is-invalid").addClass("is-valid");
+                     $("#username_invalid").html("");
+                  }
+            }
+         });
+      };
    </script>
 </head>
 
