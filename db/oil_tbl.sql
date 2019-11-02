@@ -1,6 +1,8 @@
 CREATE TABLE grade1_tbl 
-( grade1_id  SERIAL
-, grade1     VARCHAR(3) UNIQUE NOT NULL
+( grade1_id       SERIAL
+, grade1          VARCHAR(3) UNIQUE NOT NULL
+, created_by      INTEGER REFERENCES user_tbl(user_id)
+, creation_date   TIMESTAMPTZ NOT NULL
 , PRIMARY KEY (grade1_id)
 );
 

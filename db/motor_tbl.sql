@@ -3,13 +3,15 @@ DROP SEQUENCE IF EXISTS motor_s1;
 
 CREATE TABLE motor_tbl 
 ( motor_id        SERIAL
-, motor     VARCHAR(30) NOT NULL
-, year      INTEGER NOT NULL
-, model_id  INTEGER NOT NULL
-, make_id   INTEGER NOT NULL
-, grade1_id    INTEGER NOT NULL
-, grade2_id    INTEGER NOT NULL
-, oil_cap   NUMERIC NOT NULL
+, motor           VARCHAR(30) NOT NULL
+, year            INTEGER NOT NULL
+, model_id        INTEGER NOT NULL
+, make_id         INTEGER NOT NULL
+, grade1_id       INTEGER NOT NULL
+, grade2_id       INTEGER NOT NULL
+, oil_cap         NUMERIC NOT NULL
+, created_by      INTEGER REFERENCES user_tbl(user_id)
+, creation_date   TIMESTAMPTZ NOT NULL
 , PRIMARY KEY (motor_id)
 , FOREIGN KEY (model_id) REFERENCES model_tbl(model_id)
 , FOREIGN KEY (make_id) REFERENCES make_tbl(make_id)
@@ -27,7 +29,9 @@ VALUES
 ,(SELECT make_id FROM make_tbl WHERE make = 'Subaru')
 ,(SELECT grade1_id FROM grade1_tbl WHERE grade1 = '5W')
 ,(SELECT grade2_id FROM grade2_tbl WHERE grade2 = '30')
-, 4.4);
+, 4.4
+, 1
+, current_date);
 
 INSERT INTO motor_tbl(motor, year, model_id, make_id, grade1_id, grade2_id, oil_cap)
 VALUES 
@@ -37,7 +41,9 @@ VALUES
 ,(SELECT make_id FROM make_tbl WHERE make = 'Ford')
 ,(SELECT grade1_id FROM grade1_tbl WHERE grade1 = '5W')
 ,(SELECT grade2_id FROM grade2_tbl WHERE grade2 = '20')
-, 6);
+, 6
+, 1
+, current_date);
 
 SELECT * FROM motor_tbl;
 
