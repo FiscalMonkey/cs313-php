@@ -42,7 +42,7 @@ if (!isset($_SESSION)) {
                else {
                   $("#username1").removeClass("is-invalid").addClass("is-valid");
                   $("#username_invalid").html("");
-            }
+               }
          }
       });
    };
