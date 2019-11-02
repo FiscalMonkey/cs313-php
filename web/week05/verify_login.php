@@ -19,13 +19,12 @@ echo "<br>password = $password";
 $statement = $db->prepare("SELECT user_id, pswrd FROM user_tbl WHERE username = '$username'");
 $statement->execute();
 $row = $statement->fetch(PDO::FETCH_ASSOC);
-$hash = $row['password'];
+$hash = $row['pswrd'];
 $user = $row['user_id'];
 $hash = trim($hash);
 echo ("<br>hash = $hash");
 
-if (!$row)
-{
+if (!$row) {
     //header("Location: login.php?err=1");
     exit();
 }
