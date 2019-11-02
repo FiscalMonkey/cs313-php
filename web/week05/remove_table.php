@@ -77,7 +77,7 @@ $db = get_db();
        }
        ?>
       <div class="jumbotron">
-         <label class="h3" for="car">Remvoe Vehicle from Database</label>
+         <label class="h3" for="car">Remove Vehicle from Database</label>
          <form id="car" method="post">
             <div class="form-group">
                <label class="h5" for="year">Year</label>
