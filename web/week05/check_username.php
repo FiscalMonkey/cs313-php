@@ -13,14 +13,13 @@ function clean_input($data) {
 }
 
 $username = clean_input($_POST['username']);
-echo $username;
 
 $statement = $db->prepare("SELECT username FROM user_tbl WHERE username = '$username'");
 $statement->execute();
 $row = $statement->fetch(PDO::FETCH_ASSOC);
 $taken = $row['username'];
 $isGood = true;
-if ($taken) {
+if ($taken != '') {
     $isGood = false;
 }
 
