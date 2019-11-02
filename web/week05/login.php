@@ -35,7 +35,7 @@ if (!isset($_SESSION)) {
          url:  "check_username.php",
          data: "username =" + id,
          success: function(result) {
-               if (result == true) {
+               if (result == false) {
                   $("#username1").removeClass("is-valid").addClass("is-invalid");
                   $("#username_invalid").html("That username is taken!");
                }
