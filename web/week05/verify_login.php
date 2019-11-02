@@ -23,7 +23,11 @@ $hash = trim($hash);
 if (password_verify($password, $hash)) {
     $_SESSION['username'] = $username;
     $_SESSION['user'] = $user;
-    header("Location: " . $_SESSION['return']);
+    if (isset($_SESSION['return'])) {
+        header("Location: " . $_SESSION['return']);
+    } else {
+        header("Location: 05prove.php");
+    }
 }
 else {
     header("Location: login.php?err=1");
