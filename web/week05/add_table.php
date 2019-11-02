@@ -40,7 +40,7 @@ $db = get_db();
    </div>
    <div class="container">
       <nav class="navbar navbar-expand-sm navbar-light bg-light">
-         <div id="navbarSupportedContent">
+         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                <li class="nav-item">
                   <a class="nav-link" href="05prove.php">Access</a>
