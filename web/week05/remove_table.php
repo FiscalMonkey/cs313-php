@@ -2,7 +2,7 @@
 if (!isset($_SESSION)) {
    session_start();
 }
-if(!isset($_SESSION['user_id'])){ //if login in session is not set
+if (!isset($_SESSION['user_id'])) { //if login in session is not set
    $_SESSION['return'] = "remove_table.php";
    header("Location: login.php");
 }
@@ -63,7 +63,7 @@ $db = get_db();
          </div>
       </nav>
       <?php
-       if (isset($_POST['submit'])) {
+      if (isset($_POST['submit'])) {
          $motor_id = $_POST["motor"];
 
          $stmt = $db->prepare('DELETE FROM motor_tbl WHERE motor_id = :motor');
@@ -71,11 +71,11 @@ $db = get_db();
 
          unset($_POST['submit']);
          echo "<script type='text/javascript'>
-            alert('Vehicle was successfully removed');
-            window.location.href='https://sleepy-citadel-12320.herokuapp.com/week05/05prove.php';
-            </script>";
-       }
-       ?>
+         alert('Vehicle was successfully removed');
+         window.location.href='https://sleepy-citadel-12320.herokuapp.com/week05/05prove.php';
+         </script>";
+      }
+      ?>
       <div class="jumbotron">
          <label class="h3" for="car">Remove Vehicle from Database</label>
          <form id="car" method="post">
