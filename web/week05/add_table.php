@@ -2,7 +2,7 @@
 if (!isset($_SESSION)) {
    session_start();
 }
-if(!isset($_SESSION['user'])){ //if login in session is not set
+if(!isset($_SESSION['user_id'])){ //if login in session is not set
    $_SESSION['return'] = "add_table.php";
    header("Location: login.php");
 }
