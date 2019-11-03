@@ -27,7 +27,7 @@ $db = get_db();
 
 
 
-   <title>CS 313 - 05Prove</title>
+   <title>Vehicle Oil Determinator</title>
 </head>
 
 <body>
