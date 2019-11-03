@@ -77,31 +77,21 @@ WHERE motor_id = ' . $motor_id) as $row) {
          $motor_id = $_POST['motor_id'];
          // insert make if doesn't exist 
          try {
-            $makeUp = $db->prepare('UPDATE motor_tbl SET make_id = (SELECT make_id FROM make_tbl WHERE make = :make), last_updated_by = ' . $_SESSION['user_id'] . ', last_update_date = CURRENT_TIMESTAMP WHERE motor_id = ' . (int) $motor_id);
+            $makeIn = $db->prepare('INSERT INTO make_tbl (make, created_by, creation_date) VALUES (:make, ' . (int) $_SESSION['user_id'] . ', CURRENT_TIMESTAMP) ON CONFLICT (make) DO NOTHING');
+            $makeIn->execute(array(':make' => $make));
+            $makeUp = $db->prepare('UPDATE motor_tbl SET make_id = (SELECT make_id FROM make_tbl WHERE make = :make), last_updated_by = ' . (int) $_SESSION['user_id'] . ', last_update_date = CURRENT_TIMESTAMP WHERE motor_id = ' . (int) $motor_id);
             $makeUp->execute(array(':make' => $make));
          } catch (PDOException $e) {
-            try {
-               $makeIn = $db->prepare('INSERT INTO make_tbl (make, created_by, creation_date) VALUES (:make, ' . $_SESSION['user_id'] . ', CURRENT_TIMESTAMP) ON CONFLICT (make) DO NOTHING');
-               $makeIn->execute(array(':make' => $make));
-               $makeUp = $db->prepare('UPDATE motor_tbl SET make_id = (SELECT make_id FROM make_tbl WHERE make = :make), last_updated_by = ' . $_SESSION['user_id'] . ', last_update_date = CURRENT_TIMESTAMP WHERE motor_id = ' . (int) $motor_id);
-               $makeUp->execute(array(':make' => $make));
-            } catch (PDOException $e) {
-               echo $message;
-            }
+            echo $message;
          }
          // insert model if doesn't exist 
          try {
-            $modelUp = $db->prepare('UPDATE motor_tbl SET model_id = (SELECT model_id FROM model_tbl WHERE model = :model), last_updated_by = ' . $_SESSION['user_id'] . ', last_update_date = CURRENT_TIMESTAMP WHERE motor_id = ' . (int) $motor_id);
+            $modelIn = $db->prepare('INSERT INTO model_tbl (model, make_id, created_by, creation_date) VALUES (:model, (SELECT make_id FROM make_tbl WHERE make = :make), ' . (int) $_SESSION['user_id'] . ', CURRENT_TIMESTAMP) ON CONFLICT (model) DO NOTHING');
+            $modelIn->execute(array(':model' => $model, ':make' => $make));
+            $modelUp = $db->prepare('UPDATE motor_tbl SET model_id = (SELECT model_id FROM model_tbl WHERE model = :model), last_updated_by = ' . (int) $_SESSION['user_id'] . ', last_update_date = CURRENT_TIMESTAMP WHERE motor_id = ' . (int) $motor_id);
             $modelUp->execute(array(':model' => $model));
          } catch (PDOException $e) {
-            try {
-               $modelIn = $db->prepare('INSERT INTO model_tbl (model, make_id, created_by, creation_date) VALUES (:model, (SELECT make_id FROM make_tbl WHERE make = :make), ' . $_SESSION['user_id'] . ', CURRENT_TIMESTAMP) ON CONFLICT (model) DO NOTHING');
-               $modelIn->execute(array(':model' => $model, ':make' => $make));
-               $modelUp = $db->prepare('UPDATE motor_tbl SET model_id = (SELECT model_id FROM model_tbl WHERE model = :model), last_updated_by = ' . $_SESSION['user_id'] . ', last_update_date = CURRENT_TIMESTAMP WHERE motor_id = ' . (int) $motor_id);
-               $modelUp->execute(array(':model' => $model));
-            } catch (PDOException $e) {
-               echo $message;
-            }
+            echo $message;
          }
          // insert motor into database
          try {
