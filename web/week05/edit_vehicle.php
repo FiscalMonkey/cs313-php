@@ -82,7 +82,7 @@ WHERE motor_id = ' . $motor_id) as $row) {
             $makeUp = $db->prepare('UPDATE motor_tbl SET make_id = (SELECT make_id FROM make_tbl WHERE make = :make), last_updated_by = ' . (int) $_SESSION['user_id'] . ', last_update_date = CURRENT_TIMESTAMP WHERE motor_id = ' . (int) $motor_id);
             $makeUp->execute(array(':make' => $make));
          } catch (PDOException $e) {
-            echo $message;
+            echo $e;
          }
          // insert model if doesn't exist 
          try {

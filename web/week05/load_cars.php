@@ -13,6 +13,7 @@ echo '<div id="car_table" class="table-responsive"><table class="table table-str
                <th scope="col">Engine Cap. (l)</th>
             </tr></thead>
             <tbody>';
+try {
 foreach ($_SESSION["cars"] as $car) {
    foreach ($db->query('SELECT mtr.year, mke.make, mdl.model, mtr.motor, (gd1.grade1 || "-" ) || gd2.grade2 oil, mtr.oil_cap 
 FROM motor_tbl as mtr
@@ -33,3 +34,6 @@ WHERE mtr.motor_id = ' . $car) as $row) {
    }
 }
 echo '</tbody></table></div>';
+} catch (PDOException $e) {
+   echo $e;
+}
