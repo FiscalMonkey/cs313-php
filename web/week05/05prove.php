@@ -95,20 +95,10 @@ $db = get_db();
                <select id="motor" name="motor" class="form-control" onchange="newMotor()" disabled required>
                   <option disabled selected value="">Choose Engine</option>
                </select>
-
             </div>
-            <input class="btn btn-success btn-lg" type="submit" value="Save Vehicle" name="submit" />
             <div id="oil">
             </div>
          </form>
-      </div>
-      <div id="cars">
-         <?php
-         /* load any cars that have been saved as session variables */
-         if (!empty($_SESSION["cars"])) {
-            include("load_cars.php");
-         }
-         ?>
       </div>
    </div>
 
