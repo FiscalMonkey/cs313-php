@@ -4,8 +4,8 @@ DROP SEQUENCE IF EXISTS model_s1;
 CREATE TABLE model_tbl 
 ( model_id        SERIAL UNIQUE
 , model           VARCHAR(30) UNIQUE NOT NULL
-, make_id         INTEGER REFERENCES make_tbl(make_id)
-, created_by      INTEGER REFERENCES user_tbl(user_id)
+, make_id         INTEGER NOT NULL REFERENCES make_tbl(make_id)
+, created_by      INTEGER NOT NULL REFERENCES user_tbl(user_id)
 , creation_date   TIMESTAMPTZ NOT NULL
 );
 

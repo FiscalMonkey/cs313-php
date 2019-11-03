@@ -4,14 +4,14 @@ CREATE TABLE motor_tbl
 ( motor_id        SERIAL UNIQUE
 , motor           VARCHAR(30) NOT NULL
 , year            INTEGER NOT NULL
-, model_id        INTEGER REFERENCES model_tbl(model_id)
-, make_id         INTEGER REFERENCES make_tbl(make_id)
-, grade1_id       INTEGER REFERENCES grade1_tbl(grade1_id)
-, grade2_id       INTEGER REFERENCES grade2_tbl(grade2_id)
+, model_id        INTEGER NOT NULL REFERENCES model_tbl(model_id)
+, make_id         INTEGER NOT NULL REFERENCES make_tbl(make_id)
+, grade1_id       INTEGER NOT NULL REFERENCES grade1_tbl(grade1_id)
+, grade2_id       INTEGER NOT NULL REFERENCES grade2_tbl(grade2_id)
 , oil_cap         NUMERIC NOT NULL
-, created_by      INTEGER REFERENCES user_tbl(user_id)
+, created_by      INTEGER NOT NULL REFERENCES user_tbl(user_id)
 , creation_date   TIMESTAMPTZ NOT NULL
-, last_updated_by  INTEGER REFERENCES user_tbl(user_id)
+, last_updated_by  INTEGER NOT NULL REFERENCES user_tbl(user_id)
 , last_update_date TIMESTAMPTZ NOT NULL
 );
 

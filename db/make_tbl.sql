@@ -2,8 +2,8 @@ DROP TABLE IF EXISTS make_tbl;
 
 CREATE TABLE make_tbl 
 ( make_id         SERIAL UNIQUE
-, make            VARCHAR(30) UNIQUE
-, created_by      INTEGER REFERENCES user_tbl(user_id)
+, make            VARCHAR(30) UNIQUE NOT NULL
+, created_by      INTEGER NOT NULL REFERENCES user_tbl(user_id)
 , creation_date   TIMESTAMPTZ NOT NULL
 );
 
