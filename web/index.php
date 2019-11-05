@@ -37,6 +37,14 @@
          <div class="list-group">
             <a href="week05/add_table.php" class="list-group-item list-group-item-action">
                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">DB Final - Week 07 Prove</h5>
+                  <small>2 Nov 2019</small>
+               </div>
+               <p class="mb-1">Finalize the app to make it pretty.</p>
+               <small>Percent Complete: 100%</small>
+            </a>
+            <a href="week05/add_table.php" class="list-group-item list-group-item-action">
+               <div class="d-flex w-100 justify-content-between">
                   <h5 class="mb-1">DB Edit - Week 06 Prove</h5>
                   <small>26 Oct 2019</small>
                </div>
